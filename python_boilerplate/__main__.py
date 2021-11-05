@@ -2,6 +2,7 @@ import logging
 import sys
 
 from python_boilerplate.function.python_boilerplate_function import fib
+from python_boilerplate.messaging.sending_email import send_email
 
 log = logging.getLogger("rotatingFileLogger")
 
@@ -14,3 +15,4 @@ if __name__ == "__main__":
         n = int(sys.argv[1])
     log.info(f"n = {n}, type: {type(n)}")
     log.info(f"fib(n) = {fib(n)}")
+    send_email()
