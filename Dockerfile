@@ -34,5 +34,5 @@ USER appuser
 COPY . .
 
 # Run the executable
-ENTRYPOINT ["python", "$pwd/python_boilerplate/__main__.py"]
+ENTRYPOINT ["python", "python_boilerplate/__main__.py"]
 CMD ["10"]
