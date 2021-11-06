@@ -15,4 +15,3 @@ if __name__ == "__main__":
         n = int(sys.argv[1])
     log.info(f"n = {n}, type: {type(n)}")
     log.info(f"fib(n) = {fib(n)}")
-    send_email()
