@@ -33,6 +33,9 @@ USER appuser
 # Install application into container
 COPY . .
 
+RUN pwd
+RUN ls -R -l -h
+
 # Run the executable
 ENTRYPOINT ["python", "-m", "python_boilerplate"]
 CMD ["10"]
