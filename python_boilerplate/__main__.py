@@ -2,7 +2,6 @@ import logging
 import sys
 
 from python_boilerplate.function.python_boilerplate_function import fib
-from python_boilerplate.messaging.sending_email import send_email
 
 log = logging.getLogger("rotatingFileLogger")
 
