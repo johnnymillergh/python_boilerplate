@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Template Example Title at {{ datetime }}</title>
+</head>
+<body>
+<p style="font-size:15px; font-family:Arial,serif;">{{ content }}</p>
+<img src="{{ content_id }}" alt="A test capture">
+<table>
+    <tr>
+        {% if array_table_head %}
+        {% for var_i in array_table_head %}
+        <th style="font-size: 15px; padding: 3px;">{{var_i}}</th>
+        {% endfor %}
+        {% endif %}
+    </tr>
+    {% if dict_table_data %}
+    {% for table_data in dict_table_data %}
+    <tr>
+        <th style="font-size: 12px; padding: 3px;">{{ table_data.Name }}</th>
+        <th style="font-size: 12px; padding: 3px;">{{ table_data.Type }}</th>
+        <th style="font-size: 12px; padding: 3px;">{{ table_data.Value }}</th>
+    </tr>
+    {% endfor %}
+    {% endif %}
+</table>
+</body>
+</html>

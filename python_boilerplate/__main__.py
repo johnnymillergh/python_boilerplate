@@ -1,16 +1,14 @@
-import logging
-import sys
+from loguru import logger
 
-from python_boilerplate.function.python_boilerplate_function import fib
+from python_boilerplate.function_collection import get_module_name
 
-log = logging.getLogger("rotatingFileLogger")
+
+def __main__() -> None:
+    """
+    Main function.
+    """
+    logger.info(f"Current module: {get_module_name()}")
+
 
 if __name__ == "__main__":
-    log.info(f"len(sys.argv) = {len(sys.argv)}, sys.argv: {sys.argv}")
-    if len(sys.argv) == 1:
-        log.warning("Arguments not provided, set n = 0 as default")
-        n = int(0)
-    else:
-        n = int(sys.argv[1])
-    log.info(f"n = {n}, type: {type(n)}")
-    log.info(f"fib(n) = {fib(n)}")
+    __main__()

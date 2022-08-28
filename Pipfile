@@ -4,15 +4,60 @@ url = "https://pypi.python.org/simple"
 verify_ssl = true
 
 [requires]
+# https://docs.python.org/3/whatsnew/3.10.html
 python_version = "3.10"
 
 [packages]
+# Foundamental dependencies
+# Loguru is a library which aims to bring enjoyable logging in Python. https://pypi.org/project/loguru/
+loguru = "==0.6.0"
+# pyhocon is a HOCON parser for Python. Additionally we provide a tool (pyhocon) to convert any HOCON content into json,
+# yaml and properties format. https://pypi.org/project/pyhocon/
+pyhocon = "==0.3.59"
+
+# Data manipulation dependencies
+# NumPy is a Python library used for working with arrays. https://pypi.org/project/numpy/
+numpy = "==1.23.2"
+# pandas is a Python package that provides fast, flexible, and expressive data structures designed to make working
+# with "relational" or "labeled" data both easy and intuitive. https://pypi.org/project/pandas/
+pandas = "==1.4.3"
+
+# Python enhancement dependencies
+# Arrow is a Python library that offers a sensible and human-friendly approach to creating, manipulating,
+# formatting and converting dates, times and timestamps. https://pypi.org/project/arrow/
+arrow = "==1.2.2"
+
+# ORM dependencies
+# Peewee is a simple and small ORM. https://pypi.org/project/peewee/
+peewee = "==3.15.1"
+
+# Template engine dependencies
+# Jinja is a fast, expressive, extensible templating engine. https://pypi.org/project/Jinja2/
+jinja2 = "==3.1.2"
+
+# Tool dependencies
+# Faker is a Python package that generates fake data for you. https://pypi.org/project/Faker/
+faker = "==14.1.0"
+# A Python module to parse, validate and reformat standard numbers and codes in different formats.
+# It contains a large collection of number formats. https://pypi.org/project/python-stdnum/
+python-stdnum = "==1.17"
 
 [dev-packages]
-black = "==20.8b1"
-flake8 = "*"
-isort = "*"
-mypy = "*"
-pre-commit = "*"
-pytest = "*"
-pytest-cov = "*"
+# Black is the uncompromising Python code formatter. By using it, you agree to cede control over minutiae of
+# hand-formatting. https://pypi.org/project/black/
+black = "==22.6.0"
+# Linting & toolkit for checking your code base against coding style (PEP8). https://pypi.org/project/flake8/
+flake8 = "==5.0.4"
+# isort your imports, so you don't have to. https://pypi.org/project/isort/
+isort = "==5.10.1"
+# Add type annotations to your Python programs, and use mypy to type check them. https://pypi.org/project/mypy/
+mypy = "==0.971"
+# A framework for managing and maintaining multi-language pre-commit hooks. https://pypi.org/project/pre-commit/
+pre-commit = "==2.20.0"
+# The pytest framework makes it easy to write small tests, yet scales to support complex functional testing
+# for applications and libraries. https://pypi.org/project/pytest/
+pytest = "==7.1.2"
+# Thin-wrapper around the mock package for easier use with pytest. https://pypi.org/project/pytest-mock/
+pytest-mock = "==3.8.2"
+# This plugin produces coverage reports. https://pypi.org/project/pytest-cov/
+pytest-cov = "==3.0.0"

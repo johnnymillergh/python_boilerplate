@@ -1,8 +1,29 @@
 # Created by https://www.gitignore.io/api/python
 # Edit at https://www.gitignore.io/?templates=python
 
+### Project ###
+*.db
+*.gz
+logs/
+data/
+
 ### PyCharm ###
 .idea
+*.iml
+out
+gen
+
+### VisualStudioCode template
+.vscode/*
+!.vscode/settings.json
+!.vscode/tasks.json
+!.vscode/launch.json
+!.vscode/extensions.json
+*.code-workspace
+
+# Local History for Visual Studio Code
+.history/
+
 
 ### Python ###
 # Byte-compiled / optimized / DLL files

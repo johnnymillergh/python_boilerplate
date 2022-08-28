@@ -9,19 +9,22 @@ on:
     paths-ignore:
       - '**.md'
       - '_config.yml'
+      - '**.tweet'
     tags: "*"
 
 jobs:
-  test:
+  compilation:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
 
       - name: Setup Python
-        uses: actions/setup-python@v2.2.2
+        uses: actions/setup-python@v2
         with:
-          python-version: "3.10.0"
+          python-version: "3.10.6"
           architecture: x64
+          # https://github.com/actions/setup-python/blob/main/docs/advanced-usage.md#caching-packages
+          cache: "pipenv"
 
       - name: Install Dependencies with pipenv
         run: |
@@ -33,16 +36,9 @@ jobs:
       - run: pipenv run flake8
       - run: pipenv run mypy
       - name: Python tests with pytest
-        run: pipenv run pytest --cov --cov-fail-under=20
-
-  build-docker-image:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v2
-
+        run: pipenv run pytest --cov --cov-fail-under=70 --capture=no --log-cli-level=INFO
       - name: Build docker image
-        run: docker build . -t python_boilerplate:test
-
+        run: docker build . -t python_boilerplate:smoke-test-tag
       - name: Smoke test docker image
         run: |
-          docker run --rm python_boilerplate:test 10
+          docker run --rm python_boilerplate:smoke-test-tag 10
