@@ -1,4 +1,4 @@
-# python_boilerplate
+# Python Boilerplate
 
 **python_boilerplate** is a boilerplate project for Python. Based on template [sourcery-ai/python-best-practices-cookiecutter](https://github.com/sourcery-ai/python-best-practices-cookiecutter).
 
@@ -8,28 +8,31 @@
 
 Here is the highlights of **python_boilerplate**:
 
-1. Testing with [pytest](https://docs.pytest.org/en/latest/)
+1. Inherited from modern and the latest newest Python technologies:
 
-2. Formatting with [black](https://github.com/psf/black)
+   `Python` - [![Python](https://img.shields.io/badge/Python-v3.10.6-blue)](https://www.python.org/downloads/release/python-3106/)
 
-3. Import sorting with [isort](https://github.com/timothycrosley/isort)
+2. Testing with [pytest](https://docs.pytest.org/en/latest/)
 
-4. Static typing with [mypy](http://mypy-lang.org/)
+3. Formatting with [black](https://github.com/psf/black)
 
-5. Linting with [flake8](http://flake8.pycqa.org/en/latest/)
+4. Import sorting with [isort](https://github.com/timothycrosley/isort)
 
-6. Git hooks that run all the above with [pre-commit](https://pre-commit.com/)
+5. Static typing with [mypy](http://mypy-lang.org/)
 
-7. Deployment ready with [Docker](https://docker.com/)
+6. Linting with [flake8](http://flake8.pycqa.org/en/latest/)
 
-8. Continuous Integration with [GitHub Actions](https://github.com/features/actions)
+7. Git hooks that run all the above with [pre-commit](https://pre-commit.com/)
 
-9. Universal logging configuration. Log sample is like,
+8. Deployment ready with [Docker](https://docker.com/)
+
+9. Continuous Integration with [GitHub Actions](https://github.com/features/actions)
+
+10. Loguru logging configuration. Log sample is like,
 
    ```
-   2021-11-04 18:12:58 INFO     - [MainThread] [rotatingFileLogger] [__main__.py:9] : len(sys.argv) = 2, sys.argv: ['C:/Users/Johnny/Projects/PyCharmProjects/python_boilerplate/python_boilerplate/__main__.py', '10']
-   2021-11-04 18:12:58 INFO     - [MainThread] [rotatingFileLogger] [__main__.py:15] : n = 10, type: <class 'int'>
-   2021-11-04 18:12:58 INFO     - [MainThread] [rotatingFileLogger] [__main__.py:16] : fib(n) = 55
+   2022-08-28 21:46:19.923 | WARNING  | MainThread      | python_boilerplate.repository.model.base.model:<module>:8 - SQLite database created. Path: /Users/johnny/Projects/PyCharmProjects/python_boilerplate/python_boilerplate/data/python_boilerplate.db, <peewee.SqliteDatabase object at 0x1027801c0>
+   2022-08-28 21:46:19.924 | DEBUG    | MainThread      | peewee:execute_sql:3185 - ('CREATE TABLE IF NOT EXISTS "startup_log" ("id" INTEGER NOT NULL PRIMARY KEY, "startup_time" DATETIME NOT NULL, "created_time" DATETIME NOT NULL, "modified_time" DATETIME NOT NULL)', [])
    ```
 
 ## Usage
@@ -46,13 +49,24 @@ Here is the highlights of **python_boilerplate**:
 
 ## Setup
 
-1. Install dependencies
+1. Setup the development environment
+
+   ```shell
+   # Install pipx if pipenv and cookiecutter are not installed
+   $ python3 -m pip install pipx
+   $ python3 -m pipx ensurepath
+   
+   # Install pipenv using pipx
+   $ pipx install pipenv
+   ```
+
+2. Install dependencies
 
    ```shell
    $ pipenv install --dev
    ```
 
-2. Setup pre-commit and pre-push hooks
+3. Setup pre-commit and pre-push hooks
 
    ```shell
    $ pipenv run pre-commit install -t pre-commit
