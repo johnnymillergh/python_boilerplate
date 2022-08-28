@@ -14,8 +14,10 @@ from python_boilerplate.configuration.thread_pool_configuration import (
 from python_boilerplate.configuration.thread_pool_configuration import (
     configure as thread_pool_configure,
 )
+from python_boilerplate.function_collection import get_module_name
 from python_boilerplate.message.email import __init__
 from python_boilerplate.message.email import cleanup as email_cleanup
+from python_boilerplate.repository.startup_log_repository import save
 
 # Configuration
 application_configure()
@@ -24,6 +26,8 @@ thread_pool_configure()
 
 # Initialization
 __init__()
+logger.info(f"Application [{get_module_name()}] started")
+save()
 
 
 @atexit.register
