@@ -1,3 +1,4 @@
+import os
 from typing import Hashable, Iterable
 
 import numpy as np
@@ -34,7 +35,9 @@ def test_pandas_reading_csv() -> None:
     """
     # The CSV dataset is from
     # https://github.com/corgis-edu/corgis/blob/master/website/datasets/csv/video_games/video_games.md
-    video_games: DataFrame = pd.read_csv(f"{get_resources_dir()}/video_games.csv")
+    video_games: DataFrame = pd.read_csv(
+        f"{get_resources_dir()}{os.path.sep}video_games.csv"
+    )
     logger.info(f"video_games:\n{video_games}")
     logger.info(f"Head of video_games:\n{video_games.head()}")
     logger.info(f"Tail of video_games:\n{video_games.tail()}")

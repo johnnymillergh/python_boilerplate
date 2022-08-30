@@ -1,9 +1,11 @@
+import os.path
+
 from jinja2 import Environment, FileSystemLoader, select_autoescape
 
 from python_boilerplate.function_collection import get_resources_dir
 
 _ENVIRONMENT: Environment = Environment(
-    loader=FileSystemLoader(f"{get_resources_dir()}/html_template"),
+    loader=FileSystemLoader(f"{get_resources_dir()}{os.path.sep}html_template"),
     autoescape=select_autoescape(["html"]),
 )
 

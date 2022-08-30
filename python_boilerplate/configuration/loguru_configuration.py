@@ -1,10 +1,11 @@
 import logging
+import os
 import sys
 
 from loguru import logger
 
 from python_boilerplate.configuration.application_configuration import application_conf
-from python_boilerplate.function_collection import get_data_dir
+from python_boilerplate.function_collection import get_data_dir, get_module_name
 
 _message_format = (
     "<green>{time:YYYY-MM-DD HH:mm:ss.SSS}</green> | "
@@ -16,7 +17,9 @@ _message_format = (
 # Remove a previously added handler and stop sending logs to its sink.
 logger.remove(handler_id=None)
 # Set up logging for log file
-_log_file = get_data_dir() + "/logs/python_boilerplate.{time}.log"
+_log_file = (
+    f"{get_data_dir()}{os.path.sep}logs{os.path.sep}{get_module_name()}" + ".{time}.log"
+)
 log_level = application_conf.get_string("log_level")
 logger.add(
     _log_file,
