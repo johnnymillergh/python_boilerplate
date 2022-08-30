@@ -10,7 +10,7 @@ _message_format = (
     "<green>{time:YYYY-MM-DD HH:mm:ss.SSS}</green> | "
     "<level>{level: <8}</level> | "
     "<blue>{thread.name: <15}</blue> | "
-    "<cyan>{name}</cyan>:<cyan>{function}</cyan>:<cyan>{line}</cyan> - "
+    "<cyan>{name}</cyan>.<cyan>{function}</cyan>:<cyan>{line}</cyan> - "
     "<level>{message}</level>"
 )
 # Remove a previously added handler and stop sending logs to its sink.
