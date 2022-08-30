@@ -8,7 +8,7 @@ from python_boilerplate.function_collection import get_data_dir
 
 _message_format = (
     "<green>{time:YYYY-MM-DD HH:mm:ss.SSS}</green> | "
-    "<level>{level: <8}</level> | "
+    "<level>{level.icon} {level: <8}</level> | "
     "<blue>{thread.name: <15}</blue> | "
     "<cyan>{name}</cyan>.<cyan>{function}</cyan>:<cyan>{line}</cyan> - "
     "<level>{message}</level>"
