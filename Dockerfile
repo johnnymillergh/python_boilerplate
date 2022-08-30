@@ -34,7 +34,7 @@ WORKDIR /app
 COPY . .
 
 RUN pwd
-RUN ls -R -l -h
+RUN ls -l -h
 
 # Run the executable
 ENTRYPOINT ["python", "-m", "python_boilerplate"]

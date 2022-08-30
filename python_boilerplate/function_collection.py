@@ -1,20 +1,22 @@
 import os
+from pathlib import Path
 
-_current_file = os.path.abspath(__file__)
+_PROJECT_ROOT = Path.cwd().parent
+_CURRENT_FILE_PATH = os.path.abspath(__file__)
 
 
 def get_root_path() -> str:
     """
     Get the root path of the project.
     """
-    return os.path.dirname(_current_file)
+    return os.path.dirname(_CURRENT_FILE_PATH)
 
 
 def get_data_dir() -> str:
     """
     Get the data directory of the project.
     """
-    data_dir = f"{get_root_path()}/data"
+    data_dir = f"{_PROJECT_ROOT.__str__()}/data"
     os.makedirs(data_dir, exist_ok=True)
     return data_dir
 
@@ -30,7 +32,7 @@ def get_module_name() -> str:
     """
     Get the name of the current module.
     """
-    path_list = _current_file.split(os.path.sep)
+    path_list = _CURRENT_FILE_PATH.split(os.path.sep)
     return path_list[len(path_list) - 2]
 
 
