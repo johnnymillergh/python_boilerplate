@@ -3,7 +3,6 @@ from email.header import Header
 from email.mime.image import MIMEImage
 from email.mime.multipart import MIMEMultipart
 from email.mime.text import MIMEText
-from typing import List
 
 from loguru import logger
 
@@ -18,7 +17,7 @@ _port: int = application_conf.get_int("email.port")
 _username: str = application_conf.get_string("email.username")
 _password: str = application_conf.get_string("email.password")
 _sender: str = f"{_username}{application_conf.get_string('email.mail_address_suffix')}"
-_receivers: List[str] = application_conf.get_list("email.receivers")
+_receivers: list[str] = application_conf.get_list("email.receivers")
 
 _smtp: smtplib.SMTP = smtplib.SMTP(_host, _port)
 
