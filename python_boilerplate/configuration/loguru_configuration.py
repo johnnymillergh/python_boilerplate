@@ -1,5 +1,6 @@
 import logging
 import os
+import platform
 import sys
 
 from loguru import logger
@@ -18,7 +19,8 @@ _message_format = (
 logger.remove(handler_id=None)
 # Set up logging for log file
 _log_file = (
-    f"{get_data_dir()}{os.path.sep}logs{os.path.sep}{get_module_name()}" + ".{time}.log"
+    f"{get_data_dir('logs')}{os.path.sep}{get_module_name()}.{platform.node()}."
+    + "{time}.log"
 )
 log_level = application_conf.get_string("log_level")
 logger.add(

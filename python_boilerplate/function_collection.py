@@ -11,11 +11,16 @@ def get_root_path() -> str:
     return os.path.dirname(_CURRENT_FILE_PATH)
 
 
-def get_data_dir() -> str:
+def get_data_dir(sub_path="") -> str:
     """
     Get the data directory of the project.
+
+    :param sub_path: the sub path under the `data` directory. If not exists, the sub path will be created.
     """
-    data_dir = f"{_PROJECT_ROOT.__str__()}{os.path.sep}data"
+    if len(sub_path) > 0:
+        data_dir = f"{_PROJECT_ROOT.__str__()}{os.path.sep}data{os.path.sep}{sub_path}"
+    else:
+        data_dir = f"{_PROJECT_ROOT.__str__()}{os.path.sep}data"
     os.makedirs(data_dir, exist_ok=True)
     return data_dir
 
