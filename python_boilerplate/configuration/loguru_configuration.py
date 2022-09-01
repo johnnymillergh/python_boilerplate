@@ -29,7 +29,8 @@ logger.add(
     format=_message_format,
     enqueue=True,
     # turn to false if in production to prevent data leaking
-    backtrace=False,
+    backtrace=True,
+    diagnose=True,
     rotation="00:00",
     retention="7 Days",
     compression="gz",
