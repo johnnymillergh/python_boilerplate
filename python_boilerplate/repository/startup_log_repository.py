@@ -16,12 +16,16 @@ def save() -> StartupLog:
     """
     try:
         login_user = os.getlogin()
-    except OSError:
+    except OSError as ex:
+        logger.error(
+            f"Failed to get current login user, falling back to `default_user`. {ex}"
+        )
         login_user = "default_user"
     startup_log: StartupLog = StartupLog(
         current_user=login_user,
         host=platform.node(),
         command_line=" ".join(sys.argv),
+        current_working_directory=os.getcwd(),
     )
     startup_log.save()
     retain_startup_log()
