@@ -11,6 +11,7 @@ class StartupLog(BaseModel):
     """
 
     current_user = CharField(max_length=50, null=False)
+    host = CharField(max_length=50, null=False)
     command_line = TextField(null=False)
     startup_time = DateTimeField(default=datetime.now)
     created_time = DateTimeField(default=datetime.now)

@@ -1,3 +1,4 @@
+import os
 import platform
 import sys
 
@@ -14,7 +15,9 @@ def save() -> StartupLog:
     :return: a StartupLog object
     """
     startup_log: StartupLog = StartupLog(
-        current_user=platform.node(), command_line=" ".join(sys.argv)
+        current_user=os.getlogin(),
+        host=platform.node(),
+        command_line=" ".join(sys.argv),
     )
     startup_log.save()
     retain_startup_log()
