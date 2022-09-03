@@ -38,6 +38,8 @@ faker = "==14.1.0"
 python-stdnum = "==1.17"
 # Retrying library for Python. https://pypi.org/project/tenacity/
 tenacity = "==8.0.1"
+# Python plotting package. https://pypi.org/project/matplotlib/
+matplotlib = "==3.5.3"
 
 [dev-packages]
 # Black is the uncompromising Python code formatter. By using it, you agree to cede control over minutiae of
