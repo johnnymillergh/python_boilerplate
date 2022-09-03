@@ -3,7 +3,7 @@ from pathlib import Path
 from loguru import logger
 from peewee import Model, SqliteDatabase
 
-from python_boilerplate.function_collection import get_data_dir, get_module_name
+from python_boilerplate.common.common_function import get_data_dir, get_module_name
 
 _db_path: Path = get_data_dir() / f"{get_module_name()}.db"
 database: SqliteDatabase = SqliteDatabase(_db_path)

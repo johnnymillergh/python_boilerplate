@@ -1,32 +1,19 @@
-import os
-import platform
 import sys
 
 import arrow
 from loguru import logger
 
+from python_boilerplate.common.trace import trace
 from python_boilerplate.repository.model.startup_log import StartupLog
 
 
-@logger.catch
+@trace
 def save() -> StartupLog:
     """
     Save a new startup log.
     :return: a StartupLog object
     """
-    try:
-        login_user = os.getlogin()
-    except OSError as ex:
-        logger.error(
-            f"Failed to get current login user, falling back to `default_user`. {ex}"
-        )
-        login_user = "default_user"
-    startup_log: StartupLog = StartupLog(
-        current_user=login_user,
-        host=platform.node(),
-        command_line=" ".join(sys.argv),
-        current_working_directory=os.getcwd(),
-    )
+    startup_log: StartupLog = StartupLog(command_line=" ".join(sys.argv))
     startup_log.save()
     retain_startup_log()
     return startup_log
