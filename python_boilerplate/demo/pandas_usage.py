@@ -5,7 +5,8 @@ import pandas as pd
 from loguru import logger
 from pandas import DataFrame, DatetimeIndex, Series
 
-from python_boilerplate.function_collection import get_data_dir, get_resources_dir
+from python_boilerplate.common.common_function import get_data_dir, get_resources_dir
+from python_boilerplate.common.trace import trace
 
 # 10 minutes to pandas https://pandas.pydata.org/pandas-docs/stable/user_guide/10min.html#minutes-to-pandas
 # CSV & text files https://pandas.pydata.org/pandas-docs/stable/user_guide/io.html#io-read-csv-table
@@ -28,6 +29,7 @@ def pandas_data_structure_date_range() -> DatetimeIndex:
     return pd.date_range("2022-01-01", periods=6)
 
 
+@trace
 def look_for_sony_published_games() -> DataFrame:
     all_columns = set(video_games)
     selected_columns = {
@@ -57,6 +59,3 @@ def look_for_sony_published_games() -> DataFrame:
         logger.info(f"Sony released {item[1]} games in {item[0]}")
     sony_published.to_csv(sony_published_video_games_path, index=False)
     return sony_published
-
-
-look_for_sony_published_games()

@@ -13,6 +13,8 @@ from tenacity import (
     wait_fixed,
 )
 
+from python_boilerplate.common.trace import trace
+
 SUCCESS_RANGE: Final = range(200, 300)
 loging_logger: Final = logging.getLogger(__name__)
 
@@ -21,12 +23,14 @@ loging_logger: Final = logging.getLogger(__name__)
 # https://jamesfheath.com/2020/07/python-library-tenacity.html
 
 
+@trace
 @retry(stop=stop_after_attempt(3), after=after_log(loging_logger, WARNING))
 def exception_function_1() -> None:
     logger.warning("Mocking failure 1")
     raise RuntimeError("Failure message 1")
 
 
+@trace
 @retry(
     stop=stop_after_attempt(3), wait=wait_fixed(2), after=after_log(loging_logger, INFO)
 )
@@ -50,6 +54,7 @@ def different_exceptions_possible(x: int) -> str:
         return "success"
 
 
+@trace
 def validate_code(result: int) -> bool:
     needs_retry = result not in SUCCESS_RANGE
     if needs_retry:
@@ -63,6 +68,7 @@ def validate_code(result: int) -> bool:
     return needs_retry
 
 
+@trace
 @retry(stop=stop_after_attempt(3), retry=retry_if_result(validate_code))
 def customized_retry_logic_function(input_int: int) -> int:
     random_int = random.randint(0, 200)

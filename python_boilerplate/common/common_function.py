@@ -1,14 +1,16 @@
 import os
 from pathlib import Path
 
+from loguru import logger
+
 # pathlib — Object-oriented filesystem paths
 # https://docs.python.org/3/library/pathlib.html
 
 # Path Correspondence to tools in the os module
 # https://docs.python.org/3/library/pathlib.html#correspondence-to-tools-in-the-os-module
 
-PROJECT_ROOT_PATH = Path(__file__).parent.parent
-MODULE_ROOT_PATH = Path(__file__).parent
+PROJECT_ROOT_PATH = Path(__file__).parent.parent.parent
+MODULE_ROOT_PATH = Path(__file__).parent.parent
 
 
 def get_data_dir(sub_path="") -> Path:
@@ -51,3 +53,17 @@ def get_cpu_count() -> int:
         return cpu_count
     else:
         return 4
+
+
+def get_login_user() -> str:
+    """
+    Get current login user who is using the OS.
+    :return: the username
+    """
+    try:
+        return os.getlogin()
+    except OSError as ex:
+        logger.error(
+            f"Failed to get current login user, falling back to `default_user`. {ex}"
+        )
+        return "default_user"

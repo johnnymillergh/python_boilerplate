@@ -2,6 +2,7 @@ import asyncio
 from datetime import datetime
 from threading import Timer
 from time import time
+from typing import Callable
 
 from loguru import logger
 
@@ -16,15 +17,17 @@ def debounce(interval: float):
     :param interval: interval time in seconds
     """
 
-    def decorator(fn):
+    def decorator(func: Callable):
         def debounced(*args, **kwargs):
             def call_it():
-                fn(*args, **kwargs)
-                logger.debug(f"Called debounced function: {fn}")
+                func(*args, **kwargs)
+                logger.debug(f"Called debounced function: {func.__qualname__}()")
 
             try:
                 debounced.t.cancel()
-                logger.debug(f"Cancelled calling debounced function: {fn}")
+                logger.debug(
+                    f"Cancelled calling debounced function: {func.__qualname__}()"
+                )
             except AttributeError:
                 pass
             debounced.t = Timer(interval, call_it)

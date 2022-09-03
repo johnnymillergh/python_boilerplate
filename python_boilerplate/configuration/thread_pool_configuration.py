@@ -3,7 +3,7 @@ from concurrent.futures import ThreadPoolExecutor
 
 from loguru import logger
 
-from python_boilerplate.function_collection import get_cpu_count
+from python_boilerplate.common.common_function import get_cpu_count
 
 max_workers = 2 * get_cpu_count()
 executor: ThreadPoolExecutor = ThreadPoolExecutor(

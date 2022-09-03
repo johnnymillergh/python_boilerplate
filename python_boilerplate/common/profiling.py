@@ -1,3 +1,4 @@
+import functools
 import time
 from typing import Callable
 
@@ -10,14 +11,15 @@ def elapsed_time(level="INFO"):
     :param level: logging level, default is `INFO`
     """
 
-    def elapsed_time_decorator(function: Callable):
+    def elapsed_time_decorator(func: Callable):
+        @functools.wraps(func)
         def wrapped(*arg, **kwarg):
             start_time = time.time()
-            return_value = function(*arg, **kwarg)
+            return_value = func(*arg, **kwarg)
             end_time = time.time()
             logger.log(
                 level,
-                f"Elapsed time of function {function}：{round(end_time - start_time, 4)}s",
+                f"Elapsed {round(end_time - start_time, 4)}s for function {func.__qualname__}()",
             )
             return return_value
 

@@ -4,8 +4,8 @@ import sys
 
 from loguru import logger
 
+from python_boilerplate.common.common_function import get_data_dir, get_module_name
 from python_boilerplate.configuration.application_configuration import application_conf
-from python_boilerplate.function_collection import get_data_dir, get_module_name
 
 _message_format = (
     "<green>{time:YYYY-MM-DD HH:mm:ss.SSS}</green> | "
