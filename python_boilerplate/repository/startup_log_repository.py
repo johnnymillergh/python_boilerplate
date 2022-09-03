@@ -14,8 +14,12 @@ def save() -> StartupLog:
     Save a new startup log.
     :return: a StartupLog object
     """
+    try:
+        login_user = os.getlogin()
+    except OSError:
+        login_user = "default_user"
     startup_log: StartupLog = StartupLog(
-        current_user=os.getlogin(),
+        current_user=login_user,
         host=platform.node(),
         command_line=" ".join(sys.argv),
     )
