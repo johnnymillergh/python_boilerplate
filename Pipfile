@@ -36,6 +36,8 @@ faker = "==14.1.0"
 # A Python module to parse, validate and reformat standard numbers and codes in different formats.
 # It contains a large collection of number formats. https://pypi.org/project/python-stdnum/
 python-stdnum = "==1.17"
+# Retrying library for Python. https://pypi.org/project/tenacity/
+tenacity = "==8.0.1"
 
 [dev-packages]
 # Black is the uncompromising Python code formatter. By using it, you agree to cede control over minutiae of
