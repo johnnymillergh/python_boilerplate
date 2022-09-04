@@ -1,7 +1,7 @@
 import arrow
 from loguru import logger
 
-from python_boilerplate import get_module_name
+from python_boilerplate.common.common_function import get_module_name
 from python_boilerplate.repository.model.trace_log import TraceLog
 
 

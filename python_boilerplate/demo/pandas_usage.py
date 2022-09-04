@@ -6,6 +6,7 @@ from loguru import logger
 from pandas import DataFrame, DatetimeIndex, Series
 
 from python_boilerplate.common.common_function import get_data_dir, get_resources_dir
+from python_boilerplate.common.profiling import elapsed_time
 from python_boilerplate.common.trace import trace
 
 # 10 minutes to pandas https://pandas.pydata.org/pandas-docs/stable/user_guide/10min.html#minutes-to-pandas
@@ -30,6 +31,7 @@ def pandas_data_structure_date_range() -> DatetimeIndex:
 
 
 @trace
+@elapsed_time()
 def look_for_sony_published_games() -> DataFrame:
     all_columns = set(video_games)
     selected_columns = {
@@ -50,7 +52,7 @@ def look_for_sony_published_games() -> DataFrame:
     logger.info(
         f"From {min_release_year} to {max_release_year}, Sony has published {len(sony_published)} games"
     )
-    game_release_each_year: Final = (
+    game_release_each_year: Final[Series] = (
         sony_published.groupby(release_year)[release_year]
         .count()
         .sort_values(ascending=False)
@@ -59,3 +61,6 @@ def look_for_sony_published_games() -> DataFrame:
         logger.info(f"Sony released {item[1]} games in {item[0]}")
     sony_published.to_csv(sony_published_video_games_path, index=False)
     return sony_published
+
+
+look_for_sony_published_games()

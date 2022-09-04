@@ -3,6 +3,7 @@ from concurrent.futures import Future, ThreadPoolExecutor
 from loguru import logger
 
 from python_boilerplate.common.common_function import get_cpu_count
+from python_boilerplate.common.profiling import elapsed_time
 
 # Thread Concurrency Visualization https://www.jetbrains.com/help/pycharm/thread-concurrency-visualization.html
 
@@ -38,6 +39,7 @@ def configure() -> None:
     )
 
 
+@elapsed_time()
 def cleanup() -> None:
     """
     Clean up thread pool.
