@@ -1,5 +1,7 @@
 import os
+from datetime import date, datetime
 from pathlib import Path
+from typing import Any
 
 from loguru import logger
 
@@ -67,3 +69,17 @@ def get_login_user() -> str:
             f"Failed to get current login user, falling back to `default_user`. {ex}"
         )
         return "default_user"
+
+
+def json_serial(obj: Any) -> str | dict:
+    """
+    JSON serializer for objects not serializable by default json code
+    https://stackoverflow.com/questions/11875770/how-to-overcome-datetime-datetime-not-json-serializable/36142844#36142844
+    :param obj: on object needs to be serialized
+    :return: string or dictionary
+    """
+    if isinstance(obj, (datetime, date)):
+        return obj.isoformat()
+    if isinstance(obj, set):
+        return str(obj)
+    return obj.__dict__

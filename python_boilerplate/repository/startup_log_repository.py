@@ -1,21 +1,19 @@
-import sys
-
 import arrow
 from loguru import logger
 
+from python_boilerplate import get_module_name
 from python_boilerplate.common.trace import trace
 from python_boilerplate.repository.model.startup_log import StartupLog
 
 
 @trace
-def save() -> StartupLog:
+def save(startup_log: StartupLog) -> StartupLog:
     """
     Save a new startup log.
+    :param: a StartupLog needs to save
     :return: a StartupLog object
     """
-    startup_log: StartupLog = StartupLog(command_line=" ".join(sys.argv))
     startup_log.save()
-    retain_startup_log()
     return startup_log
 
 
@@ -26,7 +24,7 @@ def retain_startup_log() -> int:
     )
     # the affected_rows is always 1 no matter how many rows were deleted
     logger.debug(
-        f"The program retains recent 7 days of startup log. "
+        f"The app [{get_module_name()}] retains recent 7 days of startup log. "
         f"Deleted {affected_rows} records that are before {a_week_ago}"
     )
     return affected_rows
