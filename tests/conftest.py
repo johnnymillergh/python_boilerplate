@@ -12,7 +12,9 @@ def auto_profile(request):
     """
     Generate a HTML file for each test node in your test suite inside the .profiles directory.
 
-    https://pyinstrument.readthedocs.io/en/latest/guide.html#profile-pytest-tests
+    Links:
+     * https://pyinstrument.readthedocs.io/en/latest/guide.html#profile-pytest-tests
+     * https://docs.pytest.org/en/latest/how-to/fixtures.html?highlight=conftest#scope-sharing-fixtures-across-classes-modules-packages-or-session
     """
 
     # noinspection PyPep8Naming
