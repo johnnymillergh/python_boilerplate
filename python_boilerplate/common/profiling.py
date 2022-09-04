@@ -26,8 +26,8 @@ def elapsed_time(level="INFO"):
             end_time = time.time()
             logger.log(
                 level,
-                f"The function [{func.__qualname__}()] elapsed {round(end_time - start_time, 4)}s "
-                f"({round((end_time - start_time) * 1000, 4)}ms)",
+                f"{func.__qualname__}() -> elapsed time: {round(end_time - start_time, 4)}s "
+                f"({round((end_time - start_time) * 1000, 2)}ms)",
             )
             return return_value
 
