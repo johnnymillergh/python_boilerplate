@@ -74,7 +74,9 @@ def get_login_user() -> str:
 def json_serial(obj: Any) -> str | dict:
     """
     JSON serializer for objects not serializable by default json code
+
     https://stackoverflow.com/questions/11875770/how-to-overcome-datetime-datetime-not-json-serializable/36142844#36142844
+
     :param obj: on object needs to be serialized
     :return: string or dictionary
     """
