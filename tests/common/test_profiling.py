@@ -1,6 +1,6 @@
 from time import sleep
 
-from python_boilerplate.common.function_execution_time import elapsed_time
+from python_boilerplate.common.profiling import elapsed_time
 
 
 @elapsed_time(level="WARNING")

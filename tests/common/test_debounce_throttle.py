@@ -7,6 +7,7 @@ from python_boilerplate.common.debounce_throttle import (
     debounce,
     throttle,
 )
+from python_boilerplate.common.trace import trace
 
 
 def test_debounce() -> None:
@@ -32,10 +33,11 @@ def test_throttle() -> None:
             throttle_function()
             call_count -= 1
             sleep(0.24)
-    except Exception:
-        assert False, "Failed to test throttle_function()"
+    except Exception as ex:
+        assert False, f"Failed to test throttle_function(). {ex}"
 
 
+@trace
 @debounce(1)
 def debounce_function() -> None:
     logger.warning("'debounce_function' was called")

@@ -1,22 +1,27 @@
 import logging
+import platform
 import sys
 
 from loguru import logger
 
+from python_boilerplate.common.common_function import get_data_dir, get_module_name
 from python_boilerplate.configuration.application_configuration import application_conf
-from python_boilerplate.function_collection import get_data_dir
 
 _message_format = (
     "<green>{time:YYYY-MM-DD HH:mm:ss.SSS}</green> | "
-    "<level>{level: <8}</level> | "
+    "<level>{level.icon} {level: <8}</level> | "
     "<blue>{thread.name: <15}</blue> | "
-    "<cyan>{name}</cyan>:<cyan>{function}</cyan>:<cyan>{line}</cyan> - "
+    "<cyan>{name}</cyan>.<cyan>{function}</cyan>:<cyan>{line}</cyan> - "
     "<level>{message}</level>"
 )
 # Remove a previously added handler and stop sending logs to its sink.
 logger.remove(handler_id=None)
 # Set up logging for log file
-_log_file = get_data_dir() + "/logs/python_boilerplate.{time}.log"
+_log_file = (
+    str(get_data_dir("logs"))
+    + f"/{get_module_name()}.{platform.node()}."
+    + "{time}.log"
+)
 log_level = application_conf.get_string("log_level")
 logger.add(
     _log_file,
@@ -24,7 +29,8 @@ logger.add(
     format=_message_format,
     enqueue=True,
     # turn to false if in production to prevent data leaking
-    backtrace=False,
+    backtrace=True,
+    diagnose=True,
     rotation="00:00",
     retention="7 Days",
     compression="gz",
