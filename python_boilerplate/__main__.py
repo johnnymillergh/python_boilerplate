@@ -1,6 +1,6 @@
 from loguru import logger
 
-from python_boilerplate.function_collection import get_module_name
+from python_boilerplate.common.common_function import get_module_name
 
 
 def __main__() -> None:
