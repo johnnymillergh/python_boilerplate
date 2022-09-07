@@ -36,7 +36,7 @@ jobs:
       - run: pipenv run flake8
       - run: pipenv run mypy
       - name: Python tests with pytest
-        run: pipenv run pytest --cov --cov-fail-under=70 --capture=no --log-cli-level=INFO
+        run: pipenv run pytest --cov --cov-fail-under=85 --capture=no --log-cli-level=INFO
       - name: Build docker image
         run: docker build . -t python_boilerplate:smoke-test-tag
       - name: Smoke test docker image
