@@ -6,6 +6,7 @@ from loguru import logger
 from pandas import DatetimeIndex, Series
 
 from python_boilerplate.demo.pandas_usage import (
+    data_generation,
     look_for_sony_published_games,
     pandas_data_structure_date_range,
     pandas_data_structure_series,
@@ -59,3 +60,10 @@ def test_look_for_sony_published_games():
     assert sony_published_games is not None
     assert len(sony_published_games) == 60
     assert Path(sony_published_video_games_path).exists(), "CSV file NOT exists!"
+
+
+def test_data_generation():
+    try:
+        data_generation()
+    except Exception as ex:
+        assert False, f"{data_generation} raised an exception {ex}"

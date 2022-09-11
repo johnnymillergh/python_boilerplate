@@ -1,10 +1,13 @@
-from typing import Final
+from concurrent.futures import Future, wait
+from typing import Any, Final
 
 import numpy as np
 import pandas as pd
+from faker import Faker
 from loguru import logger
 from pandas import DataFrame, DatetimeIndex, Series
 
+from python_boilerplate.common.asynchronization import async_function
 from python_boilerplate.common.common_function import get_data_dir, get_resources_dir
 from python_boilerplate.common.profiling import elapsed_time
 from python_boilerplate.common.trace import trace
@@ -20,6 +23,8 @@ sony_published_video_games_path: Final = (
 )
 video_games: Final = pd.read_csv(video_games_path)
 logger.info(f"Done reading CSV, file: [{video_games_path}], rows: {len(video_games)}")
+
+faker = Faker()
 
 
 def pandas_data_structure_series() -> Series:
@@ -63,4 +68,55 @@ def look_for_sony_published_games() -> DataFrame:
     return sony_published
 
 
-look_for_sony_published_games()
+@async_function
+@elapsed_time()
+def generate_random_data(row_count: int) -> DataFrame:
+    rows: list[dict[str, Any]] = []
+    for _ in range(row_count):
+        rows.append(
+            {
+                "full_name": faker.name(),
+                "age": faker.random.randint(18, 100),
+                "phone_number": faker.phone_number(),
+                "address": faker.address(),
+                "zipcode": faker.zipcode(),
+                "country": faker.country(),
+            }
+        )
+    return pd.DataFrame(rows)
+
+
+# noinspection PyTypeChecker
+@elapsed_time()
+def submit_parallel_tasks() -> list[DataFrame]:
+    futures: list[Future] = []
+    for _ in range(5):
+        futures.append(generate_random_data(5000))
+    wait(futures)
+    logger.info(f"All {len(futures)} tasks has done")
+    return list(map(lambda x: x.result(), futures))
+
+
+@elapsed_time()
+def merge_results(dataframes: list[DataFrame]) -> DataFrame:
+    result_list: DataFrame = pd.DataFrame(
+        columns=["full_name", "age", "phone_number", "address", "zipcode", "country"]
+    )
+    for dataframe in dataframes:
+        result_list = pd.concat([result_list, dataframe])
+    return result_list
+
+
+def data_generation():
+    futures = submit_parallel_tasks()
+    result_data_pd = merge_results(futures)
+    logger.info(result_data_pd)
+    random_data_path = get_data_dir() / "random_data.csv"
+    result_data_pd.to_csv(random_data_path, index=False)
+    logger.info(
+        f"Done writing data file [{random_data_path}], rows: {len(result_data_pd)}"
+    )
+
+
+if __name__ == "__main__":
+    data_generation()
