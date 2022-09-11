@@ -1,3 +1,4 @@
+import getpass
 import os
 from datetime import date, datetime
 from pathlib import Path
@@ -63,8 +64,8 @@ def get_login_user() -> str:
     :return: the username
     """
     try:
-        return os.getlogin()
-    except OSError as ex:
+        return getpass.getuser()
+    except Exception as ex:
         logger.error(
             f"Failed to get current login user, falling back to `default_user`. {ex}"
         )

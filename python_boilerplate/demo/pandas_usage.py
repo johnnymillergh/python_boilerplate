@@ -109,8 +109,8 @@ def merge_results(dataframes: list[DataFrame]) -> DataFrame:
 
 def data_generation():
     futures = submit_parallel_tasks()
-    result_data_pd = merge_results(futures)
-    logger.info(result_data_pd)
+    result_data_pd: DataFrame = merge_results(futures)
+    logger.info(f"Finished merging data\n{result_data_pd}")
     random_data_path = get_data_dir() / "random_data.csv"
     result_data_pd.to_csv(random_data_path, index=False)
     logger.info(
