@@ -21,9 +21,9 @@ def elapsed_time(level="INFO"):
     def elapsed_time_wrapper(func: Callable):
         @functools.wraps(func)
         def wrapped(*arg, **kwarg):
-            start_time = time.time()
+            start_time = time.process_time()
             return_value = func(*arg, **kwarg)
-            end_time = time.time()
+            end_time = time.process_time()
             logger.log(
                 level,
                 f"{func.__qualname__}() -> elapsed time: {round(end_time - start_time, 4)}s "
