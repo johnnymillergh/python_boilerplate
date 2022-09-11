@@ -60,5 +60,7 @@ pytest = "==7.1.2"
 pytest-mock = "==3.8.2"
 # This plugin produces coverage reports. https://pypi.org/project/pytest-cov/
 pytest-cov = "==3.0.0"
+# Plugin for generating HTML reports for pytest results. https://github.com/pytest-dev/pytest-html/
+pytest-html = "==3.1.1"
 # Call stack profiler for Python. Shows you why your code is slow! https://github.com/joerick/pyinstrument
 pyinstrument = "==4.3.0"

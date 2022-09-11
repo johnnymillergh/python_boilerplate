@@ -5,7 +5,18 @@ from _pytest.nodes import Node
 from loguru import logger
 from pyinstrument import Profiler
 
+from python_boilerplate import get_module_name
+
 TESTS_ROOT = Path.cwd()
+
+
+def pytest_html_report_title(report):
+    """
+    pytest-html title configuration.
+
+    https://pytest-html.readthedocs.io/en/latest/user_guide.html#user-guide
+    """
+    report.title = f"Pytest Report of {get_module_name()}"
 
 
 @pytest.fixture(autouse=True)
