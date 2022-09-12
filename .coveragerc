@@ -5,6 +5,7 @@
 data_file = ./build/.coverage
 source = python_boilerplate
 omit = python_boilerplate/__main__.py
+    python_boilerplate/__init__.py
     tests/*
 
 [report]

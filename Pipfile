@@ -62,5 +62,7 @@ pytest-mock = "==3.8.2"
 pytest-cov = "==3.0.0"
 # Plugin for generating HTML reports for pytest results. https://github.com/pytest-dev/pytest-html/
 pytest-html = "==3.1.1"
+# pytest xdist plugin for distributed testing and loop-on-failing modes. https://github.com/pytest-dev/pytest-xdist/
+pytest-xdist = "==2.5.0"
 # Call stack profiler for Python. Shows you why your code is slow! https://github.com/joerick/pyinstrument
 pyinstrument = "==4.3.0"
