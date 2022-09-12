@@ -58,7 +58,7 @@ def test_pandas_reading_csv() -> None:
 def test_look_for_sony_published_games():
     sony_published_games = look_for_sony_published_games()
     assert sony_published_games is not None
-    assert len(sony_published_games) == 60
+    assert len(sony_published_games) == 9
     assert Path(sony_published_video_games_path).exists(), "CSV file NOT exists!"
 
 

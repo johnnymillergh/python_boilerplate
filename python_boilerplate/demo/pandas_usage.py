@@ -48,14 +48,17 @@ def look_for_sony_published_games() -> DataFrame:
     }
     dropped_columns = list(all_columns - selected_columns)
     sony_published: Final = video_games[
-        video_games["Metadata.Publishers"] == "Sony"
+        (video_games["Metadata.Publishers"] == "Sony")
+        & (video_games["Features.Max Players"] > 1)
+        & (video_games["Title"].str.contains("t"))
     ].drop(columns=dropped_columns)
     release_year: Final = "Release.Year"
     sony_games_release_year: Final = sony_published[release_year]
     min_release_year = sony_games_release_year.sort_values().min()
     max_release_year = sony_games_release_year.sort_values().max()
     logger.info(
-        f"From {min_release_year} to {max_release_year}, Sony has published {len(sony_published)} games"
+        f"From {min_release_year} to {max_release_year}, Sony has published {len(sony_published)} games, "
+        f"those are multi-player, title with 't'"
     )
     game_release_each_year: Final[Series] = (
         sony_published.groupby(release_year)[release_year]
@@ -119,4 +122,4 @@ def data_generation():
 
 
 if __name__ == "__main__":
-    data_generation()
+    look_for_sony_published_games()
