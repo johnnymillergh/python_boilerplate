@@ -1,6 +1,11 @@
+# .coveragerc to control coverage.py
+# https://coverage.readthedocs.io/en/latest/config.html
+# https://github.com/nedbat/coveragepy/blob/master/doc/config.rst
 [run]
+data_file = ./build/.coverage
 source = python_boilerplate
 omit = python_boilerplate/__main__.py
+    tests/*
 
 [report]
 exclude_lines =
@@ -18,3 +23,6 @@ exclude_lines =
     # Don't complain if non-runnable code isn't run:
     if 0:
     if __name__ == .__main__.:
+
+[html]
+directory = ./build/htmlcov

@@ -7,7 +7,7 @@ from pyinstrument import Profiler
 
 from python_boilerplate import get_module_name
 
-TESTS_ROOT = Path.cwd()
+PROJECT__ROOT = Path(__file__).parent.parent
 
 
 def pytest_html_report_title(report):
@@ -27,8 +27,7 @@ def auto_profile(request):
     https://pyinstrument.readthedocs.io/en/latest/guide.html#profile-pytest-tests
     """
 
-    # noinspection PyPep8Naming
-    PROFILE_ROOT = TESTS_ROOT / ".profiles"
+    profile_root = PROJECT__ROOT / "build/.profiles"
     logger.info("Starting to profile Pytest unit tests...")
     # Turn profiling on
     profiler = Profiler()
@@ -38,7 +37,7 @@ def auto_profile(request):
 
     profiler.stop()
     node: Node = request.node
-    profile_html_path = PROFILE_ROOT / f"{node.path.parent.relative_to(TESTS_ROOT)}"
+    profile_html_path = profile_root / f"{node.path.parent.relative_to(PROJECT__ROOT)}"
     if not profile_html_path.exists():
         # If parents is false (the default), a missing parent raises FileNotFoundError.
         # If exist_ok is false (the default), FileExistsError is raised if the target directory already exists.

@@ -38,7 +38,7 @@ repos:
     language: system
     # https://github.com/pytest-dev/pytest/issues/5502#issuecomment-1020761655
     # Prevent Pytest logging error like: ValueError: I/O operation on closed file.
-    entry: pipenv run pytest --cov --cov-report html --html=.pytest_report/report.html --self-contained-html --log-cli-level=DEBUG
+    entry: pipenv run pytest --cov --cov-report html --html=./build/.pytest_report/report.html --self-contained-html --log-cli-level=DEBUG
     types: [python]
     pass_filenames: false
 
