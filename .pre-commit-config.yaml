@@ -48,6 +48,6 @@ repos:
     language: system
     # https://github.com/pytest-dev/pytest/issues/5502#issuecomment-1020761655
     # Prevent Pytest logging error like: ValueError: I/O operation on closed file.
-    entry: pipenv run pytest --cov --cov-fail-under=85 --capture=no --log-cli-level=INFO
+    entry: pipenv run pytest --cov --cov-fail-under=85 --capture=no --log-cli-level=INFO -n auto
     types: [python]
     pass_filenames: false
