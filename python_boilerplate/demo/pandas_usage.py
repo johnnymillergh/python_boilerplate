@@ -97,7 +97,7 @@ def submit_parallel_tasks() -> list[DataFrame]:
         futures.append(generate_random_data(5000))
     wait(futures)
     logger.info(f"All {len(futures)} tasks has done")
-    return list(map(lambda x: x.result(), futures))
+    return [future.result() for future in futures]
 
 
 @elapsed_time("DEBUG")
