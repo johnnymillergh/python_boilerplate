@@ -61,7 +61,7 @@ def finalize() -> None:
     """
     Register `finalize()` function to be executed upon normal program termination.
     """
-    logger.warning(f"Stopping {get_module_name()}")
+    logger.warning(f"Stopping {get_module_name()}, releasing system resources")
     # Retain logs, in case the size of the SQLite database will be increasing like crazy.
     retain_startup_log()
     retain_trace_log()
