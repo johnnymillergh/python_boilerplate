@@ -2,7 +2,7 @@ import getpass
 import os
 from datetime import date, datetime
 from pathlib import Path
-from typing import Any
+from typing import Any, Final
 
 from loguru import logger
 
@@ -12,8 +12,8 @@ from loguru import logger
 # Path Correspondence to tools in the os module
 # https://docs.python.org/3/library/pathlib.html#correspondence-to-tools-in-the-os-module
 
-PROJECT_ROOT_PATH = Path(__file__).parent.parent.parent
-MODULE_ROOT_PATH = Path(__file__).parent.parent
+PROJECT_ROOT_PATH: Final = Path(__file__).parent.parent.parent
+MODULE_ROOT_PATH: Final = Path(__file__).parent.parent
 
 
 def get_data_dir(sub_path="") -> Path:
