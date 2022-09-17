@@ -15,19 +15,19 @@ def elapsed_time(level="INFO"):
 
     https://stackoverflow.com/questions/12295974/python-decorators-just-syntactic-sugar
 
-    :param level: logging level, default is `INFO`
+    :param level: logging level, default is `INFO`. Available values: "TRACE", "DEBUG", "INFO", "WARNING", "ERROR"
     """
 
     def elapsed_time_wrapper(func: Callable):
         @functools.wraps(func)
         def wrapped(*arg, **kwarg):
-            start_time = time.process_time()
+            start_time = time.perf_counter()
             return_value = func(*arg, **kwarg)
-            end_time = time.process_time()
+            elapsed = time.perf_counter() - start_time
             logger.log(
                 level,
-                f"{func.__qualname__}() -> elapsed time: {round(end_time - start_time, 4)}s "
-                f"({round((end_time - start_time) * 1000, 2)}ms)",
+                f"{func.__qualname__}() -> elapsed time: {round(elapsed, 4)} s "
+                f"({round(elapsed * 1000, 2)} ms)",
             )
             return return_value
 

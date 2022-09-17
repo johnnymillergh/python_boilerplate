@@ -5,7 +5,7 @@ from _pytest.nodes import Node
 from loguru import logger
 from pyinstrument import Profiler
 
-from python_boilerplate import get_module_name
+from python_boilerplate.common.common_function import get_module_name
 
 PROJECT__ROOT = Path(__file__).parent.parent
 

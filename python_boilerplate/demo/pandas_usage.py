@@ -36,7 +36,7 @@ def pandas_data_structure_date_range() -> DatetimeIndex:
 
 
 @trace
-@elapsed_time()
+@elapsed_time("INFO")
 def look_for_sony_published_games() -> DataFrame:
     all_columns = set(video_games)
     selected_columns = {
@@ -72,7 +72,7 @@ def look_for_sony_published_games() -> DataFrame:
 
 
 @async_function
-@elapsed_time()
+@elapsed_time("DEBUG")
 def generate_random_data(row_count: int) -> DataFrame:
     rows: list[dict[str, Any]] = []
     for _ in range(row_count):
@@ -90,7 +90,7 @@ def generate_random_data(row_count: int) -> DataFrame:
 
 
 # noinspection PyTypeChecker
-@elapsed_time()
+@elapsed_time("DEBUG")
 def submit_parallel_tasks() -> list[DataFrame]:
     futures: list[Future] = []
     for _ in range(5):
@@ -100,7 +100,7 @@ def submit_parallel_tasks() -> list[DataFrame]:
     return list(map(lambda x: x.result(), futures))
 
 
-@elapsed_time()
+@elapsed_time("DEBUG")
 def merge_results(dataframes: list[DataFrame]) -> DataFrame:
     result_list: DataFrame = pd.DataFrame(
         columns=["full_name", "age", "phone_number", "address", "zipcode", "country"]
