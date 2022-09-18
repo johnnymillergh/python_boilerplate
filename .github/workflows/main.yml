@@ -10,14 +10,12 @@ on:
       - '**.md'
       - '_config.yml'
       - '**.tweet'
-    tags: "*"
 
 jobs:
   compilation:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
-
       - name: Setup Python
         uses: actions/setup-python@v2
         with:
@@ -25,20 +23,20 @@ jobs:
           architecture: x64
           # https://github.com/actions/setup-python/blob/main/docs/advanced-usage.md#caching-packages
           cache: "pipenv"
-
       - name: Install Dependencies with pipenv
         run: |
           pip install pipenv
           pipenv install --deploy --dev
-
       - run: pipenv run isort --recursive --diff .
       - run: pipenv run black --check .
       - run: pipenv run flake8
       - run: pipenv run mypy
-      - name: Python tests with pytest
-        run: pipenv run pytest --cov --cov-fail-under=70 --capture=no --log-cli-level=INFO
-      - name: Build docker image
-        run: docker build . -t python_boilerplate:smoke-test-tag
-      - name: Smoke test docker image
+      - name: Python Tests with pytest
+        run: pipenv run pytest --cov --cov-fail-under=85 --capture=no --log-cli-level=INFO -n auto
+      - name: Build Docker Image
+        run: |
+          docker build . -t python_boilerplate:smoke-test-tag
+          docker inspect python_boilerplate:smoke-test-tag
+      - name: Smoke Test Docker Image
         run: |
           docker run --rm python_boilerplate:smoke-test-tag param_3_from_command_line

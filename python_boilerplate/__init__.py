@@ -1,5 +1,9 @@
 import atexit
+import os
+import platform
 import sys
+import time
+from pathlib import Path
 
 from loguru import logger
 
@@ -25,6 +29,12 @@ from python_boilerplate.repository.startup_log_repository import (
 )
 from python_boilerplate.repository.trace_log_repository import retain_trace_log
 
+__start_time = time.perf_counter()
+logger.info(
+    f"Starting {get_module_name()} using Python {platform.python_version()} on "
+    f"{platform.node()} with PID {os.getpid()} ({Path(__file__).parent})"
+)
+
 # Configuration
 application_configure()
 loguru_configure()
@@ -32,7 +42,6 @@ thread_pool_configure()
 
 # Initialization
 __init__()
-logger.info(f"Application [{get_module_name()}] started")
 
 # Saving startup log
 # Cannot save startup log in parallel, because the ThreadPoolExecutor won't be able to start another future
@@ -40,16 +49,26 @@ logger.info(f"Application [{get_module_name()}] started")
 # executor.submit(save, StartupLog(command_line=" ".join(sys.argv))).add_done_callback(done_callback)
 save(StartupLog(command_line=" ".join(sys.argv)))
 
+__elapsed = time.perf_counter() - __start_time
+logger.info(
+    f"Started {get_module_name()} in {round(__elapsed, 3)} seconds ({round(__elapsed * 1000, 2)} ms)"
+)
+
 
 @atexit.register
 def finalize() -> None:
     """
     Register `finalize()` function to be executed upon normal program termination.
     """
-    logger.warning("Cleaning up…")
+    logger.warning(f"Stopping {get_module_name()}, releasing system resources")
     # Retain logs, in case the size of the SQLite database will be increasing like crazy.
     retain_startup_log()
     retain_trace_log()
     # Shutdown tread pool and other connections
     thread_pool_cleanup()
     email_cleanup()
+    __end_elapsed = time.perf_counter() - __start_time
+    logger.info(
+        f"Stopped {get_module_name()}, running for {round(__end_elapsed, 3)} seconds "
+        f"({round(__end_elapsed * 1000, 2)} ms) in total"
+    )

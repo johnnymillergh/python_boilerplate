@@ -23,43 +23,45 @@ Here is the highlights of **python_boilerplate**:
 
    `Python` - [![Python](https://img.shields.io/badge/Python-v3.10.6-blue)](https://www.python.org/downloads/release/python-3106/)
 
-   `Pipenv` is to build and compile the project
+   `Pipenv` is to build and compile the project.
 
-2. Highly customizable data analysis with [pandas](https://pandas.pydata.org/), enhanced array operation with [NumPy](https://numpy.org/). Supports CSV, excel, JSON and so on
+2. Highly customizable data analysis with [pandas](https://pandas.pydata.org/), enhanced array operation with [NumPy](https://numpy.org/). Supports CSV, excel, JSON and so on.
 
-3. Data persistence with [peewee](http://docs.peewee-orm.com/en/latest/), [SQLite3](https://sqlite.org/index.html) as local database
+3. Data persistence with [peewee](http://docs.peewee-orm.com/en/latest/), [SQLite3](https://sqlite.org/index.html) as local database.
 
-4. Simple and flexible retry with [Tenacity](https://github.com/jd/tenacity)
+4. Simple and flexible retry with [Tenacity](https://github.com/jd/tenacity).
 
-5. Environment variable and configuration with [pyhocon](https://pythonhosted.org/pyhocon/_modules/pyhocon.html). Read `${ENVIRONMENT_VARIABLE}` when startup
+5. Environment variable and configuration with [pyhocon](https://pythonhosted.org/pyhocon/_modules/pyhocon.html). Read `${ENVIRONMENT_VARIABLE}` when startup.
 
-6. Sensible and human-friendly approach to creating, manipulating, formatting and converting dates, times and timestamps with [Arrow](https://pypi.org/project/arrow/)
+6. Sensible and human-friendly approach to creating, manipulating, formatting and converting dates, times and timestamps with [Arrow](https://pypi.org/project/arrow/).
 
-7. Generate fake data with [Faker](https://pypi.org/project/Faker/)
+7. Generate fake data with [Faker](https://pypi.org/project/Faker/).
 
-8. Testing with [pytest](https://docs.pytest.org/en/latest/), integrating [pytest-mock](https://pypi.org/project/pytest-mock/) for mocking, [pytest-cov](https://pypi.org/project/pytest-cov/) for code coverage analysis and [pyinstrument](https://github.com/joerick/pyinstrument) for Python stack profiler
+8. Customized function decorator `@async_function` to enable function to run asynchronously; `@peewee_table` class decorator to register ORM tables; `@elapsed_time(level="INFO")` to profile a function elapsed time.
 
-9. Formatting with [black](https://github.com/psf/black)
+9. Testing with [pytest](https://docs.pytest.org/en/latest/), integrating [pytest-mock](https://pypi.org/project/pytest-mock/) for mocking, [pytest-cov](https://pypi.org/project/pytest-cov/) for code coverage analysis and [pyinstrument](https://github.com/joerick/pyinstrument) for Python stack profiler.
 
-10. Import sorting with [isort](https://github.com/timothycrosley/isort)
+10. Formatting with [black](https://github.com/psf/black).
 
-11. Static typing with [mypy](http://mypy-lang.org/)
+11. Import sorting with [isort](https://github.com/timothycrosley/isort).
 
-12. Linting with [flake8](http://flake8.pycqa.org/en/latest/)
+12. Static typing with [mypy](http://mypy-lang.org/).
 
-13. Git hooks that run all the above with [pre-commit](https://pre-commit.com/)
+13. Linting with [flake8](http://flake8.pycqa.org/en/latest/).
 
-14. Deployment ready with [Docker](https://docker.com/)
+14. Git hooks that run all the above with [pre-commit](https://pre-commit.com/).
 
-15. Continuous Integration with [GitHub Actions](https://github.com/features/actions)
+15. Deployment ready with [Docker](https://docker.com/).
 
-16. Loguru logging configuration. Log sample is like,
+16. Continuous Integration with [GitHub Actions](https://github.com/features/actions).
+
+17. Loguru logging configuration. Log sample is like,
 
    ```
-   2022-09-06 10:02:06.716 | ⚠️ WARNING  | MainThread      | python_boilerplate.repository.model.base_model.<module>:24 - SQLite database created. Path: [D:\Projects\PyCharmProjects\python_boilerplate\data\python_boilerplate.db], <peewee.SqliteDatabase object at 0x0000021CB40A8E80>
-   2022-09-06 10:02:06.718 | ℹ️ INFO     | MainThread      | python_boilerplate.common.orm.peewee_table:16 - Registering peewee table: StartupLog
-   2022-09-06 10:02:06.719 | 🐞 DEBUG    | MainThread      | peewee.execute_sql:3185 - ('CREATE TABLE IF NOT EXISTS "startup_log" ("id" INTEGER NOT NULL PRIMARY KEY, "current_user" VARCHAR(50) NOT NULL, "host" VARCHAR(50) NOT NULL, "command_line" TEXT NOT NULL, "current_working_directory" TEXT NOT NULL, "startup_time" DATETIME NOT NULL, "created_by" VARCHAR(50) NOT NULL, "created_time" DATETIME NOT NULL, "modified_by" VARCHAR(50) NOT NULL, "modified_time" DATETIME NOT NULL)', [])
-   2022-09-06 10:02:06.882 | ℹ️ INFO     | MainThread      | python_boilerplate.<module>:35 - Application [python_boilerplate] started
+   2022-09-17 14:13:52.385 | ⚠️ WARNING  | 6860 | MainThread      | python_boilerplate.repository.model.base_model.<module>:24 - SQLite database created. Path: [/Users/johnny/Projects/PyCharmProjects/python_boilerplate/data/python_boilerplate.db], <peewee.SqliteDatabase object at 0x1191e1390>
+   2022-09-17 14:13:52.386 | ℹ️ INFO     | 6860 | MainThread      | python_boilerplate.common.orm.peewee_table:16 - Registering peewee table: StartupLog
+   2022-09-17 14:13:52.387 | 🐞 DEBUG    | 6860 | MainThread      | peewee.execute_sql:3185 - ('CREATE TABLE IF NOT EXISTS "startup_log" ("id" INTEGER NOT NULL PRIMARY KEY, "current_user" VARCHAR(50) NOT NULL, "host" VARCHAR(50) NOT NULL, "command_line" TEXT NOT NULL, "current_working_directory" TEXT NOT NULL, "startup_time" DATETIME NOT NULL, "created_by" VARCHAR(50) NOT NULL, "created_time" DATETIME NOT NULL, "modified_by" VARCHAR(50) NOT NULL, "modified_time" DATETIME NOT NULL)', [])
+   2022-09-17 14:13:52.530 | ℹ️ INFO     | 6860 | MainThread      | python_boilerplate.<module>:53 - Started python_boilerplate in 0.117 seconds (117.26 ms)
    ```
 
 ## Usage
@@ -82,7 +84,7 @@ Here is the highlights of **python_boilerplate**:
    # Install pipx if pipenv and cookiecutter are not installed
    $ python3 -m pip install pipx
    $ python3 -m pipx ensurepath
-   
+
    # Install pipenv using pipx
    $ pipx install pipenv
    ```
@@ -101,6 +103,31 @@ Here is the highlights of **python_boilerplate**:
    ```
 
 ## Useful Commands
+
+### Run Python Module
+
+```shell
+$ python3 -m python_boilerplate
+```
+
+### Run Python Script
+
+**Append your project’s root directory to** `PYTHONPATH` — In any environment you wish to run your Python application such as Docker, vagrant or your virtual environment i.e. in bin/activate, run the below command:
+
+> [How to Fix ModuleNotFoundError and ImportError](https://towardsdatascience.com/how-to-fix-modulenotfounderror-and-importerror-248ce5b69b1c)
+
+```shell
+$ PYTHONPATH="${PYTHONPATH}:/Users/johnny/Projects/PyCharmProjects/python_boilerplate/python_boilerplate" python3 python_boilerplate/__main__.py
+```
+
+### ~~Package with [PyInstaller](https://pyinstaller.org/en/latest/usage.html?highlight=pythonpath#using-pyinstaller)~~
+
+```shell
+$ pipenv run pyinstaller --console \
+--add-data "python_boilerplate/resources/*:python_boilerplate/resources" \
+--name main \
+--clean --noconfirm python_boilerplate/demo/pandas_usage.py
+```
 
 ### Run Unit Tests
 
@@ -145,7 +172,7 @@ Feel free to dive in! [Open an issue](https://github.com/johnnymillergh/python_b
 
 ### Contributors
 
-This project exists thanks to all the people who contribute. 
+This project exists thanks to all the people who contribute.
 
 - Johnny Miller [[@johnnymillergh](https://github.com/johnnymillergh)]
 - …

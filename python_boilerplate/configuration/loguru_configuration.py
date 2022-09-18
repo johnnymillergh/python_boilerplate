@@ -10,6 +10,7 @@ from python_boilerplate.configuration.application_configuration import applicati
 _message_format = (
     "<green>{time:YYYY-MM-DD HH:mm:ss.SSS}</green> | "
     "<level>{level.icon} {level: <8}</level> | "
+    "<magenta>{process.id}</magenta> | "
     "<blue>{thread.name: <15}</blue> | "
     "<cyan>{name}</cyan>.<cyan>{function}</cyan>:<cyan>{line}</cyan> - "
     "<level>{message}</level>"
