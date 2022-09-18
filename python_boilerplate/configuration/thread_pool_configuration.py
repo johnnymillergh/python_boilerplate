@@ -39,16 +39,19 @@ def configure() -> None:
     )
 
 
-@elapsed_time()
+# noinspection PyProtectedMember
+@elapsed_time("WARNING")
 def cleanup() -> None:
     """
     Clean up thread pool.
     """
     logger.warning(
-        f"Thread pool executor is being shutdown: {executor}, pending: {executor._work_queue.qsize()} jobs, threads: {len(executor._threads)}"
+        f"Thread pool executor is being shutdown: {executor}, pending: {executor._work_queue.qsize()} jobs, "
+        f"threads: {len(executor._threads)}"
     )
     executor.shutdown()
     # noinspection PyProtectedMember
     logger.warning(
-        f"Thread pool executor has been shutdown: {executor}, pending: {executor._work_queue.qsize()} jobs, threads: {len(executor._threads)}"
+        f"Thread pool executor has been shutdown: {executor}, pending: {executor._work_queue.qsize()} jobs, "
+        f"threads: {len(executor._threads)}"
     )

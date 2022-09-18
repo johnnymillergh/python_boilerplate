@@ -45,8 +45,15 @@ matplotlib = "==3.5.3"
 # Black is the uncompromising Python code formatter. By using it, you agree to cede control over minutiae of
 # hand-formatting. https://pypi.org/project/black/
 black = "==22.6.0"
+# Naming Convention checker for Python. https://github.com/PyCQA/pep8-naming
+pep8-naming = "==0.13.2"
 # Linting & toolkit for checking your code base against coding style (PEP8). https://pypi.org/project/flake8/
 flake8 = "==5.0.4"
+# https://github.com/DmytroLitvinov/awesome-flake8-extensions
+flake8-quotes = "==3.3.1"
+flake8-print = "==5.0.0"
+flake8-use-fstring = "==1.4"
+flake8-comprehensions = "==3.10.0"
 # isort your imports, so you don't have to. https://pypi.org/project/isort/
 isort = "==5.10.1"
 # Add type annotations to your Python programs, and use mypy to type check them. https://pypi.org/project/mypy/
@@ -60,5 +67,9 @@ pytest = "==7.1.2"
 pytest-mock = "==3.8.2"
 # This plugin produces coverage reports. https://pypi.org/project/pytest-cov/
 pytest-cov = "==3.0.0"
+# Plugin for generating HTML reports for pytest results. https://github.com/pytest-dev/pytest-html/
+pytest-html = "==3.1.1"
+# pytest xdist plugin for distributed testing and loop-on-failing modes. https://github.com/pytest-dev/pytest-xdist/
+pytest-xdist = "==2.5.0"
 # Call stack profiler for Python. Shows you why your code is slow! https://github.com/joerick/pyinstrument
 pyinstrument = "==4.3.0"
