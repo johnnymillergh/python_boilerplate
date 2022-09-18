@@ -1,3 +1,25 @@
+# [4.0.0](https://github.com/johnnymillergh/muscle-and-fitness-server/compare/3.0.0...4.0.0) (2022-09-18)
+
+
+### Features
+
+* **$async:** support decorate function with `@async_function` ([44a0a7e](https://github.com/johnnymillergh/python_boilerplate/commit/44a0a7eaf5ecf68ff0b8e170c0cb7c9c836b1fa9))
+* **$flake8:** add more code constraints ([b978b9b](https://github.com/johnnymillergh/python_boilerplate/commit/b978b9b0d43dfb84ccc9e48b5ed51094baf531a6))
+* **$GitHooks:** add more hooks for pre-commit ([5114647](https://github.com/johnnymillergh/python_boilerplate/commit/5114647115151d74f68f3855281487e753899215))
+* **$loguru:** display process id in log ([5a0177b](https://github.com/johnnymillergh/python_boilerplate/commit/5a0177b6517ea64e296d855057e35f91c028d4ab))
+* **$pandas:** add usage example of using pandas DataFrame to generate CSV ([161c7ba](https://github.com/johnnymillergh/python_boilerplate/commit/161c7bae5f0c95fc9e4d888cb2721567251cff09))
+* **$pandas:** multiple conditions filter ([b25b7a6](https://github.com/johnnymillergh/python_boilerplate/commit/b25b7a63d755d8412023d03daf0c47b4eaab2bb1))
+* move all artifacts under `build` directory ([50e6c46](https://github.com/johnnymillergh/python_boilerplate/commit/50e6c46b8d3ff5303aaf17b8b0a93a3391addf11))
+
+
+### Performance Improvements
+
+* **$profiling:** replace process_time() -> perf_counter() ([99ca066](https://github.com/johnnymillergh/python_boilerplate/commit/99ca066915c76498394fcbb90d50295577b98c16))
+* **$profiling:** user `process_time()` for time profiling ([a55a4c7](https://github.com/johnnymillergh/python_boilerplate/commit/a55a4c7583f319a89626e18972bd0c0e1436c2fa))
+* **$pytest:** distribute tests across multiple CPUs to speed up test execution ([b16b2db](https://github.com/johnnymillergh/python_boilerplate/commit/b16b2db587e99c1f253dd351218e42d4d60f17fd))
+
+
+
 # [3.0.0](https://github.com/johnnymillergh/muscle-and-fitness-server/compare/2.0.0...3.0.0) (2022-09-06)
 
 
