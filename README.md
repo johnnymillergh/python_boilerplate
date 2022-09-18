@@ -104,6 +104,31 @@ Here is the highlights of **python_boilerplate**:
 
 ## Useful Commands
 
+### Run Python Module
+
+```shell
+$ python3 -m python_boilerplate
+```
+
+### Run Python Script
+
+**Append your project’s root directory to** `PYTHONPATH` — In any environment you wish to run your Python application such as Docker, vagrant or your virtual environment i.e. in bin/activate, run the below command:
+
+> [How to Fix ModuleNotFoundError and ImportError](https://towardsdatascience.com/how-to-fix-modulenotfounderror-and-importerror-248ce5b69b1c)
+
+```shell
+$ PYTHONPATH="${PYTHONPATH}:/Users/johnny/Projects/PyCharmProjects/python_boilerplate/python_boilerplate" python3 python_boilerplate/__main__.py
+```
+
+### ~~Package with [PyInstaller](https://pyinstaller.org/en/latest/usage.html?highlight=pythonpath#using-pyinstaller)~~
+
+```shell
+$ pipenv run pyinstaller --console \
+--add-data "python_boilerplate/resources/*:python_boilerplate/resources" \
+--name main \
+--clean --noconfirm python_boilerplate/demo/pandas_usage.py
+```
+
 ### Run Unit Tests
 
 Run with pytest, analyze code coverage, generate HTML code coverage reports, fail the test if coverage percentage is unser 85%

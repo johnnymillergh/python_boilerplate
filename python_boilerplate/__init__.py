@@ -42,7 +42,6 @@ thread_pool_configure()
 
 # Initialization
 __init__()
-logger.info(f"Application [{get_module_name()}] started")
 
 # Saving startup log
 # Cannot save startup log in parallel, because the ThreadPoolExecutor won't be able to start another future
