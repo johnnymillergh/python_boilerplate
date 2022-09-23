@@ -11,6 +11,7 @@ from python_boilerplate.common.common_function import get_module_name
 from python_boilerplate.configuration.application_configuration import (
     configure as application_configure,
 )
+from python_boilerplate.configuration.application_configuration import setup_cfg
 from python_boilerplate.configuration.loguru_configuration import (
     configure as loguru_configure,
 )
@@ -51,7 +52,8 @@ save(StartupLog(command_line=" ".join(sys.argv)))
 
 __elapsed = time.perf_counter() - __start_time
 logger.info(
-    f"Started {get_module_name()} in {round(__elapsed, 3)} seconds ({round(__elapsed * 1000, 2)} ms)"
+    f"Started {get_module_name()}@{setup_cfg['metadata']['version']} in {round(__elapsed, 3)} seconds "
+    f"({round(__elapsed * 1000, 2)} ms)"
 )
 
 

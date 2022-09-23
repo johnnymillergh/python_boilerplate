@@ -27,7 +27,7 @@ def get_data_dir(sub_path="") -> Path:
     if len(sub_path) > 0:
         data_dir = data_dir / sub_path
     if not data_dir.exists():
-        # If parents is false (the default), a missing parent raises FileNotFoundError.
+        # If parents are false (the default), a missing parent raises FileNotFoundError.
         # If exist_ok is false (the default), FileExistsError is raised if the target directory already exists.
         data_dir.mkdir(parents=True, exist_ok=True)
     return data_dir
