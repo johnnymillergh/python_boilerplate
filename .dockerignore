@@ -5,3 +5,4 @@
 !Pipfile
 !Pipfile.lock
 !python_boilerplate
+!setup.cfg
