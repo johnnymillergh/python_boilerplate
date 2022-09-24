@@ -27,6 +27,7 @@ from python_boilerplate.repository.model.startup_log import StartupLog
 from python_boilerplate.repository.startup_log_repository import (
     retain_startup_log,
     save,
+    update_latest,
 )
 from python_boilerplate.repository.trace_log_repository import retain_trace_log
 
@@ -69,6 +70,7 @@ def finalize() -> None:
     # Shutdown tread pool and other connections
     thread_pool_cleanup()
     email_cleanup()
+    update_latest()
     __end_elapsed = time.perf_counter() - __start_time
     logger.info(
         f"Stopped {get_module_name()}, running for {round(__end_elapsed, 3)} seconds "

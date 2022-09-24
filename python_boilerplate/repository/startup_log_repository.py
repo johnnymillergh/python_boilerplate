@@ -1,3 +1,5 @@
+from datetime import datetime
+
 import arrow
 from loguru import logger
 
@@ -15,6 +17,15 @@ def save(startup_log: StartupLog) -> StartupLog:
     """
     startup_log.save()
     return startup_log
+
+
+def update_latest():
+    latest = StartupLog.select().order_by(StartupLog.id.desc()).limit(1).execute()
+    logger.debug(latest[0])
+    now = datetime.now()
+    StartupLog.update({StartupLog.exit_time: now, StartupLog.modified_time: now}).where(
+        StartupLog.id == latest[0].id
+    ).execute()
 
 
 def retain_startup_log() -> int:

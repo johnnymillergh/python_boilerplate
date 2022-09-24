@@ -22,6 +22,7 @@ class StartupLog(BaseModel):
     command_line = TextField(null=False)
     current_working_directory = TextField(null=False, default=os.getcwd)
     startup_time = DateTimeField(null=False, default=datetime.now)
+    exit_time = DateTimeField(null=True)
 
     # common 4 fields
     created_by = CharField(max_length=50, null=False, default=get_login_user)
