@@ -17,7 +17,7 @@
 
 ## Features
 
-Here is the highlights of **python_boilerplate**:
+Here are the highlights of **python_boilerplate**:
 
 1. Inherited from modern and the latest Python technologies:
 
@@ -27,7 +27,7 @@ Here is the highlights of **python_boilerplate**:
 
 2. Highly customizable data analysis with [pandas](https://pandas.pydata.org/), enhanced array operation with [NumPy](https://numpy.org/). Supports CSV, excel, JSON and so on.
 
-3. Data persistence with [peewee](http://docs.peewee-orm.com/en/latest/), [SQLite3](https://sqlite.org/index.html) as local database.
+3. Data persistence with [peewee](http://docs.peewee-orm.com/en/latest/), [SQLite3](https://sqlite.org/index.html) as a local database.
 
 4. Simple and flexible retry with [Tenacity](https://github.com/jd/tenacity).
 
@@ -55,7 +55,7 @@ Here is the highlights of **python_boilerplate**:
 
 16. Continuous Integration with [GitHub Actions](https://github.com/features/actions).
 
-17. Loguru logging configuration. Log sample is like,
+17. [Loguru](https://github.com/Delgan/loguru) logging configuration. Log sample is like,
 
    ```
    2022-09-17 14:13:52.385 | ⚠️ WARNING  | 6860 | MainThread      | python_boilerplate.repository.model.base_model.<module>:24 - SQLite database created. Path: [/Users/johnny/Projects/PyCharmProjects/python_boilerplate/data/python_boilerplate.db], <peewee.SqliteDatabase object at 0x1191e1390>
@@ -131,7 +131,7 @@ $ pipenv run pyinstaller --console \
 
 ### Run Unit Tests
 
-Run with pytest, analyze code coverage, generate HTML code coverage reports, fail the test if coverage percentage is unser 85%
+Run with pytest, analyze code coverage, generate HTML code coverage reports, fail the test if coverage percentage is under 85%
 
 ```shell
 $ pipenv run pytest --cov --cov-report html --cov-fail-under=85 --capture=no --log-cli-level=INFO
@@ -151,7 +151,7 @@ $ pipenv run pytest --cov --cov-report html --cov-fail-under=85 --capture=no --l
    $ conventional-changelog -p angular -i CHANGELOG.md -s
    ```
 
-3. If this is your first time using this tool and you want to generate all previous changelogs, you could do:
+3. If this is your first time using this tool, and you want to generate all previous changelogs, you could do:
 
    ```shell
    $ conventional-changelog -p angular -i CHANGELOG.md -s -r 0
@@ -159,7 +159,7 @@ $ pipenv run pytest --cov --cov-report html --cov-fail-under=85 --capture=no --l
 
 ## CI (Continuous Integration)
 
-- GitHub Actions is for building project and running tests.
+- `GitHub Actions` is for building project and running tests.
 - ~~[Travis CI](https://travis-ci.com/github/johnnymillergh/) is for publishing Docker Hub images of SNAPSHOT and RELEASE.~~
 
 ## Maintainers
@@ -192,4 +192,4 @@ Inspired by [How to set up a perfect Python project](https://sourcery.ai/blog/py
 
 [Apache License](https://github.com/johnnymillergh/python_boilerplate/blob/master/LICENSE) © Johnny Miller
 
-2021 - Present
+2021 — Present

@@ -85,7 +85,7 @@ def finalize() -> None:
     )
 
 
-def __main__() -> None:
+def main() -> None:
     """
     Main function.
     """
@@ -94,4 +94,4 @@ def __main__() -> None:
 
 if __name__ == "__main__":
     startup()
-    __main__()
+    main()
