@@ -84,7 +84,7 @@ Here are the highlights of **python_boilerplate**:
    $ python3 -m pip install pipx
    $ python3 -m pipx ensurepath
 
-   # Install pipenv using pipx
+   # Install pipenv using pipx, https://github.com/pypa/pipenv/issues/5458#issuecomment-1304328052
    $ pipx install pipenv==2022.10.25
 
    # Configure Python version for pipenv

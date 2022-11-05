@@ -25,7 +25,7 @@ jobs:
           cache: "pipenv"
       - name: Install Dependencies with pipenv
         run: |
-          pip install pipenv
+          pip install pipenv==2022.10.25
           pipenv install --quiet --deploy --dev
       - run: pipenv run isort --recursive --diff .
       - run: pipenv run black --check .
