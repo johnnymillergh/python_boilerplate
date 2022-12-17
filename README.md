@@ -17,17 +17,17 @@
 
 ## Features
 
-Here are the highlights of **python_boilerplate**:
+Here is the highlights of **python_boilerplate**:
 
 1. Inherited from modern and the latest Python technologies:
 
-   `Python` - [![Python](https://img.shields.io/badge/Python-3.11.0-informational?style=flat&logo=python&logoColor=3776AB&labelColor=FFDF76&color=3776AB)](https://www.python.org/downloads/release/python-3110/)
+   `Python` - [![Python](https://img.shields.io/badge/Python-v3.11.1-blue)](https://www.python.org/downloads/release/python-3111/)
 
    `Pipenv` is to build and compile the project.
 
 2. Highly customizable data analysis with [pandas](https://pandas.pydata.org/), enhanced array operation with [NumPy](https://numpy.org/). Supports CSV, excel, JSON and so on.
 
-3. Data persistence with [peewee](http://docs.peewee-orm.com/en/latest/), [SQLite3](https://sqlite.org/index.html) as a local database.
+3. Data persistence with [peewee](http://docs.peewee-orm.com/en/latest/), [SQLite3](https://sqlite.org/index.html) as local database.
 
 4. Simple and flexible retry with [Tenacity](https://github.com/jd/tenacity).
 
@@ -55,12 +55,13 @@ Here are the highlights of **python_boilerplate**:
 
 16. Continuous Integration with [GitHub Actions](https://github.com/features/actions).
 
-17. [Loguru](https://github.com/Delgan/loguru) logging configuration. Log sample is like,
+17. Loguru logging configuration. Log sample is like,
 
    ```
-   2022-11-05 13:01:27.908 | ℹ️ INFO     | 9579 | MainThread      | python_boilerplate.common.orm.peewee_table:16 - Registering peewee table: StartupLog
-   2022-11-05 13:01:27.920 | 🐞 DEBUG    | 9579 | MainThread      | logging.callHandlers:1706 - ('CREATE TABLE IF NOT EXISTS "startup_log" ("id" INTEGER NOT NULL PRIMARY KEY, "current_user" VARCHAR(50) NOT NULL, "host" VARCHAR(50) NOT NULL, "command_line" TEXT NOT NULL, "current_working_directory" TEXT NOT NULL, "startup_time" DATETIME NOT NULL, "exit_time" DATETIME, "created_by" VARCHAR(50) NOT NULL, "created_time" DATETIME NOT NULL, "modified_by" VARCHAR(50) NOT NULL, "modified_time" DATETIME NOT NULL)', [])
-   2022-11-05 13:01:28.077 | ℹ️ INFO     | 9579 | MainThread      | __main__.startup:41 - Starting python_boilerplate using Python 3.11.0 on johnnys-macbook-pro-2017.local with PID 9579 (/Users/johnny/Projects/PyCharmProjects/python_boilerplate/python_boilerplate)
+   2022-09-17 14:13:52.385 | ⚠️ WARNING  | 6860 | MainThread      | python_boilerplate.repository.model.base_model.<module>:24 - SQLite database created. Path: [/Users/johnny/Projects/PyCharmProjects/python_boilerplate/data/python_boilerplate.db], <peewee.SqliteDatabase object at 0x1191e1390>
+   2022-09-17 14:13:52.386 | ℹ️ INFO     | 6860 | MainThread      | python_boilerplate.common.orm.peewee_table:16 - Registering peewee table: StartupLog
+   2022-09-17 14:13:52.387 | 🐞 DEBUG    | 6860 | MainThread      | peewee.execute_sql:3185 - ('CREATE TABLE IF NOT EXISTS "startup_log" ("id" INTEGER NOT NULL PRIMARY KEY, "current_user" VARCHAR(50) NOT NULL, "host" VARCHAR(50) NOT NULL, "command_line" TEXT NOT NULL, "current_working_directory" TEXT NOT NULL, "startup_time" DATETIME NOT NULL, "created_by" VARCHAR(50) NOT NULL, "created_time" DATETIME NOT NULL, "modified_by" VARCHAR(50) NOT NULL, "modified_time" DATETIME NOT NULL)', [])
+   2022-09-17 14:13:52.530 | ℹ️ INFO     | 6860 | MainThread      | python_boilerplate.<module>:53 - Started python_boilerplate in 0.117 seconds (117.26 ms)
    ```
 
 ## Usage
@@ -84,11 +85,8 @@ Here are the highlights of **python_boilerplate**:
    $ python3 -m pip install pipx
    $ python3 -m pipx ensurepath
 
-   # Install pipenv using pipx, https://github.com/pypa/pipenv/issues/5458#issuecomment-1304328052
-   $ pipx install pipenv==2022.10.25
-
-   # Configure Python version for pipenv
-   $ pipenv --python 3.11
+   # Install pipenv using pipx
+   $ pipx install pipenv
    ```
 
 2. Install dependencies
@@ -133,7 +131,7 @@ $ pipenv run pyinstaller --console \
 
 ### Run Unit Tests
 
-Run with pytest, analyze code coverage, generate HTML code coverage reports, fail the test if coverage percentage is under 85%
+Run with pytest, analyze code coverage, generate HTML code coverage reports, fail the test if coverage percentage is unser 85%
 
 ```shell
 $ pipenv run pytest --cov --cov-report html --cov-fail-under=85 --capture=no --log-cli-level=INFO
@@ -153,7 +151,7 @@ $ pipenv run pytest --cov --cov-report html --cov-fail-under=85 --capture=no --l
    $ conventional-changelog -p angular -i CHANGELOG.md -s
    ```
 
-3. If this is your first time using this tool, and you want to generate all previous changelogs, you could do:
+3. If this is your first time using this tool and you want to generate all previous changelogs, you could do:
 
    ```shell
    $ conventional-changelog -p angular -i CHANGELOG.md -s -r 0
@@ -161,7 +159,7 @@ $ pipenv run pytest --cov --cov-report html --cov-fail-under=85 --capture=no --l
 
 ## CI (Continuous Integration)
 
-- `GitHub Actions` is for building project and running tests.
+- GitHub Actions is for building project and running tests.
 - ~~[Travis CI](https://travis-ci.com/github/johnnymillergh/) is for publishing Docker Hub images of SNAPSHOT and RELEASE.~~
 
 ## Maintainers
@@ -194,4 +192,4 @@ Inspired by [How to set up a perfect Python project](https://sourcery.ai/blog/py
 
 [Apache License](https://github.com/johnnymillergh/python_boilerplate/blob/master/LICENSE) © Johnny Miller
 
-2021 — Present
+2021 - Present
