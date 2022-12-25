@@ -40,7 +40,6 @@ python-stdnum = "==1.18"
 tenacity = "==8.1.0"
 # Python plotting package. https://pypi.org/project/matplotlib/
 matplotlib = "==3.6.2"
-flake8-comprehensions = "==3.10.1"
 
 [dev-packages]
 # Black is the uncompromising Python code formatter. By using it, you agree to cede control over minutiae of
@@ -51,7 +50,7 @@ pep8-naming = "==0.13.2"
 # Linting & toolkit for checking your code base against coding style (PEP8). https://pypi.org/project/flake8/
 flake8 = "==6.0.0"
 # https://github.com/DmytroLitvinov/awesome-flake8-extensions
-#flake8-quotes = "==3.3.1"
+flake8-quotes = "==3.3.2"
 flake8-print = "==5.0.0"
 flake8-use-fstring = "==1.4"
 flake8-comprehensions = "==3.10.1"
