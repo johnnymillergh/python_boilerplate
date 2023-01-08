@@ -16,7 +16,7 @@ loguru = "==0.6.0"
 pyhocon = "==0.3.59"
 # Data manipulation dependencies
 # NumPy is a Python library used for working with arrays. https://pypi.org/project/numpy/
-numpy = "==1.23.5"
+numpy = "==1.24.1"
 # pandas is a Python package that provides fast, flexible, and expressive data structures designed to make working
 # with "relational" or "labeled" data both easy and intuitive. https://pypi.org/project/pandas/
 pandas = "==1.5.2"
@@ -46,7 +46,7 @@ matplotlib = "==3.6.2"
 # hand-formatting. https://pypi.org/project/black/
 black = "==22.12.0"
 # Naming Convention checker for Python. https://github.com/PyCQA/pep8-naming
-pep8-naming = "==0.13.2"
+pep8-naming = "==0.13.3"
 # Linting & toolkit for checking your code base against coding style (PEP8). https://pypi.org/project/flake8/
 flake8 = "==6.0.0"
 # https://github.com/DmytroLitvinov/awesome-flake8-extensions
@@ -55,11 +55,11 @@ flake8-print = "==5.0.0"
 flake8-use-fstring = "==1.4"
 flake8-comprehensions = "==3.10.1"
 # isort your imports, so you don't have to. https://pypi.org/project/isort/
-isort = "==5.11.3"
+isort = "==5.11.4"
 # Add type annotations to your Python programs, and use mypy to type check them. https://pypi.org/project/mypy/
 mypy = "==0.991"
 # A framework for managing and maintaining multi-language pre-commit hooks. https://pypi.org/project/pre-commit/
-pre-commit = "==2.20.0"
+pre-commit = "==2.21.0"
 # The pytest framework makes it easy to write small tests, yet scales to support complex functional testing
 # for applications and libraries. https://pypi.org/project/pytest/
 pytest = "==7.2.0"
