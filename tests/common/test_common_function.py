@@ -18,7 +18,7 @@ def test_get_login_user():
     logger.info(f"Current login user is [{login_user}]")
 
 
-def test_get_login_user_when_exception_rained_then_returns_default_user(
+def test_get_login_user_when_exception_raised_then_returns_default_user(
     mocker: MockerFixture,
 ):
     with mocker.mock_module.patch(target="getpass.getuser") as patched:
