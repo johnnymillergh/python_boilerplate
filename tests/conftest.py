@@ -39,8 +39,8 @@ def auto_profile(request):
     node: Node = request.node
     profile_html_path = profile_root / f"{node.path.parent.relative_to(PROJECT__ROOT)}"
     if not profile_html_path.exists():
-        # If parents is false (the default), a missing parent raises FileNotFoundError.
-        # If exist_ok is false (the default), FileExistsError is raised if the target directory already exists.
+        # If parents=False (the default), a missing parent raises FileNotFoundError.
+        # If exist_ok=False (the default), FileExistsError is raised if the target directory already exists.
         profile_html_path.mkdir(parents=True, exist_ok=True)
     results_file = profile_html_path / f"{node.name}.html"
     with open(results_file, "w", encoding="utf-8") as f_html:

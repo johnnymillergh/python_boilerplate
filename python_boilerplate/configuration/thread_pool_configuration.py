@@ -2,7 +2,7 @@ from concurrent.futures import Future, ThreadPoolExecutor
 
 from loguru import logger
 
-from python_boilerplate.common.common_function import get_cpu_count
+from python_boilerplate.common.common_function import get_cpu_count, get_module_name
 from python_boilerplate.common.profiling import elapsed_time
 
 # Thread Concurrency Visualization https://www.jetbrains.com/help/pycharm/thread-concurrency-visualization.html
@@ -10,7 +10,7 @@ from python_boilerplate.common.profiling import elapsed_time
 
 max_workers = 2 * get_cpu_count()
 executor: ThreadPoolExecutor = ThreadPoolExecutor(
-    max_workers=max_workers, thread_name_prefix="my_thread_pool"
+    max_workers=max_workers, thread_name_prefix=f"{get_module_name()}_thread"
 )
 
 
