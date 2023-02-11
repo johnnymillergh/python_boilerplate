@@ -23,7 +23,13 @@ jobs:
           architecture: x64
           # https://github.com/actions/setup-python/blob/main/docs/advanced-usage.md#caching-packages
           cache: "pipenv"
+      - id: cache-pipenv
+        uses: actions/cache@v2
+        with:
+          path: ~/.local/share/virtualenvs
+          key: ${{ runner.os }}-pipenv-${{ hashFiles('**/Pipfile.lock') }}
       - name: Install Dependencies with pipenv
+        if: steps.cache-pipenv.outputs.cache-hit != 'true'
         run: |
           pip install pipenv==2022.10.25
           pipenv install --quiet --deploy --dev
