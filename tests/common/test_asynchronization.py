@@ -22,7 +22,7 @@ def another_async_function_without_args():
 
 def test_async_function_expected_no_errors():
     try:
-        a_future: Future = an_async_function(
+        a_future: Future = an_async_function(  # type: ignore
             arrow.now().__str__(), arrow.now().shift(days=-1).__str__()
         )
         assert a_future is not None
@@ -35,7 +35,7 @@ def test_async_function_expected_no_errors():
 
 def test_async_function_pass_kwarg_expected_no_errors():
     try:
-        a_future: Future = an_async_function(
+        a_future: Future = an_async_function(  # type: ignore
             param1=arrow.now().__str__(), param2=arrow.now().shift(days=-1).__str__()
         )
         assert a_future is not None
@@ -48,7 +48,7 @@ def test_async_function_pass_kwarg_expected_no_errors():
 
 def test_async_function_pass_arg_kwarg_expected_no_errors():
     try:
-        a_future: Future = an_async_function(
+        a_future: Future = an_async_function(  # type: ignore
             arrow.now().__str__(), param2=arrow.now().shift(days=-1).__str__()
         )
         assert a_future is not None

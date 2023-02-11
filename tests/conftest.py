@@ -36,7 +36,7 @@ def auto_profile(request):
     yield  # Run test
 
     profiler.stop()
-    node: Node = request.node
+    node: Node = request.node  # type: ignore
     profile_html_path = profile_root / f"{node.path.parent.relative_to(PROJECT__ROOT)}"
     if not profile_html_path.exists():
         # If parents=False (the default), a missing parent raises FileNotFoundError.
