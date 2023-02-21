@@ -162,6 +162,12 @@ $ pipenv run pytest --cov --cov-report html --cov-fail-under=85 --capture=no --l
 - GitHub Actions is for building project and running tests.
 - ~~[Travis CI](https://travis-ci.com/github/johnnymillergh/) is for publishing Docker Hub images of SNAPSHOT and RELEASE.~~
 
+## FAQ
+
+1. [ExecutableNotFoundError: Executable `/bin/bash` not found when using pre-commit](https://stackoverflow.com/questions/72321412/bin-bash-not-found-when-using-pre-commit)
+
+   Solution: delete `.git/hooks/pre-commit.legacy` and then reinstall, also deleted `.git/hooks/pre-commit` just to be sure before installing again.
+
 ## Maintainers
 
 [@johnnymillergh](https://github.com/johnnymillergh).
