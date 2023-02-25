@@ -3,6 +3,7 @@ import os
 import platform
 import sys
 import time
+from datetime import timedelta
 from pathlib import Path
 
 from loguru import logger
@@ -60,8 +61,7 @@ def startup():
 
     elapsed = time.perf_counter() - __start_time
     logger.info(
-        f"Started {get_module_name()}@{setup_cfg['metadata']['version']} in {round(elapsed, 3)} seconds "
-        f"({round(elapsed * 1000, 2)} ms)"
+        f"Started {get_module_name()}@{setup_cfg['metadata']['version']} in {timedelta(seconds=elapsed)}"
     )
 
 
@@ -80,8 +80,7 @@ def finalize() -> None:
     update_latest()
     __end_elapsed = time.perf_counter() - __start_time
     logger.info(
-        f"Stopped {get_module_name()}, running for {round(__end_elapsed, 3)} seconds "
-        f"({round(__end_elapsed * 1000, 2)} ms) in total"
+        f"Stopped {get_module_name()}, running for {timedelta(seconds=__end_elapsed)} in total"
     )
 
 
