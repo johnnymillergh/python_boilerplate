@@ -168,6 +168,12 @@ $ pipenv run pytest --cov --cov-report html --cov-fail-under=85 --capture=no --l
 
    Solution: delete `.git/hooks/pre-commit.legacy` and then reinstall, also deleted `.git/hooks/pre-commit` just to be sure before installing again.
 
+2. Installing all stub type packages,
+
+   ```shell
+   $ mypy --install-types
+   ```
+
 ## Maintainers
 
 [@johnnymillergh](https://github.com/johnnymillergh).
