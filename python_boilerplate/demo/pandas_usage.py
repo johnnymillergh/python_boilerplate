@@ -65,7 +65,7 @@ def look_for_sony_published_games() -> DataFrame:
         .count()
         .sort_values(ascending=False)
     )
-    for item in game_release_each_year.iteritems():
+    for item in game_release_each_year.items():
         logger.info(f"Sony released {item[1]} games in {item[0]}")
     sony_published.to_csv(sony_published_video_games_path, index=False)
     return sony_published
