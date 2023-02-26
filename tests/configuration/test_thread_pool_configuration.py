@@ -23,6 +23,7 @@ def test_executor_when_future_raising_exception():
 
 
 def test_cleanup(mocker: MockerFixture):
-    patched_executor = mocker.patch.object(executor, "shutdown")
+    # pytest-mock, patch an object, https://pytest-mock.readthedocs.io/en/latest/usage.html
+    executor_patch = mocker.patch.object(executor, "shutdown")
     cleanup()
-    patched_executor.assert_called_once()
+    executor_patch.assert_called_once()
