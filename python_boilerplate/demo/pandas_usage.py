@@ -10,7 +10,7 @@ from pandas import DataFrame, DatetimeIndex, Series
 from python_boilerplate.common.asynchronization import async_function
 from python_boilerplate.common.common_function import get_data_dir, get_resources_dir
 from python_boilerplate.common.profiling import elapsed_time
-from python_boilerplate.common.trace import trace
+from python_boilerplate.common.trace import async_trace
 
 # 10 minutes to pandas https://pandas.pydata.org/pandas-docs/stable/user_guide/10min.html#minutes-to-pandas
 # CSV & text files https://pandas.pydata.org/pandas-docs/stable/user_guide/io.html#io-read-csv-table
@@ -35,7 +35,7 @@ def pandas_data_structure_date_range() -> DatetimeIndex:
     return pd.date_range("2022-01-01", periods=6)
 
 
-@trace
+@async_trace
 @elapsed_time("INFO")
 def look_for_sony_published_games() -> DataFrame:
     all_columns = set(video_games)

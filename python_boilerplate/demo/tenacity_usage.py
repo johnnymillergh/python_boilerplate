@@ -13,7 +13,7 @@ from tenacity import (
     wait_fixed,
 )
 
-from python_boilerplate.common.trace import trace
+from python_boilerplate.common.trace import async_trace, trace
 
 SUCCESS_RANGE: Final = range(200, 300)
 loging_logger: Final = logging.getLogger(__name__)
@@ -30,7 +30,7 @@ def exception_function_1() -> None:
     raise RuntimeError("Failure message 1")
 
 
-@trace
+@async_trace
 @retry(
     stop=stop_after_attempt(3), wait=wait_fixed(2), after=after_log(loging_logger, INFO)
 )
