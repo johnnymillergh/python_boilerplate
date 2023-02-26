@@ -16,7 +16,8 @@ def test_save() -> None:
     except Exception as ex:
         assert False, f"{save} raised an exception {ex}"
     assert saved_startup_log is not None
-    logger.info(f"Saved startup log, id: {saved_startup_log}")
+    assert saved_startup_log.get_id() > 0
+    logger.info(f"Saved startup log, id: {saved_startup_log.get_id()}")
 
 
 def test_update_latest() -> None:

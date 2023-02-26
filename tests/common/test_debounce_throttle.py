@@ -3,6 +3,7 @@ from time import sleep
 
 import pytest
 from loguru import logger
+from pytest_mock import MockFixture
 
 from python_boilerplate.common.debounce_throttle import (
     async_debounce,
@@ -30,15 +31,19 @@ async def test_async_debounce():
         assert False, f"Failed to test throttle_function(). {e}"
 
 
-def test_throttle() -> None:
+def test_throttle(mocker: MockFixture) -> None:
+    import tests
+
+    spy = mocker.spy(tests.common.test_debounce_throttle, "throttle_function")
     call_count: int = 5
     try:
         while call_count > 0:
             throttle_function()
             call_count -= 1
-            sleep(0.24)
+            sleep(0.1)
     except Exception as ex:
         assert False, f"Failed to test throttle_function(). {ex}"
+    spy.assert_called()
 
 
 @trace
