@@ -1,5 +1,6 @@
 import functools
 import time
+from datetime import timedelta
 from typing import Callable
 
 from loguru import logger
@@ -26,8 +27,7 @@ def elapsed_time(level="INFO"):
             elapsed = time.perf_counter() - start_time
             logger.log(
                 level,
-                f"{func.__qualname__}() -> elapsed time: {round(elapsed, 4)} s "
-                f"({round(elapsed * 1000, 2)} ms)",
+                f"{func.__qualname__}() -> elapsed time: {timedelta(seconds=elapsed)}",
             )
             return return_value
 
