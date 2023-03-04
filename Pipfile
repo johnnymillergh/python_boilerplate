@@ -73,3 +73,5 @@ pytest-html = "==3.2.0"
 pytest-xdist = "==3.2.0"
 # Call stack profiler for Python. Shows you why your code is slow! https://github.com/joerick/pyinstrument
 pyinstrument = "==4.4.0"
+# PyInstaller bundles a Python application and all its dependencies into a single package. https://github.com/pyinstaller/pyinstaller
+pyinstaller = "==5.8.0"
