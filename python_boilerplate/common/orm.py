@@ -1,6 +1,6 @@
 from loguru import logger
 
-from python_boilerplate.repository.model.base_model import DATABASE
+from python_boilerplate.configuration.peewee_configuration import DATABASE
 
 
 def peewee_table(clazz):
