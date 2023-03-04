@@ -120,18 +120,42 @@ $ python3 -m python_boilerplate
 $ PYTHONPATH="${PYTHONPATH}:/Users/johnny/Projects/PyCharmProjects/python_boilerplate/python_boilerplate" python3 python_boilerplate/__main__.py
 ```
 
-### ~~Package with [PyInstaller](https://pyinstaller.org/en/latest/usage.html?highlight=pythonpath#using-pyinstaller)~~
+### Package with [PyInstaller](https://pyinstaller.org/en/latest/usage.html?highlight=pythonpath#using-pyinstaller)
 
+> **⚠️ WANRING**
+>
+> Need to call `freeze_support()` immediately when startup in `python_boilerplate/__init__.py`
+>
+> ```
+> from multiprocessing import freeze_support
+>
+> freeze_support()
+> ```
+>
+> - [Pyinstaller multiprocessing name of process is always "MainProcess" #3957](https://github.com/pyinstaller/pyinstaller/issues/3957#issuecomment-674579877)
+> - [pyinstaller linux binary is getting restarted again and again #4190](https://github.com/pyinstaller/pyinstaller/issues/4190)
+
+Build artifact with macOS or Linux,
 ```shell
 $ pipenv run pyinstaller --console \
+--add-data "setup.cfg:." \
 --add-data "python_boilerplate/resources/*:python_boilerplate/resources" \
---name main \
+--name pandas_usage \
 --clean --noconfirm python_boilerplate/demo/pandas_usage.py
+```
+
+On Windows,
+```powershell
+$ pipenv run pyinstaller --console `
+--add-data "setup.cfg;." `
+--add-data "python_boilerplate/resources/*;python_boilerplate/resources" `
+--name multithread_and_thread_pool_usage `
+--clean --noconfirm python_boilerplate/demo/multithread_and_thread_pool_usage.py
 ```
 
 ### Run Unit Tests
 
-Run with pytest, analyze code coverage, generate HTML code coverage reports, fail the test if coverage percentage is unser 85%
+Run with pytest, analyze code coverage, generate HTML code coverage reports, fail the test if coverage percentage is under 90%,
 
 ```shell
 $ pipenv run pytest --cov --cov-report html --cov-fail-under=85 --capture=no --log-cli-level=INFO

@@ -47,3 +47,15 @@ jobs:
       - name: Smoke Test Docker Image
         run: |
           docker run --rm python_boilerplate:smoke-test-tag param_3_from_command_line
+      - name: Build Application Executable Package with PyInstaller
+        run: |
+          pipenv run pyinstaller --windowed --noconsole \
+            --add-data "setup.cfg:." \
+            --add-data "python_boilerplate/resources/*:python_boilerplate/resources" \
+            --name multithread_and_thread_pool_usage \
+            --clean --noconfirm python_boilerplate/demo/multithread_and_thread_pool_usage.py
+      - name: Display Built Artifacts
+        run: |
+          du -s -h *
+      - name: Smoke Test PyInstaller Application
+        run: ./dist/multithread_and_thread_pool_usage/multithread_and_thread_pool_usage
