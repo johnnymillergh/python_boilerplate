@@ -57,3 +57,5 @@ jobs:
       - name: Display Built Artifacts
         run: |
           du -s -h *
+      - name: Smoke Test PyInstaller Application
+        run: ./dist/multithread_and_thread_pool_usage/multithread_and_thread_pool_usage
