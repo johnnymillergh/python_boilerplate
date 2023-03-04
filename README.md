@@ -21,7 +21,7 @@ Here is the highlights of **python_boilerplate**:
 
 1. Inherited from modern and the latest Python technologies:
 
-   `Python` - [![Python](https://img.shields.io/badge/Python-v3.10.6-blue)](https://www.python.org/downloads/release/python-3106/)
+   `Python` - [![Python](https://img.shields.io/badge/Python-v3.11.1-blue)](https://www.python.org/downloads/release/python-3111/)
 
    `Pipenv` is to build and compile the project.
 
@@ -161,6 +161,18 @@ $ pipenv run pytest --cov --cov-report html --cov-fail-under=85 --capture=no --l
 
 - GitHub Actions is for building project and running tests.
 - ~~[Travis CI](https://travis-ci.com/github/johnnymillergh/) is for publishing Docker Hub images of SNAPSHOT and RELEASE.~~
+
+## FAQ
+
+1. [ExecutableNotFoundError: Executable `/bin/bash` not found when using pre-commit](https://stackoverflow.com/questions/72321412/bin-bash-not-found-when-using-pre-commit)
+
+   Solution: delete `.git/hooks/pre-commit.legacy` and then reinstall, also deleted `.git/hooks/pre-commit` just to be sure before installing again.
+
+2. Installing all stub type packages,
+
+   ```shell
+   $ mypy --install-types
+   ```
 
 ## Maintainers
 

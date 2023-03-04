@@ -27,4 +27,8 @@ def test_render_template_when_the_template_exists_then_no_raised_exception() -> 
     except Exception as ex:
         assert False, f"Could not render template. {ex}"
     assert rendered is not None
+    assert len(rendered) > 0
+    assert "Basketball" in rendered
+    assert "Hello reader, here is a table" in rendered
+    assert "cid:a_picture_id" in rendered
     logger.info(f"Rendered template: \n{rendered}")

@@ -11,10 +11,20 @@ from python_boilerplate.configuration.thread_pool_configuration import (
 
 def async_function(func: Callable):
     """
-    The decorator to run function in thread pool. The return value of decorated function will be
-    `concurrent.futures._base.Future`.
+    An easy way to implement multi-tread feature with thread pool. The decorator to run function in thread pool.
+    The return value of decorated function will be `concurrent.futures._base.Future`.
 
-    Usage: decorate the function with `@async_function`
+    Usage: decorate the function with `@async_function`. For example,
+
+    * a function that accepts one integer argument:
+    >>> @async_function
+    >>> def an_async_function(a_int: int):
+    >>>     pass
+
+    * a function without argument:
+    >>> @async_function
+    >>> def an_async_function():
+    >>>   pass
 
     https://stackoverflow.com/questions/37203950/decorator-for-extra-thread
 

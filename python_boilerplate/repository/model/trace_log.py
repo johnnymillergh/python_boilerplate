@@ -18,6 +18,7 @@ class TraceLog(BaseModel):
         max_length=100, null=False, default=threading.current_thread().name, index=True
     )
     start_time = DateTimeField(null=False, default=datetime.now)
+    end_time = DateTimeField(null=True)
 
     # common 4 fields
     created_by = CharField(max_length=50, null=False, default=get_login_user)

@@ -1,5 +1,6 @@
 import functools
 import time
+from datetime import timedelta
 from typing import Callable
 
 from loguru import logger
@@ -10,12 +11,20 @@ def elapsed_time(level="INFO"):
     The decorator to monitor the elapsed time of a function.
 
     Usage:
-     * decorate the function with `@elapsed_time()` to profile the function with INFO log
-     * decorate the function with `@elapsed_time("DEBUG")` to profile the function with DEBUG log
+
+    * decorate the function with `@elapsed_time()` to profile the function with INFO log
+    >>> @elapsed_time()
+    >>> def some_function():
+    >>>    pass
+
+    * decorate the function with `@elapsed_time("DEBUG")` to profile the function with DEBUG log
+    >>> @elapsed_time("DEBUG")
+    >>> def some_function():
+    >>>    pass
 
     https://stackoverflow.com/questions/12295974/python-decorators-just-syntactic-sugar
 
-    :param level: logging level, default is `INFO`. Available values: "TRACE", "DEBUG", "INFO", "WARNING", "ERROR"
+    :param level: logging level, default is "INFO". Available values: ["TRACE", "DEBUG", "INFO", "WARNING", "ERROR"]
     """
 
     def elapsed_time_wrapper(func: Callable):
@@ -26,8 +35,7 @@ def elapsed_time(level="INFO"):
             elapsed = time.perf_counter() - start_time
             logger.log(
                 level,
-                f"{func.__qualname__}() -> elapsed time: {round(elapsed, 4)} s "
-                f"({round(elapsed * 1000, 2)} ms)",
+                f"{func.__qualname__}() -> elapsed time: {timedelta(seconds=elapsed)}",
             )
             return return_value
 
