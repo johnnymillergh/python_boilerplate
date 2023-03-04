@@ -39,6 +39,9 @@ __start_time = time.perf_counter()
 
 
 def startup():
+    """
+    Call this function to start the application and do all the preparations and configurations.
+    """
     logger.info(
         f"Starting {get_module_name()} using Python {platform.python_version()} on "
         f"{platform.node()} with PID {os.getpid()} ({Path(__file__).parent})"
