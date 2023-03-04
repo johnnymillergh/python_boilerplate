@@ -41,10 +41,14 @@ logger.add(
 logger.add(sys.stderr, level=log_level, format=_message_format)
 
 
-# Intercept standard logging https://gist.github.com/devsetgo/28c2edaca2d09e267dec46bb2e54b9e2
-
-
 class InterceptHandler(logging.Handler):
+    """
+    Intercept standard logging
+
+    https://loguru.readthedocs.io/en/stable/overview.html#entirely-compatible-with-standard-logging
+    https://gist.github.com/devsetgo/28c2edaca2d09e267dec46bb2e54b9e2
+    """
+
     def emit(self, record):
         # Get corresponding Loguru level if it exists
         try:
@@ -64,6 +68,11 @@ class InterceptHandler(logging.Handler):
 
 
 logging.basicConfig(handlers=[InterceptHandler()], level=0)
+logger.info(f"{type(logger)} is intercepting standard logging")
+
+for key, value in application_conf.get_config("log").items():
+    logging.getLogger(key).setLevel(value)
+    logger.info(f"Configured logger[{key}]'s level to {value}")
 
 
 def configure() -> None:
