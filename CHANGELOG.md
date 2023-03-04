@@ -1,3 +1,12 @@
+# [5.0.0](https://github.com/johnnymillergh/muscle-and-fitness-server/compare/4.0.1...5.0.0) (2023-03-04)
+
+
+### Features
+
+* **$PyInstaller:** integrate PyInstaller ([29251e7](https://github.com/johnnymillergh/python_boilerplate/commit/29251e7249322ce706287ab39b9d6e9060d72408))
+
+
+
 # [4.0.0](https://github.com/johnnymillergh/muscle-and-fitness-server/compare/3.0.0...4.0.0) (2022-09-18)
 
 
