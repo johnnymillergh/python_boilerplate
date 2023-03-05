@@ -12,7 +12,7 @@ on:
       - '**.tweet'
 
 jobs:
-  compilation:
+  static-code-analysis:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
@@ -40,6 +40,19 @@ jobs:
       - run: pipenv run mypy
       - name: Python Tests with pytest
         run: pipenv run pytest --cov --cov-fail-under=85 --capture=no --log-cli-level=INFO -n auto
+  docker-image-test:
+    runs-on: ubuntu-latest
+    needs: [static-code-analysis]
+    steps:
+      - uses: actions/checkout@v3
+      # The actions/cache step below uses this id to get the exact python version
+      - id: setup-python
+        uses: actions/setup-python@v4
+        with:
+          python-version: "3.11.2"
+          architecture: x64
+          # https://github.com/actions/setup-python/blob/main/docs/advanced-usage.md#caching-packages
+          cache: "pipenv"
       - name: Build Docker Image
         run: |
           docker build . -t python_boilerplate:smoke-test-tag
@@ -47,6 +60,19 @@ jobs:
       - name: Smoke Test Docker Image
         run: |
           docker run --rm python_boilerplate:smoke-test-tag param_3_from_command_line
+  pyinstaller-test:
+    runs-on: ubuntu-latest
+    needs: [static-code-analysis]
+    steps:
+      - uses: actions/checkout@v3
+      # The actions/cache step below uses this id to get the exact python version
+      - id: setup-python
+        uses: actions/setup-python@v4
+        with:
+          python-version: "3.11.2"
+          architecture: x64
+          # https://github.com/actions/setup-python/blob/main/docs/advanced-usage.md#caching-packages
+          cache: "pipenv"
       - name: Build Application Executable Package with PyInstaller
         run: |
           pipenv run pyinstaller --windowed --noconsole \
