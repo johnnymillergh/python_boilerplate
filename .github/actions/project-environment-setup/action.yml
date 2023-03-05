@@ -18,6 +18,7 @@ runs:
         key: ${{ runner.os }}-python-${{ steps.setup-python.outputs.python-version }}-pipenv-${{ hashFiles('Pipfile.lock') }}
     - name: Install Dependencies with pipenv
       if: steps.cache-pipenv.outputs.cache-hit != 'true'
+      shell: bash
       run: |
         pip install pipenv
         pipenv install --quiet --deploy --dev
