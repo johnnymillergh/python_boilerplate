@@ -23,6 +23,7 @@ ROW_ARRAY = [random.randint(200, 1000) for _ in range(10)]
 
 
 @async_function
+@elapsed_time()
 def generate_data_frame(rows: int) -> DataFrame:
     logger.info(f"Generating {rows} rows of data...")
     data_array = []
