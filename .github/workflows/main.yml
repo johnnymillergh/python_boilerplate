@@ -16,7 +16,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
-      - uses: ./github/actions/project-environment-setup
+      - uses: ./.github/actions/project-environment-setup
       - run: pipenv run isort --recursive --diff .
       - run: pipenv run black --check .
       - run: pipenv run flake8
@@ -28,7 +28,7 @@ jobs:
     needs: [static-code-analysis]
     steps:
       - uses: actions/checkout@v3
-      - uses: ./github/actions/project-environment-setup
+      - uses: ./.github/actions/project-environment-setup
       - name: Build Application Executable Package with PyInstaller
         run: |
           pipenv run pyinstaller --windowed --noconsole \
