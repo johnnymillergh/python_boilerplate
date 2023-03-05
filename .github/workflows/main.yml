@@ -48,6 +48,7 @@ jobs:
         run: |
           docker build . -t python_boilerplate:smoke-test-tag
           docker inspect python_boilerplate:smoke-test-tag
+          echo "Image size: `docker inspect -f "{{ .Size }}" python_boilerplate:smoke-test-tag | numfmt --to=si`"
       - name: Smoke Test Docker Image
         run: |
           docker run --rm python_boilerplate:smoke-test-tag param_3_from_command_line
