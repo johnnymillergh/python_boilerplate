@@ -5,6 +5,8 @@
 *.db
 *.gz
 data/
+# pytest-monitor SQLite database
+.pymon
 
 ### PyCharm ###
 .idea
