@@ -39,7 +39,7 @@ python-stdnum = "==1.18"
 # Retrying library for Python. https://pypi.org/project/tenacity/
 tenacity = "==8.2.2"
 # Python plotting package. https://pypi.org/project/matplotlib/
-matplotlib = "==3.7.0"
+matplotlib = "==3.7.1"
 
 [dev-packages]
 # Black is the uncompromising Python code formatter. By using it, you agree to cede control over minutiae of
@@ -70,10 +70,10 @@ pytest-cov = "==4.0.0"
 # Plugin for generating HTML reports for pytest results. https://github.com/pytest-dev/pytest-html/
 pytest-html = "==3.2.0"
 # pytest xdist plugin for distributed testing and loop-on-failing modes. https://github.com/pytest-dev/pytest-xdist/
-pytest-xdist = "==3.2.0"
+pytest-xdist = "==3.2.1"
 # Call stack profiler for Python. Shows you why your code is slow! https://github.com/joerick/pyinstrument
 pyinstrument = "==4.4.0"
 # Pytest plugin for analyzing resource usage during test sessions. https://github.com/CFMTech/pytest-monitor
 pytest-monitor = "==1.6.5"
 # PyInstaller bundles a Python application and all its dependencies into a single package. https://github.com/pyinstaller/pyinstaller
-pyinstaller = "==5.8.0"
+pyinstaller = "==5.9.0"
