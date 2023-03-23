@@ -32,7 +32,7 @@ peewee = "==3.16.0"
 jinja2 = "==3.1.2"
 # Tool dependencies
 # Faker is a Python package that generates fake data for you. https://pypi.org/project/Faker/
-faker = "==17.6.0"
+faker = "==18.3.0"
 # A Python module to parse, validate and reformat standard numbers and codes in different formats.
 # It contains a large collection of number formats. https://pypi.org/project/python-stdnum/
 python-stdnum = "==1.18"
@@ -53,13 +53,13 @@ flake8 = "==6.0.0"
 flake8-quotes = "==3.3.2"
 flake8-print = "==5.0.0"
 flake8-use-fstring = "==1.4"
-flake8-comprehensions = "==3.10.1"
+flake8-comprehensions = "==3.11.1"
 # isort your imports, so you don't have to. https://pypi.org/project/isort/
 isort = "==5.12.0"
 # Add type annotations to your Python programs, and use mypy to type check them. https://pypi.org/project/mypy/
 mypy = "==1.1.1"
 # A framework for managing and maintaining multi-language pre-commit hooks. https://pypi.org/project/pre-commit/
-pre-commit = "==3.1.1"
+pre-commit = "==3.2.0"
 # The pytest framework makes it easy to write small tests, yet scales to support complex functional testing
 # for applications and libraries. https://pypi.org/project/pytest/
 pytest = "==7.2.2"
