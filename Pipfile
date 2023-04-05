@@ -40,6 +40,8 @@ python-stdnum = "==1.18"
 tenacity = "==8.2.2"
 # Python plotting package. https://pypi.org/project/matplotlib/
 matplotlib = "==3.7.1"
+# Pretty Good Privacy for Python. https://github.com/SecurityInnovation/PGPy
+pgpy = "==0.6.0"
 
 [dev-packages]
 # Black is the uncompromising Python code formatter. By using it, you agree to cede control over minutiae of
