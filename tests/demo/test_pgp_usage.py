@@ -4,6 +4,7 @@ import pgpy
 from loguru import logger
 from pgpy.constants import HashAlgorithm
 
+from python_boilerplate.common.profiling import cpu_profile, elapsed_time, mem_profile
 from python_boilerplate.demo.pgp_usage import (
     alice_public_key,
     alice_secret_key,
@@ -12,6 +13,9 @@ from python_boilerplate.demo.pgp_usage import (
 )
 
 
+@elapsed_time("INFO")
+@mem_profile("INFO")
+@cpu_profile("INFO")
 def test_when_alice_sends_message_to_bob():
     plaintext = "Hello World!"
     signature = pgpy.PGPMessage.new(plaintext)
@@ -34,6 +38,9 @@ def test_when_alice_sends_message_to_bob():
     assert verified is not None
 
 
+@elapsed_time("INFO")
+@mem_profile("INFO")
+@cpu_profile("INFO")
 def test_when_bob_sends_message_to_alice():
     plaintext = "Hello World!"
     signature = pgpy.PGPMessage.new(plaintext)
@@ -56,6 +63,9 @@ def test_when_bob_sends_message_to_alice():
     assert verified is not None
 
 
+@elapsed_time("INFO")
+@mem_profile("INFO")
+@cpu_profile("INFO")
 def test_load_armor_ciphertext_and_then_verify():
     message_text = textwrap.dedent(
         """\
