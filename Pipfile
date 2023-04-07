@@ -42,6 +42,8 @@ tenacity = "==8.2.2"
 matplotlib = "==3.7.1"
 # Pretty Good Privacy for Python. https://github.com/SecurityInnovation/PGPy
 pgpy = "==0.6.0"
+# Cross-platform lib for process and system monitoring in Python. https://github.com/giampaolo/psutil
+psutil = "==5.9.4"
 
 [dev-packages]
 # Black is the uncompromising Python code formatter. By using it, you agree to cede control over minutiae of
