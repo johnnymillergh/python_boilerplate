@@ -1,34 +1,25 @@
-import asyncio
 from time import sleep
 
-import pytest
 from loguru import logger
 from pytest_mock import MockFixture
 
-from python_boilerplate.common.debounce_throttle import (
-    async_debounce,
-    debounce,
-    throttle,
-)
+from python_boilerplate.common.debounce_throttle import debounce, throttle
 from python_boilerplate.common.trace import async_trace, trace
 
+times_for_debounce: int = 0
+times_for_throttle: int = 0
 
-def test_debounce() -> None:
+
+def test_debounce(mocker: MockFixture) -> None:
+    import tests
+
+    spy = mocker.spy(tests.common.test_debounce_throttle, "debounce_function")
     call_count: int = 3
     while call_count > 0:
-        debounce_function()
+        debounce_function(call_count)
         call_count -= 1
-    sleep(2)
-
-
-@pytest.mark.asyncio
-async def test_async_debounce():
-    try:
-        asyncio.new_event_loop().run_until_complete(
-            async_debounce_function() for _ in range(3)
-        )
-    except Exception as e:
-        assert False, f"Failed to test throttle_function(). {e}"
+    spy.assert_called()
+    assert times_for_debounce == 1
 
 
 def test_throttle(mocker: MockFixture) -> None:
@@ -38,26 +29,30 @@ def test_throttle(mocker: MockFixture) -> None:
     call_count: int = 5
     try:
         while call_count > 0:
-            throttle_function()
+            throttle_function(call_count)
             call_count -= 1
             sleep(0.1)
     except Exception as ex:
         assert False, f"Failed to test throttle_function(). {ex}"
     spy.assert_called()
+    assert times_for_throttle >= 2
 
 
 @trace
-@debounce(1)
-def debounce_function() -> None:
-    logger.warning("'debounce_function' was called")
-
-
-@async_debounce(0.25)
-def async_debounce_function():
-    logger.warning("'async_debounce_function' was called")
+@debounce(wait=1)
+def debounce_function(a_int: int) -> None:
+    global times_for_debounce
+    times_for_debounce += 1
+    logger.warning(
+        f"'debounce_function' was called with {a_int}, times: {times_for_debounce}"
+    )
 
 
 @async_trace
-@throttle(0.25)
-def throttle_function() -> None:
-    logger.warning("'throttle_function' was called")
+@throttle(limit=0.25)
+def throttle_function(a_int: int) -> None:
+    global times_for_throttle
+    times_for_throttle += 1
+    logger.warning(
+        f"'throttle_function' was called with {a_int}, times: {times_for_throttle}"
+    )

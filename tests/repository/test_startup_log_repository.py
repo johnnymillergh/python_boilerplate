@@ -27,7 +27,7 @@ def test_update_latest() -> None:
         logger.warning(f"Failed to update latest startup log. {ex}")
 
 
-def test_retain_startup_log():
+def test_retain_startup_log() -> None:
     try:
         retain_startup_log()
     except Exception as ex:

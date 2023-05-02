@@ -116,9 +116,23 @@ $ python3 -m python_boilerplate
 
 > [How to Fix ModuleNotFoundError and ImportError](https://towardsdatascience.com/how-to-fix-modulenotfounderror-and-importerror-248ce5b69b1c)
 
+For macOS or Linux,
+
 ```shell
-$ PYTHONPATH="${PYTHONPATH}:/Users/johnny/Projects/PyCharmProjects/python_boilerplate/python_boilerplate" python3 python_boilerplate/__main__.py
+# Ensure `pwd` is the root directory of the project
+$ PYTHONPATH=`pwd` pipenv run python3 python_boilerplate/demo/pandas_usage.py
+$ PYTHONPATH=`pwd` pipenv run python3 python_boilerplate/demo/multithread_and_thread_pool_usage.py
+# To run the main module
+$ PYTHONPATH=`pwd` pipenv run python3 python_boilerplate/__main__.py
 ```
+
+For Windows Terminal,
+```powershell
+# Ensure `$PWD.Path` is the root directory of the project
+$ $env:PYTHONPATH=$PWD.Path; pipenv run python .\python_boilerplate\demo\pandas_usage.py
+$ $env:PYTHONPATH=$PWD.Path; pipenv run python .\python_boilerplate\demo\multithread_and_thread_pool_usage.py
+# To run the main module
+$ $env:PYTHONPATH=$PWD.Path; pipenv run python .\python_boilerplate\__main__.py
 
 ### Package with [PyInstaller](https://pyinstaller.org/en/latest/usage.html?highlight=pythonpath#using-pyinstaller)
 
@@ -126,7 +140,7 @@ $ PYTHONPATH="${PYTHONPATH}:/Users/johnny/Projects/PyCharmProjects/python_boiler
 >
 > Need to call `freeze_support()` immediately when startup in `python_boilerplate/__init__.py`
 >
-> ```
+> ```python
 > from multiprocessing import freeze_support
 >
 > freeze_support()

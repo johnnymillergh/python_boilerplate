@@ -1,9 +1,12 @@
+from typing import Type
+
 from loguru import logger
 
 from python_boilerplate.configuration.peewee_configuration import DATABASE
+from python_boilerplate.repository.model.base_model import BaseModel
 
 
-def peewee_table(clazz):
+def peewee_table(clazz: Type[BaseModel]) -> Type[BaseModel]:
     """
     The decorator to register peewee tables. Creates the table if not exists.
 
