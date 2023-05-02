@@ -4,7 +4,7 @@ import pytest
 from loguru import logger
 from pydantic import ValidationError
 
-from python_boilerplate.demo.pydantic_usage import User
+from python_boilerplate.demo.pydantic_usage import User, UserDataClass
 
 
 def test_deserialize_user_from_dict() -> None:
@@ -43,3 +43,11 @@ def test_deserialize_user_from_json_when_signup_ts_is_provided() -> None:
     assert user.name == "James"
     assert user.signup_ts is not None
     logger.info(f"User: {user}, user in JSON: {user.json()}")
+
+
+def test_initialize_user_with_dataclass() -> None:
+    user: UserDataClass = UserDataClass(id=1, name="John")
+    assert user is not None
+    assert user.id == 1
+    assert user.name == "John"
+    logger.info(f"{user}")
