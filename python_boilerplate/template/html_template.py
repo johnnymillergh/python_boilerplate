@@ -1,4 +1,4 @@
-from typing import Final
+from typing import Any, Final
 
 from jinja2 import Environment, FileSystemLoader, select_autoescape
 
@@ -10,7 +10,7 @@ __ENVIRONMENT: Final = Environment(
 )
 
 
-def render_template(template_name: str, render_dict: dict) -> str:
+def render_template(template_name: str, render_dict: dict[str, Any]) -> str:
     """
     Render template.
 

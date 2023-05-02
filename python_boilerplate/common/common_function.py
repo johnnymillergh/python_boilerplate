@@ -16,7 +16,7 @@ PROJECT_ROOT_PATH: Final = Path(__file__).parent.parent.parent
 MODULE_ROOT_PATH: Final = Path(__file__).parent.parent
 
 
-def get_data_dir(sub_path="") -> Path:
+def get_data_dir(sub_path: str = "") -> Path:
     """
     Get the data directory of the project.
 
@@ -72,7 +72,7 @@ def get_login_user() -> str:
         return "default_user"
 
 
-def json_serial(obj: Any) -> str | dict:
+def json_serial(obj: Any) -> str | dict[str, Any]:
     """
     JSON serializer for objects not serializable by default json code
 

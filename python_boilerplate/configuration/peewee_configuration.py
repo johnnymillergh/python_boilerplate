@@ -23,5 +23,5 @@ DATABASE: Final = SqliteDatabase(
 )
 
 
-def configure():
+def configure() -> None:
     logger.warning(f"SQLite database created. Path: [{DATABASE_PATH}], {DATABASE}")

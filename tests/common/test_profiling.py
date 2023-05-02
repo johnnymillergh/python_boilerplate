@@ -11,7 +11,7 @@ def time_consuming_function() -> str:
 
 def test_elapsed_time() -> None:
     try:
-        result = time_consuming_function()
+        result: str = time_consuming_function()
     except Exception as ex:
         assert False, f"`time_consuming_function()` raised an exception {ex}"
     assert result is not None

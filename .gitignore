@@ -4,9 +4,9 @@
 ### Project ###
 *.db
 *.gz
-logs/
 data/
-build/
+# pytest-monitor SQLite database
+.pymon
 
 ### PyCharm ###
 .idea

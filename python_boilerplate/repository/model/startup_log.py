@@ -18,7 +18,7 @@ class StartupLog(BaseModel):
     current_user = CharField(
         max_length=50, null=False, default=get_login_user, index=True
     )
-    host = CharField(max_length=50, null=False, default=platform.node, index=True)
+    hostname = CharField(max_length=50, null=False, default=platform.node, index=True)
     command_line = TextField(null=False)
     current_working_directory = TextField(null=False, default=os.getcwd)
     startup_time = DateTimeField(null=False, default=datetime.now)
@@ -36,5 +36,5 @@ class StartupLog(BaseModel):
         # whether the index is unique or not.
         indexes = (
             # create a non-unique on current_user and host
-            (("current_user", "host"), False),
+            (("current_user", "hostname"), False),
         )

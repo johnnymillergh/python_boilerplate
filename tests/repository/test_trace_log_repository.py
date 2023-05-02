@@ -21,7 +21,7 @@ def test_save() -> None:
     logger.info(f"Saved trace log, id: {saved.get_id()}")
 
 
-def test_retain_trace_log():
+def test_retain_trace_log() -> None:
     try:
         retain_trace_log()
     except Exception as ex:

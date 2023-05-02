@@ -19,7 +19,7 @@ def save(startup_log: StartupLog) -> StartupLog:
     return startup_log
 
 
-def update_latest():
+def update_latest() -> None:
     latest = StartupLog.select().order_by(StartupLog.id.desc()).limit(1).execute()
     logger.debug(latest[0])
     now = datetime.now()
