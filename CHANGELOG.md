@@ -1,3 +1,26 @@
+# [6.0.0](https://github.com/johnnymillergh/muscle-and-fitness-server/compare/5.0.0...6.0.0) (2023-05-02)
+
+
+### Features
+
+* **$arrow:** add demo for `arrow` ([e8e2d9c](https://github.com/johnnymillergh/python_boilerplate/commit/e8e2d9c9f50b2155f657bcb5af27993bef802af0))
+* **$PGP:** support PGP encryption ([88e6e17](https://github.com/johnnymillergh/python_boilerplate/commit/88e6e1717bfcb4a8ea84b2b08829ae28cc4d8e15))
+* **$profiling:** support `[@cpu](https://github.com/cpu)_profile` & `[@mem](https://github.com/mem)_profile` decorators ([a2f8e7c](https://github.com/johnnymillergh/python_boilerplate/commit/a2f8e7cea450be8eb0a38a621dbe6f5e36903b48))
+* **$Pydantic:** integrate Pydantic and enhance mypy type checking ([2cf347e](https://github.com/johnnymillergh/python_boilerplate/commit/2cf347e3ef7f3c2ab4856b0942e087ff2c0f4c3a))
+
+
+### Performance Improvements
+
+* **$GitHub:** run action jobs in parallel ([fcbd061](https://github.com/johnnymillergh/python_boilerplate/commit/fcbd0619b38a705b18a348180dd30246a2c0105e))
+* **$pytest-monitor:** integrate pytest-monitor for CPU & memory profiling ([31c77a7](https://github.com/johnnymillergh/python_boilerplate/commit/31c77a71ad14a3c8c8264bea28aaf6aafeb56ce3))
+
+
+### Reverts
+
+* **$Docker:** `apt-get update && apt-get install -y --no-install-recommends gcc` ([9957e23](https://github.com/johnnymillergh/python_boilerplate/commit/9957e23677b7180e877df12fb439e4d909d96943))
+
+
+
 # [5.0.0](https://github.com/johnnymillergh/muscle-and-fitness-server/compare/4.0.1...5.0.0) (2023-03-04)
 
 
