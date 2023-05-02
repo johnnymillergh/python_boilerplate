@@ -1,4 +1,5 @@
 from datetime import datetime
+from typing import Any
 
 from loguru import logger
 
@@ -6,8 +7,8 @@ from python_boilerplate.template.html_template import render_template
 
 
 def test_render_template_when_the_template_exists_then_no_raised_exception() -> None:
-    render_dict: dict = {}
-    dict_table_data: list[dict] = [
+    render_dict: dict[str, Any] = {}
+    dict_table_data: list[dict[str, Any]] = [
         {"Name": "Basketball", "Type": "Sports", "Value": 5},
         {"Name": "Football", "Type": "Sports", "Value": 4.5},
         {"Name": "Pencil", "Type": "Learning", "Value": 5},

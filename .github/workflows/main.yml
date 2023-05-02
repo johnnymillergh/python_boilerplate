@@ -12,41 +12,22 @@ on:
       - '**.tweet'
 
 jobs:
-  compilation:
+  static-code-analysis:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
-      # The actions/cache step below uses this id to get the exact python version
-      - id: setup-python
-        uses: actions/setup-python@v4
-        with:
-          python-version: "3.11.2"
-          architecture: x64
-          # https://github.com/actions/setup-python/blob/main/docs/advanced-usage.md#caching-packages
-          cache: "pipenv"
-      # https://github.com/actions/cache/blob/main/examples.md#python---pipenv
-      - uses: actions/cache@v3
-        with:
-          path: ~/.local/share/virtualenvs
-          key: ${{ runner.os }}-python-${{ steps.setup-python.outputs.python-version }}-pipenv-${{ hashFiles('Pipfile.lock') }}
-      - name: Install Dependencies with pipenv
-        if: steps.cache-pipenv.outputs.cache-hit != 'true'
-        run: |
-          pip install pipenv
-          pipenv install --quiet --deploy --dev
+      - uses: ./.github/actions/project-environment-setup
       - run: pipenv run isort --recursive --diff .
       - run: pipenv run black --check .
       - run: pipenv run flake8
       - run: pipenv run mypy
       - name: Python Tests with pytest
-        run: pipenv run pytest --cov --cov-fail-under=85 --capture=no --log-cli-level=INFO -n auto
-      - name: Build Docker Image
-        run: |
-          docker build . -t python_boilerplate:smoke-test-tag
-          docker inspect python_boilerplate:smoke-test-tag
-      - name: Smoke Test Docker Image
-        run: |
-          docker run --rm python_boilerplate:smoke-test-tag param_3_from_command_line
+        run: LOG_LEVEL=INFO pipenv run pytest --cov --cov-fail-under=90 --capture=no --log-cli-level=INFO -n auto
+  pyinstaller-test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - uses: ./.github/actions/project-environment-setup
       - name: Build Application Executable Package with PyInstaller
         run: |
           pipenv run pyinstaller --windowed --noconsole \
@@ -59,3 +40,16 @@ jobs:
           du -s -h *
       - name: Smoke Test PyInstaller Application
         run: ./dist/multithread_and_thread_pool_usage/multithread_and_thread_pool_usage
+  docker-image-test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - name: Build Docker Image
+        run: |
+          docker build . -t python_boilerplate:smoke-test-tag
+          docker inspect python_boilerplate:smoke-test-tag
+          echo "Image size: `docker inspect -f "{{ .Size }}" python_boilerplate:smoke-test-tag | numfmt --to=si`"
+          docker image ls python_boilerplate:smoke-test-tag
+      - name: Smoke Test Docker Image
+        run: |
+          docker run --rm python_boilerplate:smoke-test-tag param_3_from_command_line

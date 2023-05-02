@@ -15,14 +15,14 @@ def test_configure() -> None:
         assert False, f"{configure} raised an exception {ex}"
 
 
-def test_executor_when_future_raising_exception():
+def test_executor_when_future_raising_exception() -> None:
     try:
         executor.submit(lambda x, y: x / y, 1, 0).add_done_callback(done_callback)
     except Exception as ex:
         assert False, f"{executor} raised an exception. {ex}"
 
 
-def test_cleanup(mocker: MockerFixture):
+def test_cleanup(mocker: MockerFixture) -> None:
     # pytest-mock, patch an object, https://pytest-mock.readthedocs.io/en/latest/usage.html
     executor_patch = mocker.patch.object(executor, "shutdown")
     cleanup()

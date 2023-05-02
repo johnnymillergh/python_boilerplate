@@ -1,0 +1,24 @@
+name: Project Environment Setup
+description: Setup project environment
+runs:
+  using: "composite"
+  steps:
+    # The actions/cache step below uses this id to get the exact python version
+    - id: setup-python
+      uses: actions/setup-python@v4
+      with:
+        python-version: "3.11.2"
+        architecture: x64
+        # https://github.com/actions/setup-python/blob/main/docs/advanced-usage.md#caching-packages
+        cache: "pipenv"
+    # https://github.com/actions/cache/blob/main/examples.md#python---pipenv
+    - uses: actions/cache@v3
+      with:
+        path: ~/.local/share/virtualenvs
+        key: ${{ runner.os }}-python-${{ steps.setup-python.outputs.python-version }}-pipenv-${{ hashFiles('Pipfile.lock') }}
+    - name: Install Dependencies with pipenv
+      if: steps.cache-pipenv.outputs.cache-hit != 'true'
+      shell: bash
+      run: |
+        pip install pipenv
+        pipenv install --quiet --deploy --dev
