@@ -2,7 +2,7 @@ import functools
 import inspect
 import json
 from datetime import datetime
-from typing import Callable
+from typing import Any, Callable, TypeVar
 
 from loguru import logger
 
@@ -14,8 +14,10 @@ from python_boilerplate.configuration.thread_pool_configuration import (
 from python_boilerplate.repository.model.trace_log import TraceLog
 from python_boilerplate.repository.trace_log_repository import save
 
+R = TypeVar("R")
 
-def async_trace(func: Callable):
+
+def async_trace(func: Callable[..., R]) -> Callable[..., R]:
     """
     The decorator to trace Python function asynchronously,
     which writes trace_log data in different threads (thread pool).
@@ -27,7 +29,7 @@ def async_trace(func: Callable):
     """
 
     @functools.wraps(func)
-    def wrapped(*arg, **kwarg):
+    def wrapped(*arg: Any, **kwarg: Any) -> Any:
         function_arguments = {"arg": arg, "kwarg": kwarg}
         trace_log = TraceLog(
             called_by=inspect.stack()[1][3],
@@ -56,7 +58,7 @@ def async_trace(func: Callable):
     return wrapped
 
 
-def trace(func: Callable):
+def trace(func: Callable[[Any], R]) -> Callable[[Any], R]:
     """
     The decorator to trace Python function synchronously,
     which will always record the end_time of the execution of a function in the same thread.
@@ -68,7 +70,7 @@ def trace(func: Callable):
     """
 
     @functools.wraps(func)
-    def wrapped(*arg, **kwarg):
+    def wrapped(*arg: Any, **kwarg: Any) -> Any:
         function_arguments = {"arg": arg, "kwarg": kwarg}
         trace_log = TraceLog(
             called_by=inspect.stack()[1][3],

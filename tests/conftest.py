@@ -1,16 +1,17 @@
 from pathlib import Path
+from typing import Any
 
 import pytest
 from _pytest.nodes import Node
 from loguru import logger
-from pyinstrument import Profiler
+from pyinstrument.profiler import Profiler
 
 from python_boilerplate.common.common_function import get_module_name
 
 PROJECT__ROOT = Path(__file__).parent.parent
 
 
-def pytest_html_report_title(report):
+def pytest_html_report_title(report: Any) -> None:
     """
     pytest-html title configuration.
 
@@ -20,9 +21,9 @@ def pytest_html_report_title(report):
 
 
 @pytest.fixture(autouse=True)
-def auto_profile(request):
+def auto_profile(request: Any) -> None:  # type: ignore
     """
-    Generate a HTML file for each test node in your test suite inside the .profiles directory.
+    Generate an HTML file for each test node in your test suite inside the .profiles directory.
 
     https://pyinstrument.readthedocs.io/en/latest/guide.html#profile-pytest-tests
     """
@@ -36,7 +37,7 @@ def auto_profile(request):
     yield  # Run test
 
     profiler.stop()
-    node: Node = request.node  # type: ignore
+    node: Node = request.node
     profile_html_path = profile_root / f"{node.path.parent.relative_to(PROJECT__ROOT)}"
     if not profile_html_path.exists():
         # If parents=False (the default), a missing parent raises FileNotFoundError.

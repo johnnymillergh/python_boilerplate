@@ -2,13 +2,15 @@ import functools
 import os
 import time
 from datetime import timedelta
-from typing import Callable
+from typing import Any, Callable, TypeVar
 
 import psutil
 from loguru import logger
 
+R = TypeVar("R")
 
-def elapsed_time(level="INFO"):
+
+def elapsed_time(level: str = "INFO") -> Callable[..., Callable[..., R]]:
     """
     The decorator to monitor the elapsed time of a function.
 
@@ -29,9 +31,9 @@ def elapsed_time(level="INFO"):
     :param level: logging level, default is "INFO". Available values: ["TRACE", "DEBUG", "INFO", "WARNING", "ERROR"]
     """
 
-    def elapsed_time_wrapper(func: Callable):
+    def decorator(func: Callable[..., R]) -> Callable[..., R]:
         @functools.wraps(func)
-        def wrapped(*arg, **kwarg):
+        def wrapped(*arg: Any, **kwarg: Any) -> Any:
             start_time = time.perf_counter()
             return_value = func(*arg, **kwarg)
             elapsed = time.perf_counter() - start_time
@@ -43,24 +45,29 @@ def elapsed_time(level="INFO"):
 
         return wrapped
 
-    return elapsed_time_wrapper
+    return decorator
 
 
-def get_memory_usage():
+def get_memory_usage() -> int:
+    """
+    Gets the usage of memory
+    :return: memory usage in bytes
+    """
     process = psutil.Process(os.getpid())
     mem_info = process.memory_info()
     return mem_info.rss
 
 
-def get_cpu_usage():
+def get_cpu_usage() -> float:
     """
     Getting cpu_percent non-blocking (percentage since last call)
+    :return: CPU usage
     """
     cpu_usage = psutil.cpu_percent()
     return cpu_usage
 
 
-def mem_profile(level="INFO"):
+def mem_profile(level: str = "INFO") -> Callable[..., Callable[..., R]]:
     """
     The decorator to monitor the memory usage of a function.
 
@@ -81,9 +88,9 @@ def mem_profile(level="INFO"):
     :param level: logging level, default is "INFO". Available values: ["TRACE", "DEBUG", "INFO", "WARNING", "ERROR"]
     """
 
-    def mem_profile_wrapper(func: Callable):
+    def decorator(func: Callable[..., R]) -> Callable[..., R]:
         @functools.wraps(func)
-        def wrapped(*arg, **kwarg):
+        def wrapped(*arg: Any, **kwarg: Any) -> Any:
             mem_before = get_memory_usage()
             return_value = func(*arg, **kwarg)
             mem_after = get_memory_usage()
@@ -96,10 +103,10 @@ def mem_profile(level="INFO"):
 
         return wrapped
 
-    return mem_profile_wrapper
+    return decorator
 
 
-def cpu_profile(level="INFO"):
+def cpu_profile(level: str = "INFO") -> Callable[..., Callable[..., R]]:
     """
     The decorator to monitor the CPU usage of a function.
 
@@ -120,9 +127,9 @@ def cpu_profile(level="INFO"):
     :param level: logging level, default is "INFO". Available values: ["TRACE", "DEBUG", "INFO", "WARNING", "ERROR"]
     """
 
-    def cpu_profile_wrapper(func: Callable):
+    def decorator(func: Callable[..., R]) -> Callable[..., R]:
         @functools.wraps(func)
-        def wrapped(*arg, **kwarg):
+        def wrapped(*arg: Any, **kwarg: Any) -> Any:
             cpu_before = get_cpu_usage()
             return_value = func(*arg, **kwarg)
             cpu_after = get_cpu_usage()
@@ -135,4 +142,4 @@ def cpu_profile(level="INFO"):
 
         return wrapped
 
-    return cpu_profile_wrapper
+    return decorator

@@ -16,7 +16,7 @@ from python_boilerplate.demo.pgp_usage import (
 @elapsed_time("INFO")
 @mem_profile("INFO")
 @cpu_profile("INFO")
-def test_when_alice_sends_message_to_bob():
+def test_when_alice_sends_message_to_bob() -> None:
     plaintext = "Hello World!"
     signature = pgpy.PGPMessage.new(plaintext)
     assert signature is not None
@@ -41,7 +41,7 @@ def test_when_alice_sends_message_to_bob():
 @elapsed_time("INFO")
 @mem_profile("INFO")
 @cpu_profile("INFO")
-def test_when_bob_sends_message_to_alice():
+def test_when_bob_sends_message_to_alice() -> None:
     plaintext = "Hello World!"
     signature = pgpy.PGPMessage.new(plaintext)
     assert signature is not None
@@ -66,7 +66,7 @@ def test_when_bob_sends_message_to_alice():
 @elapsed_time("INFO")
 @mem_profile("INFO")
 @cpu_profile("INFO")
-def test_load_armor_ciphertext_and_then_verify():
+def test_load_armor_ciphertext_and_then_verify() -> None:
     message_text = textwrap.dedent(
         """\
         -----BEGIN PGP MESSAGE-----

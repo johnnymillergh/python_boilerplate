@@ -1,6 +1,7 @@
 import logging
 import platform
 import sys
+from logging import LogRecord
 
 from loguru import logger
 
@@ -49,8 +50,9 @@ class InterceptHandler(logging.Handler):
     https://gist.github.com/devsetgo/28c2edaca2d09e267dec46bb2e54b9e2
     """
 
-    def emit(self, record):
+    def emit(self, record: LogRecord) -> None:
         # Get corresponding Loguru level if it exists
+        level: int | str
         try:
             level = logger.level(record.levelname).name
         except ValueError:
@@ -59,8 +61,9 @@ class InterceptHandler(logging.Handler):
         # Find caller from where originated the logged message
         frame, depth = logging.currentframe(), 2
         while frame.f_code.co_filename == logging.__file__:
-            frame = frame.f_back
-            depth += 1
+            if frame.f_back is not None:
+                frame = frame.f_back
+                depth += 1
 
         logger.opt(depth=depth, exception=record.exc_info).log(
             level, f"{record.name} -> {record.getMessage()}"

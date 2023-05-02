@@ -95,7 +95,7 @@ def generate_random_data(row_count: int) -> DataFrame:
 # noinspection PyTypeChecker
 @elapsed_time("DEBUG")
 def submit_parallel_tasks() -> list[DataFrame]:
-    futures: list[Future] = []
+    futures: list[Future[DataFrame]] = []
     for _ in range(5):
         futures.append(generate_random_data(5000))
     wait(futures)
@@ -113,9 +113,9 @@ def merge_results(dataframes: list[DataFrame]) -> DataFrame:
     return result_list
 
 
-def data_generation():
-    futures = submit_parallel_tasks()
-    result_data_pd: DataFrame = merge_results(futures)  # type: ignore
+def data_generation() -> None:
+    future_results: list[DataFrame] = submit_parallel_tasks()
+    result_data_pd: DataFrame = merge_results(future_results)
     logger.info(f"Finished merging data\n{result_data_pd}")
     random_data_path = get_data_dir() / "random_data.csv"
     result_data_pd.to_csv(random_data_path, index=False)
