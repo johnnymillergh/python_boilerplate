@@ -1,4 +1,8 @@
+from typing import Any
+
+import pytest
 from loguru import logger
+from pydantic import ValidationError
 
 from python_boilerplate.demo.pydantic_usage import User
 
@@ -9,6 +13,17 @@ def test_deserialize_user_from_dict() -> None:
     assert user.id == 123
     assert user.name == "James"
     assert user.signup_ts is None
+
+
+def test_deserialize_user_from_dict_when_id_is_abc_then_raise_validation_error() -> (
+    None
+):
+    user_dict: dict[str, Any] = {"id": "abc", "name": "James"}
+    with pytest.raises(ValidationError) as exc_info:
+        validated: User = User.validate(user_dict)
+        logger.info(f"Validated user: {validated}")
+    assert exc_info.type == ValidationError
+    logger.info(f"Exception raised during validation. {exc_info.value}")
 
 
 def test_deserialize_user_from_json() -> None:
