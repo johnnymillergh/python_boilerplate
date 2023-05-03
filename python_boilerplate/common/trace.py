@@ -29,7 +29,7 @@ def async_trace(func: Callable[..., R]) -> Callable[..., R]:
     """
 
     @functools.wraps(func)
-    def wrapped(*arg: Any, **kwarg: Any) -> Any:
+    def wrapped(*arg: Any, **kwarg: Any) -> R:
         function_arguments = {"arg": arg, "kwarg": kwarg}
         trace_log = TraceLog(
             called_by=inspect.stack()[1][3],
@@ -70,7 +70,7 @@ def trace(func: Callable[[Any], R]) -> Callable[[Any], R]:
     """
 
     @functools.wraps(func)
-    def wrapped(*arg: Any, **kwarg: Any) -> Any:
+    def wrapped(*arg: Any, **kwarg: Any) -> R:
         function_arguments = {"arg": arg, "kwarg": kwarg}
         trace_log = TraceLog(
             called_by=inspect.stack()[1][3],
