@@ -23,7 +23,7 @@ Here are the highlights of **python_boilerplate**:
 
    `Python` - [![Python](https://img.shields.io/badge/Python-v3.11.2-blue)](https://www.python.org/downloads/release/python-3112/)
 
-   `Pipenv` is to build and compile the project.
+   `Pipenv` is to Python virtualenv management tool for the project.
 
 2. Highly customizable data analysis with [pandas](https://pandas.pydata.org/), enhanced array operation with [NumPy](https://numpy.org/). Supports CSV, excel, JSON and so on.
 
