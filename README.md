@@ -17,11 +17,11 @@
 
 ## Features
 
-Here is the highlights of **python_boilerplate**:
+Here are the highlights of **python_boilerplate**:
 
 1. Inherited from modern and the latest Python technologies:
 
-   `Python` - [![Python](https://img.shields.io/badge/Python-v3.11.1-blue)](https://www.python.org/downloads/release/python-3111/)
+   `Python` - [![Python](https://img.shields.io/badge/Python-v3.11.2-blue)](https://www.python.org/downloads/release/python-3112/)
 
    `Pipenv` is to build and compile the project.
 
@@ -197,7 +197,7 @@ $ pipenv run pytest --cov --cov-report html --cov-fail-under=85 --capture=no --l
 
 ## CI (Continuous Integration)
 
-- GitHub Actions is for building project and running tests.
+- GitHub Actions are for building projects and running tests.
 - ~~[Travis CI](https://travis-ci.com/github/johnnymillergh/) is for publishing Docker Hub images of SNAPSHOT and RELEASE.~~
 
 ## FAQ
