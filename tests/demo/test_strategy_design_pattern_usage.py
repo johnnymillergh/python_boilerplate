@@ -6,7 +6,7 @@ from python_boilerplate.demo.strategy_design_pattern_usage import BaseStrategy
 
 @pytest.fixture(scope="session", autouse=True)
 def setup() -> None:
-    logger.info("Initializing tests...")
+    logger.info(f"Setting up tests for {__file__}")
     BaseStrategy.init()
 
 
