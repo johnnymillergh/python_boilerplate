@@ -25,37 +25,39 @@ Here are the highlights of **python_boilerplate**:
 
    `Pipenv` is to Python virtualenv management tool for the project.
 
-2. Highly customizable data analysis with [pandas](https://pandas.pydata.org/), enhanced array operation with [NumPy](https://numpy.org/). Supports CSV, excel, JSON and so on.
+2. Data validation using Python type hints with [Pydantic](https://github.com/pydantic/pydantic).
 
-3. Data persistence with [peewee](http://docs.peewee-orm.com/en/latest/), [SQLite3](https://sqlite.org/index.html) as local database.
+3. Highly customizable data analysis with [pandas](https://pandas.pydata.org/), enhanced array operation with [NumPy](https://numpy.org/). Supports CSV, excel, JSON and so on.
 
-4. Simple and flexible retry with [Tenacity](https://github.com/jd/tenacity).
+4. Data persistence with [peewee](http://docs.peewee-orm.com/en/latest/), [SQLite3](https://sqlite.org/index.html) as local database.
 
-5. Environment variable and configuration with [pyhocon](https://pythonhosted.org/pyhocon/_modules/pyhocon.html). Read `${ENVIRONMENT_VARIABLE}` when startup.
+5. Simple and flexible retry with [Tenacity](https://github.com/jd/tenacity).
 
-6. Sensible and human-friendly approach to creating, manipulating, formatting and converting dates, times and timestamps with [Arrow](https://pypi.org/project/arrow/).
+6. Environment variable and configuration with [pyhocon](https://pythonhosted.org/pyhocon/_modules/pyhocon.html). Read `${ENVIRONMENT_VARIABLE}` when startup.
 
-7. Generate fake data with [Faker](https://pypi.org/project/Faker/).
+7. Sensible and human-friendly approach to creating, manipulating, formatting and converting dates, times and timestamps with [Arrow](https://pypi.org/project/arrow/).
 
-8. Customized function decorator `@async_function` to enable function to run asynchronously; `@peewee_table` class decorator to register ORM tables; `@elapsed_time(level="INFO")` to profile a function elapsed time.
+8. Generate fake data with [Faker](https://pypi.org/project/Faker/).
 
-9. Testing with [pytest](https://docs.pytest.org/en/latest/), integrating [pytest-mock](https://pypi.org/project/pytest-mock/) for mocking, [pytest-cov](https://pypi.org/project/pytest-cov/) for code coverage analysis and [pyinstrument](https://github.com/joerick/pyinstrument) for Python stack profiler.
+9. Customized function decorator `@async_function` to enable function to run asynchronously; `@peewee_table` class decorator to register ORM tables; `@elapsed_time(level="INFO")` to profile a function elapsed time.
 
-10. Formatting with [black](https://github.com/psf/black).
+10. Testing with [pytest](https://docs.pytest.org/en/latest/), integrating [pytest-mock](https://pypi.org/project/pytest-mock/) for mocking, [pytest-cov](https://pypi.org/project/pytest-cov/) for code coverage analysis and [pyinstrument](https://github.com/joerick/pyinstrument) for Python stack profiler.
 
-11. Import sorting with [isort](https://github.com/timothycrosley/isort).
+11. Formatting with [black](https://github.com/psf/black).
 
-12. Static typing with [mypy](http://mypy-lang.org/).
+12. Import sorting with [isort](https://github.com/timothycrosley/isort).
 
-13. Linting with [flake8](http://flake8.pycqa.org/en/latest/).
+13. Static typing with [mypy](http://mypy-lang.org/).
 
-14. Git hooks that run all the above with [pre-commit](https://pre-commit.com/).
+14. Linting with [flake8](http://flake8.pycqa.org/en/latest/).
 
-15. Deployment ready with [Docker](https://docker.com/).
+15. Git hooks that run all the above with [pre-commit](https://pre-commit.com/).
 
-16. Continuous Integration with [GitHub Actions](https://github.com/features/actions).
+16. Deployment ready with [Docker](https://docker.com/).
 
-17. Loguru logging configuration. Log sample is like,
+17. Continuous Integration with [GitHub Actions](https://github.com/features/actions).
+
+18. Loguru logging configuration. Log sample is like,
 
    ```
    2022-09-17 14:13:52.385 | ⚠️ WARNING  | 6860 | MainThread      | python_boilerplate.repository.model.base_model.<module>:24 - SQLite database created. Path: [/Users/johnny/Projects/PyCharmProjects/python_boilerplate/data/python_boilerplate.db], <peewee.SqliteDatabase object at 0x1191e1390>
@@ -92,10 +94,16 @@ Here are the highlights of **python_boilerplate**:
 2. Install dependencies
 
    ```shell
-   $ pipenv install --dev
+   $ pipenv install --quiet --dev
    ```
 
-3. Setup pre-commit and pre-push hooks
+3. Install mypy types
+
+   ```shell
+   $ pipenv run mypy --install-types
+   ```
+
+4. Setup pre-commit and pre-push hooks
 
    ```shell
    $ pipenv run pre-commit install -t pre-commit
@@ -133,6 +141,7 @@ $ $env:PYTHONPATH=$PWD.Path; pipenv run python .\python_boilerplate\demo\pandas_
 $ $env:PYTHONPATH=$PWD.Path; pipenv run python .\python_boilerplate\demo\multithread_and_thread_pool_usage.py
 # To run the main module
 $ $env:PYTHONPATH=$PWD.Path; pipenv run python .\python_boilerplate\__main__.py
+```
 
 ### Package with [PyInstaller](https://pyinstaller.org/en/latest/usage.html?highlight=pythonpath#using-pyinstaller)
 
@@ -240,6 +249,6 @@ Inspired by [How to set up a perfect Python project](https://sourcery.ai/blog/py
 
 ## License
 
-[Apache License](https://github.com/johnnymillergh/python_boilerplate/blob/master/LICENSE) © Johnny Miller
+[Apache License](https://github.com/johnnymillergh/python_boilerplate/blob/main/LICENSE) © Johnny Miller
 
 2021 - Present
