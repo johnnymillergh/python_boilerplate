@@ -21,7 +21,7 @@ Here are the highlights of **python_boilerplate**:
 
 1. Inherited from modern and the latest Python technologies:
 
-   `Python` - [![Python](https://img.shields.io/badge/Python-v3.11.2-blue)](https://www.python.org/downloads/release/python-3112/)
+   `Python` - [![Python](https://img.shields.io/badge/Python-v3.11.3-blue)](https://www.python.org/downloads/release/python-3113/)
 
    `Pipenv` is to Python virtualenv management tool for the project.
 
