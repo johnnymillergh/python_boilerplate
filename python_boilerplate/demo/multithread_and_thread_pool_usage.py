@@ -1,5 +1,5 @@
 import random
-from concurrent.futures import wait
+from concurrent.futures import Future, wait
 
 import pandas as pd
 from faker import Faker
@@ -44,7 +44,7 @@ def generate_data_frame(rows: int) -> DataFrame:
 def async_generate_data_frame() -> DataFrame:
     total_rows = sum(ROW_ARRAY)
     logger.info(f"Going to generate {total_rows} rows of data in asynchronous way")
-    futures = [generate_data_frame(row) for row in ROW_ARRAY]
+    futures: list[Future[DataFrame]] = [generate_data_frame(row) for row in ROW_ARRAY]
     logger.info(
         f"Submitted {len(futures)} tasks to ThreadPoolExecutor, waiting for them to complete..."
     )

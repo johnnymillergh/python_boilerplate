@@ -1,7 +1,7 @@
 import functools
 import inspect
 from concurrent.futures import Future
-from typing import Any, Callable
+from typing import Any, Callable, TypeVar
 
 from loguru import logger
 
@@ -10,8 +10,10 @@ from python_boilerplate.configuration.thread_pool_configuration import (
     executor,
 )
 
+R = TypeVar("R")
 
-def async_function(func: Callable[..., Any]) -> Callable[..., Future[Any]]:
+
+def async_function(func: Callable[..., R]) -> Callable[..., Future[R]]:
     """
     An easy way to implement multi-tread feature with thread pool. The decorator to run function in thread pool.
     The return value of decorated function will be `concurrent.futures._base.Future`.
@@ -34,7 +36,7 @@ def async_function(func: Callable[..., Any]) -> Callable[..., Future[Any]]:
     """
 
     @functools.wraps(func)
-    def wrapped(*arg: Any, **kwarg: Any) -> Future[Any]:
+    def wrapped(*arg: Any, **kwarg: Any) -> Future[R]:
         module = inspect.getmodule(func)
         if arg and not kwarg:
             submitted_future = executor.submit(func, *arg)
