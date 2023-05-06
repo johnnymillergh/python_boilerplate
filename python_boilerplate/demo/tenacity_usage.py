@@ -37,17 +37,20 @@ def exception_function_2() -> None:
     raise RuntimeError("Failure message 2")
 
 
-@retry(stop=stop_after_attempt(3), retry=retry_if_exception_type((IOError, ValueError)))
+@retry(
+    stop=stop_after_attempt(3),
+    retry=retry_if_exception_type((ValueError, NotImplementedError)),
+)
 def different_exceptions_possible(x: int) -> str:
     if x == 1:
         logger.error("IO Error because x is 1")
-        raise IOError
+        raise ValueError("Value error because x is 1")
     elif x == 2:
-        logger.error("Connection Error because x is 2")
-        raise ConnectionError
+        logger.error("Not implemented error because x is 2")
+        raise NotImplementedError("Not implemented error because x is 2")
     elif x == 3:
-        logger.error("Type Error because x is 3")
-        raise TypeError
+        logger.error("Type Error because x is 3, won't retry")
+        raise TypeError("Type error because x is 3")
     else:
         return "success"
 
