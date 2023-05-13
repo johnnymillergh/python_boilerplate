@@ -6,11 +6,9 @@ from typing import Any, Callable, TypeVar
 
 from loguru import logger
 
+from python_boilerplate.common.asynchronization import done_callback
 from python_boilerplate.common.common_function import json_serial
-from python_boilerplate.configuration.thread_pool_configuration import (
-    done_callback,
-    executor,
-)
+from python_boilerplate.configuration.thread_pool_configuration import executor
 from python_boilerplate.repository.model.trace_log import TraceLog
 from python_boilerplate.repository.trace_log_repository import save
 
@@ -29,7 +27,7 @@ def async_trace(func: Callable[..., R]) -> Callable[..., R]:
     """
 
     @functools.wraps(func)
-    def wrapped(*arg: Any, **kwarg: Any) -> Any:
+    def wrapped(*arg: Any, **kwarg: Any) -> R:
         function_arguments = {"arg": arg, "kwarg": kwarg}
         trace_log = TraceLog(
             called_by=inspect.stack()[1][3],
@@ -70,7 +68,7 @@ def trace(func: Callable[[Any], R]) -> Callable[[Any], R]:
     """
 
     @functools.wraps(func)
-    def wrapped(*arg: Any, **kwarg: Any) -> Any:
+    def wrapped(*arg: Any, **kwarg: Any) -> R:
         function_arguments = {"arg": arg, "kwarg": kwarg}
         trace_log = TraceLog(
             called_by=inspect.stack()[1][3],

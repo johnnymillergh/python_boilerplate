@@ -13,10 +13,11 @@ from tenacity import (
     wait_fixed,
 )
 
+from python_boilerplate.__main__ import startup
 from python_boilerplate.common.trace import trace
 
 SUCCESS_RANGE: Final = range(200, 300)
-loging_logger: Final = logging.getLogger(__name__)
+loging_logger: Final = logging.getLogger()
 
 
 # https://tenacity.readthedocs.io/en/latest/
@@ -37,17 +38,21 @@ def exception_function_2() -> None:
     raise RuntimeError("Failure message 2")
 
 
-@retry(stop=stop_after_attempt(3), retry=retry_if_exception_type((IOError, ValueError)))
+@retry(
+    stop=stop_after_attempt(3),
+    retry=retry_if_exception_type((ValueError, NotImplementedError)),
+    after=after_log(loging_logger, WARNING),
+)
 def different_exceptions_possible(x: int) -> str:
     if x == 1:
         logger.error("IO Error because x is 1")
-        raise IOError
+        raise ValueError("Value error because x is 1")
     elif x == 2:
-        logger.error("Connection Error because x is 2")
-        raise ConnectionError
+        logger.error("Not implemented error because x is 2")
+        raise NotImplementedError("Not implemented error because x is 2")
     elif x == 3:
-        logger.error("Type Error because x is 3")
-        raise TypeError
+        logger.error("Type Error because x is 3, won't retry")
+        raise TypeError("Type error because x is 3")
     else:
         return "success"
 
@@ -67,9 +72,18 @@ def validate_code(result: int) -> bool:
 
 
 @trace
-@retry(stop=stop_after_attempt(3), retry=retry_if_result(validate_code))
+@retry(
+    stop=stop_after_attempt(3),
+    retry=retry_if_result(validate_code),
+    after=after_log(loging_logger, WARNING),
+)
 def customized_retry_logic_function(input_int: int) -> int:
     random_int = random.randint(0, 200)
     result = input_int + random_int
     logger.info(f"input_int + random_int = {input_int} + {random_int} = {result}")
     return result
+
+
+if __name__ == "__main__":
+    startup()
+    exception_function_2()
