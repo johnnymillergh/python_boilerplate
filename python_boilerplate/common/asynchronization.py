@@ -1,19 +1,41 @@
+import asyncio
 import functools
 import inspect
+from asyncio import Task
 from concurrent.futures import Future
-from typing import Any, Callable
+from typing import Any, Callable, TypeVar
 
 from loguru import logger
 
-from python_boilerplate.configuration.thread_pool_configuration import (
-    done_callback,
-    executor,
-)
+from python_boilerplate.configuration.thread_pool_configuration import executor
 
 
-def async_function(func: Callable[..., Any]) -> Callable[..., Future[Any]]:
+def done_callback(future: Future[Any] | Task[Any]) -> None:
     """
-    An easy way to implement multi-tread feature with thread pool. The decorator to run function in thread pool.
+    The default callback for Future once it's done. This function must be called after submitting a Future, to prevent
+    the ThreadPoolExecutor swallows exception in other threads.
+
+    https://stackoverflow.com/questions/15359295/python-thread-pool-that-handles-exceptions
+    https://stackoverflow.com/a/66993893
+
+    :param future: an asynchronous computation
+    """
+    logger.debug(
+        f"The worker has done its Future task. Done: {future.done()}, future task: {future}"
+    )
+    exception = future.exception()
+    if exception is not None:
+        logger.exception(
+            f"The worker has raised an exception while executing Future task: {future}, exception: {exception}"
+        )
+
+
+R = TypeVar("R")
+
+
+def async_function(func: Callable[..., R]) -> Callable[..., Future[R]]:
+    """
+    An easy way to implement multi-tread feature with thread pool. The decorator to run sync function in thread pool.
     The return value of decorated function will be `concurrent.futures._base.Future`.
 
     Usage: decorate the function with `@async_function`. For example,
@@ -30,11 +52,11 @@ def async_function(func: Callable[..., Any]) -> Callable[..., Future[Any]]:
 
     https://stackoverflow.com/questions/37203950/decorator-for-extra-thread
 
-    :param func: function to run in thread pool
+    :param func: a sync function to run in thread pool
     """
 
     @functools.wraps(func)
-    def wrapped(*arg: Any, **kwarg: Any) -> Future[Any]:
+    def wrapped(*arg: Any, **kwarg: Any) -> Future[R]:
         module = inspect.getmodule(func)
         if arg and not kwarg:
             submitted_future = executor.submit(func, *arg)
@@ -62,5 +84,34 @@ def async_function(func: Callable[..., Any]) -> Callable[..., Future[Any]]:
             )
         submitted_future.add_done_callback(done_callback)
         return submitted_future
+
+    return wrapped
+
+
+def async_function_wrapper(func: Callable[..., Any]) -> Callable[..., Task[Any]]:
+    """
+    The decorator to add `add_done_callback` for async function.
+    The return value of decorated function will be `concurrent.futures._base.Future`.
+
+    Usage: decorate the function with `@async_function`. For example,
+
+    * a function that accepts one integer argument:
+    >>> @async_function_wrapper
+    >>> async def an_async_function(a_int: int):
+    >>>     pass
+
+    * a function without argument:
+    >>> @async_function_wrapper
+    >>> async def an_async_function():
+    >>>   pass
+
+    :param func: a sync function to run in thread pool
+    """
+
+    @functools.wraps(func)
+    def wrapped(*arg: Any, **kwarg: Any) -> Task[Any]:
+        future = asyncio.ensure_future(func(*arg, **kwarg))
+        future.add_done_callback(done_callback)
+        return future
 
     return wrapped

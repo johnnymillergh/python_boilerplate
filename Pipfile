@@ -8,7 +8,7 @@ verify_ssl = true
 python_version = "3.11"
 
 [packages]
-# Foundamental dependencies
+# 🏗 Foundamental dependencies
 pydantic = "==1.10.7"
 # Loguru is a library which aims to bring enjoyable logging in Python. https://pypi.org/project/loguru/
 loguru = "==0.7.0"
@@ -45,8 +45,10 @@ matplotlib = "==3.7.1"
 pgpy = "==0.6.0"
 # Cross-platform lib for process and system monitoring in Python. https://github.com/giampaolo/psutil
 psutil = "==5.9.4"
+# 🪜 Customization dependencies
 
 [dev-packages]
+# 🏗 Foundamental dependencies
 # Black is the uncompromising Python code formatter. By using it, you agree to cede control over minutiae of
 # hand-formatting. https://pypi.org/project/black/
 black = "==23.3.0"
@@ -76,9 +78,12 @@ pytest-cov = "==4.0.0"
 pytest-html = "==3.2.0"
 # pytest xdist plugin for distributed testing and loop-on-failing modes. https://github.com/pytest-dev/pytest-xdist/
 pytest-xdist = "==3.2.1"
+# Pytest support for asyncio. https://github.com/pytest-dev/pytest-asyncio
+pytest-asyncio = "==0.21.0"
 # Call stack profiler for Python. Shows you why your code is slow! https://github.com/joerick/pyinstrument
 pyinstrument = "==4.4.0"
 # Pytest plugin for analyzing resource usage during test sessions. https://github.com/CFMTech/pytest-monitor
 pytest-monitor = "==1.6.5"
 # PyInstaller bundles a Python application and all its dependencies into a single package. https://github.com/pyinstaller/pyinstaller
 pyinstaller = "==5.10.1"
+# 🪜 Customization dependencies

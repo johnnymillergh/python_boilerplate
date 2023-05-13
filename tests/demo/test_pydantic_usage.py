@@ -13,6 +13,16 @@ def test_deserialize_user_from_dict() -> None:
     assert user.id == 123
     assert user.name == "James"
     assert user.signup_ts is None
+    user_json_excluded_none = user.json(exclude_none=True)
+    user_json_included_none = user.json()
+    assert len(user_json_excluded_none) > 0
+    assert len(user_json_included_none) > 0
+    assert len(user_json_excluded_none) < len(user_json_included_none)
+    assert "signup_ts" not in user_json_excluded_none
+    assert "signup_ts" in user_json_included_none
+    logger.info(
+        f"User (excluded none): {user_json_excluded_none}, user (includes none): {user_json_included_none}"
+    )
 
 
 def test_deserialize_user_from_dict_when_id_is_abc_then_raise_validation_error() -> (

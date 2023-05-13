@@ -2,7 +2,7 @@ import functools
 import os
 import time
 from datetime import timedelta
-from typing import Any, Callable, TypeVar
+from typing import Any, Callable, Coroutine, TypeVar
 
 import psutil
 from loguru import logger
@@ -36,6 +36,48 @@ def elapsed_time(level: str = "INFO") -> Callable[..., Callable[..., R]]:
         def wrapped(*arg: Any, **kwarg: Any) -> Any:
             start_time = time.perf_counter()
             return_value = func(*arg, **kwarg)
+            elapsed = time.perf_counter() - start_time
+            logger.log(
+                level,
+                f"{func.__qualname__}() -> elapsed time: {timedelta(seconds=elapsed)}",
+            )
+            return return_value
+
+        return wrapped
+
+    return decorator
+
+
+def async_elapsed_time(
+    level: str = "INFO",
+) -> Callable[..., Callable[..., Coroutine[Any, Any, R]]]:
+    """
+    The decorator to monitor the elapsed time of an async function.
+
+    Usage:
+
+    * decorate the function with `@async_elapsed_time()` to profile the function with INFO log
+    >>> @async_elapsed_time()
+    >>> async def some_function():
+    >>>    pass
+
+    * decorate the function with `@async_elapsed_time("DEBUG")` to profile the function with DEBUG log
+    >>> @async_elapsed_time("DEBUG")
+    >>> async def some_function():
+    >>>    pass
+
+    https://stackoverflow.com/questions/12295974/python-decorators-just-syntactic-sugar
+
+    :param level: logging level, default is "INFO". Available values: ["TRACE", "DEBUG", "INFO", "WARNING", "ERROR"]
+    """
+
+    def decorator(
+        func: Callable[..., Coroutine[Any, Any, R]]
+    ) -> Callable[..., Coroutine[Any, Any, R]]:
+        @functools.wraps(func)
+        async def wrapped(*arg: Any, **kwarg: Any) -> Any:
+            start_time = time.perf_counter()
+            return_value = await func(*arg, **kwarg)
             elapsed = time.perf_counter() - start_time
             logger.log(
                 level,

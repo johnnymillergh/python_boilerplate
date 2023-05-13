@@ -20,6 +20,11 @@ jobs:
       - run: pipenv run isort --recursive --diff .
       - run: pipenv run black --check .
       - run: pipenv run flake8
+      - name: Install mypy types
+        run: |
+          yes | pipenv run mypy --install-types \
+          || test $? -eq 2 && echo "Installed mypy types successfully" \
+          || echo "Failed to install mypy types"
       - run: pipenv run mypy
       - name: Python Tests with pytest
         run: LOG_LEVEL=INFO pipenv run pytest --cov --cov-fail-under=90 --capture=no --log-cli-level=INFO -n auto
