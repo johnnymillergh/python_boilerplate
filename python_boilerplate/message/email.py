@@ -20,19 +20,21 @@ _password: str = application_conf.get_string("email.password")
 _sender: str = f"{_username}{application_conf.get_string('email.mail_address_suffix')}"
 _receivers: list[str] = application_conf.get_list("email.receivers")
 
-_smtp: smtplib.SMTP = smtplib.SMTP(_host, _port)
+_smtp: smtplib.SMTP
+
+if _email_muted or _email_muted is None:
+    logger.warning(_muted_message)
+else:
+    # Login to the email server
+    _smtp = smtplib.SMTP(_host, _port)
+    _smtp.connect(_host, 25)
+    _smtp.login(_sender, _password)
 
 
 def __init__() -> None:
     """
     Initializes the email module.
     """
-    if _email_muted:
-        logger.warning(_muted_message)
-        return
-    # Login to the email server
-    _smtp.connect(_host, 25)
-    _smtp.login(_sender, _password)
     logger.warning(
         f"Initialized email module and logged in to the email server: {_host}"
     )
