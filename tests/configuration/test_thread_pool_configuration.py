@@ -1,9 +1,9 @@
 from pytest_mock import MockerFixture
 
+from python_boilerplate.common.asynchronization import done_callback
 from python_boilerplate.configuration.thread_pool_configuration import (
     cleanup,
     configure,
-    done_callback,
     executor,
 )
 

@@ -78,6 +78,8 @@ pytest-cov = "==4.0.0"
 pytest-html = "==3.2.0"
 # pytest xdist plugin for distributed testing and loop-on-failing modes. https://github.com/pytest-dev/pytest-xdist/
 pytest-xdist = "==3.2.1"
+# Pytest support for asyncio. https://github.com/pytest-dev/pytest-asyncio
+pytest-asyncio = "==0.21.0"
 # Call stack profiler for Python. Shows you why your code is slow! https://github.com/joerick/pyinstrument
 pyinstrument = "==4.4.0"
 # Pytest plugin for analyzing resource usage during test sessions. https://github.com/CFMTech/pytest-monitor

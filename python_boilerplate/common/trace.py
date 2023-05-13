@@ -6,11 +6,9 @@ from typing import Any, Callable, TypeVar
 
 from loguru import logger
 
+from python_boilerplate.common.asynchronization import done_callback
 from python_boilerplate.common.common_function import json_serial
-from python_boilerplate.configuration.thread_pool_configuration import (
-    done_callback,
-    executor,
-)
+from python_boilerplate.configuration.thread_pool_configuration import executor
 from python_boilerplate.repository.model.trace_log import TraceLog
 from python_boilerplate.repository.trace_log_repository import save
 

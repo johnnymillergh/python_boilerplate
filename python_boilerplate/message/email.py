@@ -22,7 +22,7 @@ _receivers: list[str] = application_conf.get_list("email.receivers")
 
 _smtp: smtplib.SMTP
 
-if _email_muted:
+if _email_muted or _email_muted is None:
     logger.warning(_muted_message)
 else:
     # Login to the email server
