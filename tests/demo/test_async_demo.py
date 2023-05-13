@@ -4,7 +4,12 @@ from typing import Any, Coroutine
 import pytest
 from loguru import logger
 
-from python_boilerplate.demo.async_demo import coroutine1, coroutine2, coroutine3
+from python_boilerplate.demo.async_demo import (
+    coroutine1,
+    coroutine2,
+    coroutine3,
+    non_coroutine,
+)
 
 
 @pytest.fixture(scope="session", autouse=True)
@@ -36,6 +41,18 @@ async def test_coroutine3() -> None:
     assert exc_info.value is not None
     assert isinstance(exc_info.value, ValueError) is True
     logger.info(f"Async function `coroutine3()` raised exception: {exc_info.value}")
+
+
+@pytest.mark.asyncio
+async def test_non_coroutine() -> None:
+    with pytest.raises(TypeError) as exc_info:
+        await non_coroutine()
+    assert exc_info is not None
+    assert exc_info.value is not None
+    assert type(exc_info.value) is TypeError
+    logger.info(
+        f"Non-async function `non_coroutine()` raised exception: {exc_info.value}"
+    )
 
 
 @pytest.mark.asyncio

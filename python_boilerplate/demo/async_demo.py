@@ -34,6 +34,14 @@ async def coroutine3() -> None:
     raise ValueError("Something went wrong")
 
 
+@async_elapsed_time()
+@async_function_wrapper
+def non_coroutine() -> None:
+    logger.warning(
+        "Should be raising TypeError after this log, cuz it's not an async function"
+    )
+
+
 async def main() -> None:
     # Run both coroutines concurrently using asyncio.gather()
     results: list[Any] = await asyncio.gather(
@@ -45,5 +53,5 @@ async def main() -> None:
 if __name__ == "__main__":
     startup()
     # Run the event loop
-    asyncio.run(main())
+    asyncio.run(non_coroutine())
     logger.info(type(coroutine3))
