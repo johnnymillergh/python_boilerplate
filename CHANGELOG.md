@@ -1,3 +1,20 @@
+# [6.0.1](https://github.com/johnnymillergh/muscle-and-fitness-server/compare/6.0.0...6.0.1) (2023-05-13)
+
+
+### Features
+
+* **$asyncio:** create demo for `asyncio` ([b6a426e](https://github.com/johnnymillergh/python_boilerplate/commit/b6a426ef5641a1739acddfcc46bc3ed9964c7d6f))
+* **$demo:** support strategy design pattern in Python ([2d33e6e](https://github.com/johnnymillergh/python_boilerplate/commit/2d33e6e49d36994161b23e071d80b187c7ba170d))
+* **$mypy:** support more function types working with `[@debounce](https://github.com/debounce)` or `[@throttle](https://github.com/throttle)` ([3e88e1c](https://github.com/johnnymillergh/python_boilerplate/commit/3e88e1cd2b8b394a97d485b3bd4d183d5b0d9453))
+
+
+### Performance Improvements
+
+* **$mypy:** type var for return type ([1d5394f](https://github.com/johnnymillergh/python_boilerplate/commit/1d5394f5651b130c3c844399ff0b1c51c332428c))
+* **$Python:** upgrade Python to 3.11.3 ([24f5b1b](https://github.com/johnnymillergh/python_boilerplate/commit/24f5b1b76296f279ea3f8be5cd70f82e5e06ac3c))
+
+
+
 # [6.0.0](https://github.com/johnnymillergh/muscle-and-fitness-server/compare/5.0.0...6.0.0) (2023-05-02)
 
 
