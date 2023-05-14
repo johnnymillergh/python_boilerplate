@@ -130,8 +130,18 @@ For macOS or Linux,
 # Ensure `pwd` is the root directory of the project
 $ PYTHONPATH=`pwd` pipenv run python3 python_boilerplate/demo/pandas_usage.py
 $ PYTHONPATH=`pwd` pipenv run python3 python_boilerplate/demo/multithread_and_thread_pool_usage.py
-# To run the main module
+
+# Run the main module
 $ PYTHONPATH=`pwd` pipenv run python3 python_boilerplate/__main__.py
+
+# Run a pytest script
+$ pytest --log-cli-level=DEBUG --capture=no tests/common/test_debounce_throttle.py
+
+# Run a pytest script with `-k` EXPRESSION
+$ pytest --log-cli-level=DEBUG --capture=no tests/common/test_debounce_throttle.py -k 'test_debounce'
+
+# For more details of pytest command
+$ pipenv run pytest --help
 ```
 
 For Windows Terminal,
@@ -139,7 +149,8 @@ For Windows Terminal,
 # Ensure `$PWD.Path` is the root directory of the project
 $ $env:PYTHONPATH=$PWD.Path; pipenv run python .\python_boilerplate\demo\pandas_usage.py
 $ $env:PYTHONPATH=$PWD.Path; pipenv run python .\python_boilerplate\demo\multithread_and_thread_pool_usage.py
-# To run the main module
+
+# Run the main module
 $ $env:PYTHONPATH=$PWD.Path; pipenv run python .\python_boilerplate\__main__.py
 ```
 
