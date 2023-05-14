@@ -2,6 +2,7 @@ from datetime import datetime
 from typing import Any
 
 from loguru import logger
+from pytest_benchmark.fixture import BenchmarkFixture
 
 from python_boilerplate.template.html_template import render_template
 
@@ -33,3 +34,7 @@ def test_render_template_when_the_template_exists_then_no_raised_exception() -> 
     assert "Hello reader, here is a table" in rendered
     assert "cid:a_picture_id" in rendered
     logger.info(f"Rendered template: \n{rendered}")
+
+
+def test_render_template_benchmark(benchmark: BenchmarkFixture) -> None:
+    benchmark(test_render_template_when_the_template_exists_then_no_raised_exception)

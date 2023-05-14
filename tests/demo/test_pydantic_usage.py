@@ -3,6 +3,7 @@ from typing import Any
 import pytest
 from loguru import logger
 from pydantic import ValidationError
+from pytest_benchmark.fixture import BenchmarkFixture
 
 from python_boilerplate.demo.pydantic_usage import User, UserDataClass
 
@@ -61,3 +62,19 @@ def test_initialize_user_with_dataclass() -> None:
     assert user.id == 1
     assert user.name == "John"
     logger.info(f"{user}")
+
+
+def create_instance() -> User:
+    return User.parse_obj({"id": 123, "name": "James"})
+
+
+def serialize_instance() -> str:
+    return User.parse_obj({"id": 123, "name": "James"}).json()
+
+
+def test_create_instance_benchmark(benchmark: BenchmarkFixture) -> None:
+    benchmark(create_instance)
+
+
+def test_serialize_instance_benchmark(benchmark: BenchmarkFixture) -> None:
+    benchmark(serialize_instance)

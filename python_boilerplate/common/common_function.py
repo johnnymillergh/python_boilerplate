@@ -1,6 +1,7 @@
 import getpass
 import os
 from datetime import date, datetime
+from math import ceil
 from pathlib import Path
 from typing import Any, Final
 
@@ -86,3 +87,15 @@ def json_serial(obj: Any) -> str | dict[str, Any]:
     if isinstance(obj, set):
         return str(obj)
     return obj.__dict__
+
+
+def chunk_into_n(a_list: list[Any], n: int) -> list[list[Any]]:
+    """
+    Chunk a list into smaller chunks.
+
+    :param a_list: a list
+    :param n: the number of chunks going to be split
+    :return: chunks list
+    """
+    size = ceil(len(a_list) / n)
+    return [a_list[x * size : x * size + size] for x in list(range(n))]
