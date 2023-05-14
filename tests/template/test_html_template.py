@@ -8,6 +8,19 @@ from python_boilerplate.template.html_template import render_template
 
 
 def test_render_template_when_the_template_exists_then_no_raised_exception() -> None:
+    try:
+        rendered = render_template_with_parameters()
+    except Exception as ex:
+        assert False, f"Could not render template. {ex}"
+    assert rendered is not None
+    assert len(rendered) > 0
+    assert "Basketball" in rendered
+    assert "Hello reader, here is a table" in rendered
+    assert "cid:a_picture_id" in rendered
+    logger.info(f"Rendered template: \n{rendered}")
+
+
+def render_template_with_parameters() -> str:
     render_dict: dict[str, Any] = {}
     dict_table_data: list[dict[str, Any]] = [
         {"Name": "Basketball", "Type": "Sports", "Value": 5},
@@ -24,16 +37,7 @@ def test_render_template_when_the_template_exists_then_no_raised_exception() -> 
             "dict_table_data": dict_table_data,
         }
     )
-    try:
-        rendered = render_template("template_example.html", render_dict)
-    except Exception as ex:
-        assert False, f"Could not render template. {ex}"
-    assert rendered is not None
-    assert len(rendered) > 0
-    assert "Basketball" in rendered
-    assert "Hello reader, here is a table" in rendered
-    assert "cid:a_picture_id" in rendered
-    logger.info(f"Rendered template: \n{rendered}")
+    return render_template("template_example.html", render_dict)
 
 
 def test_render_template_benchmark(benchmark: BenchmarkFixture) -> None:
