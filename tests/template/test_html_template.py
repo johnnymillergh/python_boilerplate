@@ -41,4 +41,4 @@ def render_template_with_parameters() -> str:
 
 
 def test_render_template_benchmark(benchmark: BenchmarkFixture) -> None:
-    benchmark(test_render_template_when_the_template_exists_then_no_raised_exception)
+    benchmark(render_template_with_parameters)
