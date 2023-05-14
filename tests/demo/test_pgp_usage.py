@@ -3,6 +3,7 @@ import textwrap
 import pgpy
 from loguru import logger
 from pgpy.constants import HashAlgorithm
+from pytest_benchmark.fixture import BenchmarkFixture
 
 from python_boilerplate.common.profiling import cpu_profile, elapsed_time, mem_profile
 from python_boilerplate.demo.pgp_usage import (
@@ -13,6 +14,7 @@ from python_boilerplate.demo.pgp_usage import (
 )
 
 
+# noinspection DuplicatedCode
 @elapsed_time("INFO")
 @mem_profile("INFO")
 @cpu_profile("INFO")
@@ -38,6 +40,7 @@ def test_when_alice_sends_message_to_bob() -> None:
     assert verified is not None
 
 
+# noinspection DuplicatedCode
 @elapsed_time("INFO")
 @mem_profile("INFO")
 @cpu_profile("INFO")
@@ -103,3 +106,13 @@ def test_load_armor_ciphertext_and_then_verify() -> None:
     verified = bob_public_key.verify(decrypted)
     assert verified is not None
     logger.info(f"{verified}")
+
+
+def test_pgp_benchmark(benchmark: BenchmarkFixture) -> None:
+    benchmark(test_load_armor_ciphertext_and_then_verify)
+
+
+def test_pgp_benchmark2(benchmark: BenchmarkFixture) -> None:
+    benchmark.pedantic(
+        test_load_armor_ciphertext_and_then_verify, rounds=5, iterations=5
+    )
