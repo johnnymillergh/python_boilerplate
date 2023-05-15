@@ -42,12 +42,12 @@ def async_function(func: Callable[..., R]) -> Callable[..., Future[R]]:
 
     * a function that accepts one integer argument:
     >>> @async_function
-    >>> def an_async_function(a_int: int):
+    >>> def an_async_function(a_int: int) -> None:
     >>>     pass
 
     * a function without argument:
     >>> @async_function
-    >>> def an_async_function():
+    >>> def an_async_function() -> None:
     >>>   pass
 
     https://stackoverflow.com/questions/37203950/decorator-for-extra-thread
@@ -97,12 +97,12 @@ def async_function_wrapper(func: Callable[..., Any]) -> Callable[..., Task[Any]]
 
     * a function that accepts one integer argument:
     >>> @async_function_wrapper
-    >>> async def an_async_function(a_int: int):
+    >>> async def an_async_function(a_int: int) -> None:
     >>>     pass
 
     * a function without argument:
     >>> @async_function_wrapper
-    >>> async def an_async_function():
+    >>> async def an_async_function() -> None:
     >>>   pass
 
     :param func: a sync function to run in thread pool
