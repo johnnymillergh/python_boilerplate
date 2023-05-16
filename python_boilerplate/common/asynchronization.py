@@ -57,33 +57,13 @@ def async_function(func: Callable[..., R]) -> Callable[..., Future[R]]:
 
     @functools.wraps(func)
     def wrapped(*arg: Any, **kwarg: Any) -> Future[R]:
+        future = executor.submit(func, *arg, **kwarg)
+        future.add_done_callback(done_callback)
         module = inspect.getmodule(func)
-        if arg and not kwarg:
-            submitted_future = executor.submit(func, *arg)
-            logger.debug(
-                f"Submitted future task to run function asynchronously: "
-                f"{module}.{func.__qualname__}(*arg)"
-            )
-        elif not arg and kwarg:
-            submitted_future = executor.submit(func, **kwarg)
-            logger.debug(
-                f"Submitted future task to run function asynchronously: "
-                f"{module}.{func.__qualname__}(**kwarg)"
-            )
-        elif arg and kwarg:
-            submitted_future = executor.submit(func, *arg, **kwarg)
-            logger.debug(
-                f"Submitted future task to run function asynchronously: "
-                f"{module}.{func.__qualname__}(*arg, **kwarg)"
-            )
-        else:
-            submitted_future = executor.submit(func)
-            logger.debug(
-                f"Submitted future task to run function asynchronously: "
-                f"{module}.{func.__qualname__}()"
-            )
-        submitted_future.add_done_callback(done_callback)
-        return submitted_future
+        logger.debug(
+            f"Submitted future task to run function asynchronously: {future}, {module}.{func.__qualname__}"
+        )
+        return future
 
     return wrapped
 
