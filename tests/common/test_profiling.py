@@ -3,15 +3,23 @@ from time import sleep
 
 import pytest
 
-from python_boilerplate.common.profiling import async_elapsed_time, elapsed_time
+from python_boilerplate.common.profiling import (
+    async_elapsed_time,
+    cpu_profile,
+    elapsed_time,
+    mem_profile,
+)
 
 
+@mem_profile()
 @elapsed_time(level="WARNING")
 def time_consuming_function() -> str:
     sleep(3)
     return "done execution"
 
 
+@cpu_profile()
+@mem_profile()
 @elapsed_time(level="INFO")
 def time_consuming_function_raising_error() -> None:
     sleep(1)
