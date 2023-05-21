@@ -7,6 +7,7 @@
 data/
 # pytest-monitor SQLite database
 .pymon
+.benchmarks
 
 ### PyCharm ###
 .idea

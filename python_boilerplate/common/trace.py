@@ -27,7 +27,7 @@ def async_trace(func: Callable[..., R]) -> Callable[..., R]:
     """
 
     @functools.wraps(func)
-    def wrapped(*arg: Any, **kwarg: Any) -> R:
+    def wrapper(*arg: Any, **kwarg: Any) -> R:
         function_arguments = {"arg": arg, "kwarg": kwarg}
         trace_log = TraceLog(
             called_by=inspect.stack()[1][3],
@@ -53,7 +53,7 @@ def async_trace(func: Callable[..., R]) -> Callable[..., R]:
                 trace_log,
             ).add_done_callback(done_callback)
 
-    return wrapped
+    return wrapper
 
 
 def trace(func: Callable[[Any], R]) -> Callable[[Any], R]:
@@ -68,7 +68,7 @@ def trace(func: Callable[[Any], R]) -> Callable[[Any], R]:
     """
 
     @functools.wraps(func)
-    def wrapped(*arg: Any, **kwarg: Any) -> R:
+    def wrapper(*arg: Any, **kwarg: Any) -> R:
         function_arguments = {"arg": arg, "kwarg": kwarg}
         trace_log = TraceLog(
             called_by=inspect.stack()[1][3],
@@ -89,4 +89,4 @@ def trace(func: Callable[[Any], R]) -> Callable[[Any], R]:
             trace_log.modified_time = now
             trace_log.save()
 
-    return wrapped
+    return wrapper

@@ -1,5 +1,9 @@
-on: [ push, pull_request ]
 name: Twitter, together!
+on:
+  pull_request: {}
+  push:
+    branches:
+      - 'main'
 jobs:
   preview:
     name: Preview

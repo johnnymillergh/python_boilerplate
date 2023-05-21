@@ -42,12 +42,12 @@ def async_function(func: Callable[..., R]) -> Callable[..., Future[R]]:
 
     * a function that accepts one integer argument:
     >>> @async_function
-    >>> def an_async_function(a_int: int):
+    >>> def an_async_function(a_int: int) -> None:
     >>>     pass
 
     * a function without argument:
     >>> @async_function
-    >>> def an_async_function():
+    >>> def an_async_function() -> None:
     >>>   pass
 
     https://stackoverflow.com/questions/37203950/decorator-for-extra-thread
@@ -56,36 +56,16 @@ def async_function(func: Callable[..., R]) -> Callable[..., Future[R]]:
     """
 
     @functools.wraps(func)
-    def wrapped(*arg: Any, **kwarg: Any) -> Future[R]:
+    def wrapper(*arg: Any, **kwarg: Any) -> Future[R]:
+        future = executor.submit(func, *arg, **kwarg)
+        future.add_done_callback(done_callback)
         module = inspect.getmodule(func)
-        if arg and not kwarg:
-            submitted_future = executor.submit(func, *arg)
-            logger.debug(
-                f"Submitted future task to run function asynchronously: "
-                f"{module}.{func.__qualname__}(*arg)"
-            )
-        elif not arg and kwarg:
-            submitted_future = executor.submit(func, **kwarg)
-            logger.debug(
-                f"Submitted future task to run function asynchronously: "
-                f"{module}.{func.__qualname__}(**kwarg)"
-            )
-        elif arg and kwarg:
-            submitted_future = executor.submit(func, *arg, **kwarg)
-            logger.debug(
-                f"Submitted future task to run function asynchronously: "
-                f"{module}.{func.__qualname__}(*arg, **kwarg)"
-            )
-        else:
-            submitted_future = executor.submit(func)
-            logger.debug(
-                f"Submitted future task to run function asynchronously: "
-                f"{module}.{func.__qualname__}()"
-            )
-        submitted_future.add_done_callback(done_callback)
-        return submitted_future
+        logger.debug(
+            f"Submitted future task to run function asynchronously: {future}, {module}.{func.__qualname__}"
+        )
+        return future
 
-    return wrapped
+    return wrapper
 
 
 def async_function_wrapper(func: Callable[..., Any]) -> Callable[..., Task[Any]]:
@@ -97,21 +77,21 @@ def async_function_wrapper(func: Callable[..., Any]) -> Callable[..., Task[Any]]
 
     * a function that accepts one integer argument:
     >>> @async_function_wrapper
-    >>> async def an_async_function(a_int: int):
+    >>> async def an_async_function(a_int: int) -> None:
     >>>     pass
 
     * a function without argument:
     >>> @async_function_wrapper
-    >>> async def an_async_function():
+    >>> async def an_async_function() -> None:
     >>>   pass
 
     :param func: a sync function to run in thread pool
     """
 
     @functools.wraps(func)
-    def wrapped(*arg: Any, **kwarg: Any) -> Task[Any]:
+    def wrapper(*arg: Any, **kwarg: Any) -> Task[Any]:
         future = asyncio.ensure_future(func(*arg, **kwarg))
         future.add_done_callback(done_callback)
         return future
 
-    return wrapped
+    return wrapper
