@@ -3,6 +3,8 @@ import platform
 import sys
 from logging import LogRecord
 
+import arrow
+from arrow import Arrow
 from loguru import logger
 
 from python_boilerplate.common.common_function import get_data_dir, get_module_name
@@ -19,8 +21,9 @@ _message_format = (
 # Remove a previously added handler and stop sending logs to its sink.
 logger.remove(handler_id=None)
 # Set up logging for log file
+_logs_directory_path = get_data_dir("logs")
 _log_file = (
-    str(get_data_dir("logs"))
+    str(_logs_directory_path)
     + f"/{get_module_name()}.{platform.node()}."
     + "{time}.log"
 )
@@ -34,7 +37,7 @@ logger.add(
     backtrace=True,
     diagnose=True,
     rotation="00:00",
-    retention="7 Days",
+    retention="7 days",
     compression="gz",
     serialize=False,
 )
@@ -78,8 +81,24 @@ for key, value in application_conf.get_config("log").items():
     logger.info(f"Configured logger[{key}]'s level to {value}")
 
 
+def retain_log_files() -> None:
+    now = arrow.get()
+    dates = {
+        date.format("YYYY-MM-DD")
+        for date in Arrow.range("day", now.shift(days=-7), end=now)
+    }
+    for file_path in _logs_directory_path.glob("*.log"):
+        split_log_file_name = file_path.name.split(".")
+        split_log_file_name.reverse()
+        date_in_file_name = split_log_file_name[1][0:10]
+        if date_in_file_name not in dates:
+            logger.debug(f"Deleting log: {file_path}")
+            file_path.unlink(missing_ok=True)
+
+
 def configure() -> None:
     """
     Configure logging.
     """
+    retain_log_files()
     logger.warning(f"Loguru logging configured, log_level: {log_level}")

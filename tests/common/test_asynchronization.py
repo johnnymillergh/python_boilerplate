@@ -1,7 +1,6 @@
 from concurrent.futures import Future
 from time import sleep
 
-import arrow
 from loguru import logger
 
 from python_boilerplate.common.asynchronization import async_function
@@ -21,37 +20,44 @@ def another_async_function_without_args() -> None:
 
 
 def test_async_function_expected_no_errors() -> None:
-    a_future: Future[str] = an_async_function(
-        arrow.now().__str__(), arrow.now().shift(days=-1).__str__()
-    )
+    a_future: Future[str] = an_async_function("argument #1", "argument #2")
     assert a_future is not None
+    assert type(a_future) is Future
     result = a_future.result()
+    assert a_future.done() is True
     assert len(result) > 0
+    assert result == "Hello, got param1=argument #1, param2=argument #2"
     logger.info(f"Got future result: {result}")
 
 
 def test_async_function_pass_kwarg_expected_no_errors() -> None:
     a_future: Future[str] = an_async_function(
-        param1=arrow.now().__str__(), param2=arrow.now().shift(days=-1).__str__()
+        param1="argument #1", param2="argument #2"
     )
     assert a_future is not None
+    assert type(a_future) is Future
     result = a_future.result()
+    assert a_future.done() is True
     assert len(result) > 0
+    assert result == "Hello, got param1=argument #1, param2=argument #2"
     logger.info(f"Got future result: {result}")
 
 
 def test_async_function_pass_arg_kwarg_expected_no_errors() -> None:
-    a_future: Future[str] = an_async_function(
-        arrow.now().__str__(), param2=arrow.now().shift(days=-1).__str__()
-    )
+    a_future: Future[str] = an_async_function("argument #1", param2="argument #2")
     assert a_future is not None
+    assert type(a_future) is Future
     result = a_future.result()
+    assert a_future.done() is True
     assert len(result) > 0
+    assert result == "Hello, got param1=argument #1, param2=argument #2"
     logger.info(f"Got future result: {result}")
 
 
 def test_another_async_function_without_args_expected_no_errors() -> None:
-    try:
-        another_async_function_without_args()
-    except Exception as ex:
-        assert False, f"{another_async_function_without_args} raised an exception {ex}"
+    a_future: Future[None] = another_async_function_without_args()
+    assert a_future is not None
+    assert type(a_future) is Future
+    result = a_future.result()
+    assert a_future.done() is True
+    assert result is None
