@@ -56,7 +56,7 @@ def async_function(func: Callable[..., R]) -> Callable[..., Future[R]]:
     """
 
     @functools.wraps(func)
-    def wrapped(*arg: Any, **kwarg: Any) -> Future[R]:
+    def wrapper(*arg: Any, **kwarg: Any) -> Future[R]:
         future = executor.submit(func, *arg, **kwarg)
         future.add_done_callback(done_callback)
         module = inspect.getmodule(func)
@@ -65,7 +65,7 @@ def async_function(func: Callable[..., R]) -> Callable[..., Future[R]]:
         )
         return future
 
-    return wrapped
+    return wrapper
 
 
 def async_function_wrapper(func: Callable[..., Any]) -> Callable[..., Task[Any]]:
@@ -89,9 +89,9 @@ def async_function_wrapper(func: Callable[..., Any]) -> Callable[..., Task[Any]]
     """
 
     @functools.wraps(func)
-    def wrapped(*arg: Any, **kwarg: Any) -> Task[Any]:
+    def wrapper(*arg: Any, **kwarg: Any) -> Task[Any]:
         future = asyncio.ensure_future(func(*arg, **kwarg))
         future.add_done_callback(done_callback)
         return future
 
-    return wrapped
+    return wrapper

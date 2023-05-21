@@ -33,7 +33,7 @@ def elapsed_time(level: str = "INFO") -> Callable[..., Callable[..., R]]:
 
     def decorator(func: Callable[..., R]) -> Callable[..., R]:
         @functools.wraps(func)
-        def wrapped(*arg: Any, **kwarg: Any) -> Any:
+        def wrapper(*arg: Any, **kwarg: Any) -> Any:
             start_time = time.perf_counter()
             try:
                 return_value = func(*arg, **kwarg)
@@ -54,7 +54,7 @@ def elapsed_time(level: str = "INFO") -> Callable[..., Callable[..., R]]:
             )
             return return_value
 
-        return wrapped
+        return wrapper
 
     return decorator
 
@@ -86,7 +86,7 @@ def async_elapsed_time(
         func: Callable[..., Coroutine[Any, Any, R]]
     ) -> Callable[..., Coroutine[Any, Any, R]]:
         @functools.wraps(func)
-        async def wrapped(*arg: Any, **kwarg: Any) -> Any:
+        async def wrapper(*arg: Any, **kwarg: Any) -> Any:
             start_time = time.perf_counter()
             try:
                 return_value = await func(*arg, **kwarg)
@@ -104,7 +104,7 @@ def async_elapsed_time(
             )
             return return_value
 
-        return wrapped
+        return wrapper
 
     return decorator
 
@@ -151,7 +151,7 @@ def mem_profile(level: str = "INFO") -> Callable[..., Callable[..., R]]:
 
     def decorator(func: Callable[..., R]) -> Callable[..., R]:
         @functools.wraps(func)
-        def wrapped(*arg: Any, **kwarg: Any) -> Any:
+        def wrapper(*arg: Any, **kwarg: Any) -> Any:
             mem_before = get_memory_usage()
             try:
                 return_value = func(*arg, **kwarg)
@@ -171,7 +171,7 @@ def mem_profile(level: str = "INFO") -> Callable[..., Callable[..., R]]:
             )
             return return_value
 
-        return wrapped
+        return wrapper
 
     return decorator
 
@@ -199,7 +199,7 @@ def cpu_profile(level: str = "INFO") -> Callable[..., Callable[..., R]]:
 
     def decorator(func: Callable[..., R]) -> Callable[..., R]:
         @functools.wraps(func)
-        def wrapped(*arg: Any, **kwarg: Any) -> Any:
+        def wrapper(*arg: Any, **kwarg: Any) -> Any:
             cpu_before = get_cpu_usage()
             try:
                 return_value = func(*arg, **kwarg)
@@ -219,6 +219,6 @@ def cpu_profile(level: str = "INFO") -> Callable[..., Callable[..., R]]:
             )
             return return_value
 
-        return wrapped
+        return wrapper
 
     return decorator

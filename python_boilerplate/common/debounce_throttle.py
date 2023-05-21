@@ -19,7 +19,7 @@ def debounce(wait: float) -> Callable[..., Callable[..., Optional[R]]]:
         last_called: float = 0
 
         @functools.wraps(func)
-        def debounced_func(*args: Any, **kwargs: Any) -> Optional[R]:
+        def wrapper(*args: Any, **kwargs: Any) -> Optional[R]:
             nonlocal last_called
             elapsed = time.monotonic() - last_called
             if elapsed > wait:
@@ -33,7 +33,7 @@ def debounce(wait: float) -> Callable[..., Callable[..., Optional[R]]]:
                 )
                 return None
 
-        return debounced_func
+        return wrapper
 
     return decorator
 
@@ -51,7 +51,7 @@ def throttle(limit: float) -> Callable[..., Callable[..., Optional[R]]]:
         called = False
 
         @functools.wraps(func)
-        def throttled_func(*args: Any, **kwargs: Any) -> Optional[R]:
+        def wrapper(*args: Any, **kwargs: Any) -> Optional[R]:
             nonlocal last_called, called
             elapsed = time.monotonic() - last_called
             if not called:
@@ -71,6 +71,6 @@ def throttle(limit: float) -> Callable[..., Callable[..., Optional[R]]]:
                 )
                 return None
 
-        return throttled_func
+        return wrapper
 
     return decorator
