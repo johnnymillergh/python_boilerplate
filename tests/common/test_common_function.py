@@ -1,7 +1,12 @@
 from loguru import logger
+from pytest_benchmark.fixture import BenchmarkFixture
 from pytest_mock import MockerFixture
 
-from python_boilerplate.common.common_function import get_cpu_count, get_login_user
+from python_boilerplate.common.common_function import (
+    chunk_into_n,
+    get_cpu_count,
+    get_login_user,
+)
 
 
 def test_get_cpu_count_when_cpu_count_is_none_then_returns_4(
@@ -36,3 +41,24 @@ def test_get_login_user_when_exception_raised_then_returns_default_user(
     user = get_login_user()
     assert user == "default_user"
     patch.assert_called_once()
+
+
+def test_chunk_into_n() -> None:
+    chunks = chunk_into_n([1, 2, 3, 4, 5, 6, 7, 8, 9], 3)
+    assert len(chunks) == 3
+    assert len(chunks[0]) == 3
+    assert len(chunks[1]) == 3
+    assert len(chunks[2]) == 3
+    logger.info(f"Chunks: {chunks}")
+
+
+def test_get_cpu_count_benchmark(benchmark: BenchmarkFixture) -> None:
+    benchmark(get_cpu_count)
+
+
+def test_get_login_user_benchmark(benchmark: BenchmarkFixture) -> None:
+    benchmark(get_login_user)
+
+
+def test_chunk_into_n_benchmark(benchmark: BenchmarkFixture) -> None:
+    benchmark(chunk_into_n, [1, 2, 3, 4, 5, 6, 7, 8, 9], 3)

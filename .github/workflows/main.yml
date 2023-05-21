@@ -27,8 +27,10 @@ jobs:
           || echo "Failed to install mypy types"
       - run: pipenv run mypy
       - name: Python Tests with pytest
-        run: LOG_LEVEL=INFO pipenv run pytest --cov --cov-fail-under=90 --capture=no --log-cli-level=INFO -n auto
-  pyinstaller-test:
+        run: LOG_LEVEL=INFO pipenv run pytest --cov --cov-fail-under=90 --capture=no --log-cli-level=INFO -n auto --benchmark-disable
+      - name: Python Benchmark with pytest
+        run: env LOG_LEVEL=ERROR pipenv run pytest --capture=no --log-cli-level=ERROR -n 0 --benchmark-only
+  pyinstaller-smoke-test:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
@@ -45,7 +47,7 @@ jobs:
           du -s -h *
       - name: Smoke Test PyInstaller Application
         run: ./dist/multithread_and_thread_pool_usage/multithread_and_thread_pool_usage
-  docker-image-test:
+  docker-smoke-test:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3

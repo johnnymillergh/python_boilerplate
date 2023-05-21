@@ -4,10 +4,11 @@ from typing import Any, Coroutine
 import pytest
 from loguru import logger
 
-from python_boilerplate.demo.async_demo import (
+from python_boilerplate.demo.async_usage import (
     coroutine1,
     coroutine2,
     coroutine3,
+    main,
     non_coroutine,
 )
 
@@ -92,3 +93,11 @@ async def test_running_coroutine1_2_3_concurrently() -> None:
     assert type(gathered_results[0]) == int
     assert type(gathered_results[1]) == str
     assert type(gathered_results[2]) is ValueError
+
+
+@pytest.mark.asyncio
+async def test_main() -> None:
+    try:
+        await main()
+    except Exception as e:
+        assert False, f"Unexpected exception: {e}"

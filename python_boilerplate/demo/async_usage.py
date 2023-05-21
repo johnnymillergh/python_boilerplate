@@ -53,5 +53,5 @@ async def main() -> None:
 if __name__ == "__main__":
     startup()
     # Run the event loop
-    asyncio.run(non_coroutine())
-    logger.info(type(coroutine3))
+    asyncio.run(main())
+    logger.info(f"Type of `coroutine3()`: {type(coroutine3)}")

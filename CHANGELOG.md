@@ -1,4 +1,24 @@
-# [6.0.1](https://github.com/johnnymillergh/muscle-and-fitness-server/compare/6.0.0...6.0.1) (2023-05-13)
+# [6.0.2](https://github.com/johnnymillergh/python_boilerplate/compare/6.0.1...6.0.2) (2023-05-21)
+
+
+### Features
+
+* **$loguru:** retain 7 days log files ([6fc5724](https://github.com/johnnymillergh/python_boilerplate/commit/6fc57249c10acca3be3476884e9018b604bf3347))
+* **$profile:** raise exception if happens when profiling ([1000197](https://github.com/johnnymillergh/python_boilerplate/commit/1000197dc57da5e167a7796c7036b78bcdafd721))
+
+
+### Performance Improvements
+
+* **$async:** simplify `[@async](https://github.com/async)_function` decorator ([e46a9c1](https://github.com/johnnymillergh/python_boilerplate/commit/e46a9c13cf03c338fa91131aee0e2ffa2625f15b))
+* **$Benchmark:** add more functions performance benchmark ([985ae47](https://github.com/johnnymillergh/python_boilerplate/commit/985ae47b18ab67b23ca63486bc5a7547948b6f55))
+* **$Benchmark:** run benchmark individually ([df511d5](https://github.com/johnnymillergh/python_boilerplate/commit/df511d51675716f7ea0f50dea4f85abf2a5474fc))
+* avoid log output during benchmarking ([4ed750c](https://github.com/johnnymillergh/python_boilerplate/commit/4ed750c9e4217482d071c3c5788c00d883dfc198))
+* support pytest-benchmark ([6e82b45](https://github.com/johnnymillergh/python_boilerplate/commit/6e82b45666f4be50c4b6c062c0ccab3c5a0a7152))
+* upgrade dependencies ([4b967ff](https://github.com/johnnymillergh/python_boilerplate/commit/4b967ff478719f59c6e088f34f2ae3f4756b34cd))
+
+
+
+# [6.0.1](https://github.com/johnnymillergh/python_boilerplate/compare/6.0.0...6.0.1) (2023-05-13)
 
 
 ### Features
@@ -15,7 +35,7 @@
 
 
 
-# [6.0.0](https://github.com/johnnymillergh/muscle-and-fitness-server/compare/5.0.0...6.0.0) (2023-05-02)
+# [6.0.0](https://github.com/johnnymillergh/python_boilerplate/compare/5.0.0...6.0.0) (2023-05-02)
 
 
 ### Features
@@ -38,7 +58,7 @@
 
 
 
-# [5.0.0](https://github.com/johnnymillergh/muscle-and-fitness-server/compare/4.0.1...5.0.0) (2023-03-04)
+# [5.0.0](https://github.com/johnnymillergh/python_boilerplate/compare/4.0.1...5.0.0) (2023-03-04)
 
 
 ### Features
@@ -47,7 +67,7 @@
 
 
 
-# [4.0.0](https://github.com/johnnymillergh/muscle-and-fitness-server/compare/3.0.0...4.0.0) (2022-09-18)
+# [4.0.0](https://github.com/johnnymillergh/python_boilerplate/compare/3.0.0...4.0.0) (2022-09-18)
 
 
 ### Features
@@ -69,7 +89,7 @@
 
 
 
-# [3.0.0](https://github.com/johnnymillergh/muscle-and-fitness-server/compare/2.0.0...3.0.0) (2022-09-06)
+# [3.0.0](https://github.com/johnnymillergh/python_boilerplate/compare/2.0.0...3.0.0) (2022-09-06)
 
 
 ### Features
@@ -98,7 +118,7 @@
 
 
 
-# [2.0.0](https://github.com/johnnymillergh/muscle-and-fitness-server/compare/1.0.0...2.0.0) (2022-08-28)
+# [2.0.0](https://github.com/johnnymillergh/python_boilerplate/compare/1.0.0...2.0.0) (2022-08-28)
 
 
 ### Performance Improvements
