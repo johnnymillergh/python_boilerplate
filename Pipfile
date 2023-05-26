@@ -9,7 +9,8 @@ python_version = "3.11"
 
 [packages]
 # 🏗 Foundamental dependencies
-pydantic = "==1.10.7"
+# Data validation using Python type hints. https://github.com/pydantic/pydantic
+pydantic = "==1.10.8"
 # Loguru is a library which aims to bring enjoyable logging in Python. https://pypi.org/project/loguru/
 loguru = "==0.7.0"
 # pyhocon is a HOCON parser for Python. Additionally we provide a tool (pyhocon) to convert any HOCON content into json,
@@ -33,7 +34,7 @@ peewee = "==3.16.2"
 jinja2 = "==3.1.2"
 # Tool dependencies
 # Faker is a Python package that generates fake data for you. https://pypi.org/project/Faker/
-faker = "==18.6.0"
+faker = "==18.9.0"
 # A Python module to parse, validate and reformat standard numbers and codes in different formats.
 # It contains a large collection of number formats. https://pypi.org/project/python-stdnum/
 python-stdnum = "==1.18"
@@ -73,7 +74,7 @@ pytest = "==7.3.1"
 # Thin-wrapper around the mock package for easier use with pytest. https://pypi.org/project/pytest-mock/
 pytest-mock = "==3.10.0"
 # This plugin produces coverage reports. https://pypi.org/project/pytest-cov/
-pytest-cov = "==4.0.0"
+pytest-cov = "==4.1.0"
 # Plugin for generating HTML reports for pytest results. https://github.com/pytest-dev/pytest-html/
 pytest-html = "==3.2.0"
 # pytest xdist plugin for distributed testing and loop-on-failing modes. https://github.com/pytest-dev/pytest-xdist/
