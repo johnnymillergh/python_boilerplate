@@ -19,6 +19,17 @@ repos:
       - id: check-case-conflict
   - repo: local
     hooks:
+      - id: autoflake
+        name: autoflake
+        stages: [ commit ]
+        language: system
+        entry: pipenv run autoflake
+        types: [ python ]
+        args:
+          - "--in-place"
+          - "--expand-star-imports"
+          - "--remove-duplicate-keys"
+          - "--remove-unused-variables"
       - id: isort
         name: isort
         stages: [ commit ]

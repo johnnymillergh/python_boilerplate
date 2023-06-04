@@ -55,7 +55,9 @@ psutil = "==5.9.5"
 black = "==23.3.0"
 # Naming Convention checker for Python. https://github.com/PyCQA/pep8-naming
 pep8-naming = "==0.13.3"
-# Linting & toolkit for checking your code base against coding style (PEP8). https://pypi.org/project/flake8/
+# Removes unused imports and unused variables as reported by pyflakes. https://github.com/PyCQA/autoflake
+autoflake = "==2.1.1"
+# Linting & toolkit for checking your code base against coding style (PEP8). https://github.com/pycqa/flake8
 flake8 = "==6.0.0"
 # https://github.com/DmytroLitvinov/awesome-flake8-extensions
 flake8-quotes = "==3.3.2"
