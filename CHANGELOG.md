@@ -1,3 +1,18 @@
+# [6.0.3](https://github.com/johnnymillergh/python_boilerplate/compare/6.0.2...6.0.3) (2023-07-01)
+
+
+### Features
+
+* integrate autoflake to remove unused codes automatically ([383726f](https://github.com/johnnymillergh/python_boilerplate/commit/383726fdfc3156d6543a6dcac8de8b63238d3027))
+
+
+### Performance Improvements
+
+* **$pipenv:** upgrade dependencies ([110e10a](https://github.com/johnnymillergh/python_boilerplate/commit/110e10a03ef4eaa7e3f867b9df13ea09f943d1ce))
+* upgrade dependencies ([639a914](https://github.com/johnnymillergh/python_boilerplate/commit/639a914e11410c3e94c0e91ad5b80063db6a28ae))
+
+
+
 # [6.0.2](https://github.com/johnnymillergh/python_boilerplate/compare/6.0.1...6.0.2) (2023-05-21)
 
 
