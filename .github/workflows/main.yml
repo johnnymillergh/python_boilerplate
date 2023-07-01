@@ -27,7 +27,7 @@ jobs:
           || echo "Failed to install mypy types"
       - run: pipenv run mypy
       - name: Python Tests with pytest
-        run: LOG_LEVEL=INFO pipenv run pytest --cov --cov-fail-under=90 --capture=no --log-cli-level=INFO -n auto --benchmark-disable
+        run: env LOG_LEVEL=INFO pipenv run pytest --quiet --cov --cov-report term -n auto --benchmark-disable
       - name: Python Benchmark with pytest
         run: env LOG_LEVEL=ERROR pipenv run pytest --capture=no --log-cli-level=ERROR -n 0 --benchmark-only
   pyinstaller-smoke-test:

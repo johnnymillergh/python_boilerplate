@@ -21,21 +21,21 @@ Here are the highlights of **python_boilerplate**:
 
 1. Inherited from modern and the latest Python technologies:
 
-   `Python` - [![Python](https://img.shields.io/badge/Python-v3.11.3-blue)](https://www.python.org/downloads/release/python-3113/)
+   `Python` - [![Python](https://img.shields.io/badge/Python-v3.11.4-blue)](https://www.python.org/downloads/release/python-3113/)
 
    `Pipenv` is to Python virtualenv management tool for the project.
 
 2. Data validation using Python type hints with [Pydantic](https://github.com/pydantic/pydantic).
 
-3. Highly customizable data analysis with [pandas](https://pandas.pydata.org/), enhanced array operation with [NumPy](https://numpy.org/). Supports CSV, excel, JSON and so on.
+3. Highly customizable data analysis with [pandas](https://pandas.pydata.org/), enhanced array operation with [NumPy](https://numpy.org/). Supports CSV, Excel, JSON, and so on.
 
-4. Data persistence with [peewee](http://docs.peewee-orm.com/en/latest/), [SQLite3](https://sqlite.org/index.html) as local database.
+4. Data persistence with [peewee](http://docs.peewee-orm.com/en/latest/), [SQLite3](https://sqlite.org/index.html) as a local database.
 
 5. Simple and flexible retry with [Tenacity](https://github.com/jd/tenacity).
 
 6. Environment variable and configuration with [pyhocon](https://pythonhosted.org/pyhocon/_modules/pyhocon.html). Read `${ENVIRONMENT_VARIABLE}` when startup.
 
-7. Sensible and human-friendly approach to creating, manipulating, formatting and converting dates, times and timestamps with [Arrow](https://pypi.org/project/arrow/).
+7. Sensible and human-friendly approach to creating, manipulating, formatting and converting dates, times, and timestamps with [Arrow](https://pypi.org/project/arrow/).
 
 8. Generate fake data with [Faker](https://pypi.org/project/Faker/).
 
@@ -57,7 +57,7 @@ Here are the highlights of **python_boilerplate**:
 
 17. Continuous Integration with [GitHub Actions](https://github.com/features/actions).
 
-18. Loguru logging configuration. Log sample is like,
+18. Loguru logging configuration. The log sample,
 
    ```
    2022-09-17 14:13:52.385 | ⚠️ WARNING  | 6860 | MainThread      | python_boilerplate.repository.model.base_model.<module>:24 - SQLite database created. Path: [/Users/johnny/Projects/PyCharmProjects/python_boilerplate/data/python_boilerplate.db], <peewee.SqliteDatabase object at 0x1191e1390>
@@ -74,7 +74,7 @@ Here are the highlights of **python_boilerplate**:
    $ git clone https://github.com/johnnymillergh/python_boilerplater.git
    ```
 
-2. Build with newest PyCharm.
+2. Build with the newest PyCharm.
 
 3. Click the green triangle to Run.
 
@@ -195,6 +195,12 @@ Run with pytest, analyze code coverage, generate HTML code coverage reports, fai
 $ pipenv run pytest --cov --cov-report html --cov-fail-under=85 --capture=no --log-cli-level=INFO
 ```
 
+Benchmark with pytest,
+
+```shell
+$ pipenv run pytest --capture=no --log-cli-level=ERROR -n 0 --benchmark-only
+```
+
 ### Conventional Changelog CLI
 
 1. Install global dependencies (optional if installed):
@@ -224,7 +230,7 @@ $ pipenv run pytest --cov --cov-report html --cov-fail-under=85 --capture=no --l
 
 1. [ExecutableNotFoundError: Executable `/bin/bash` not found when using pre-commit](https://stackoverflow.com/questions/72321412/bin-bash-not-found-when-using-pre-commit)
 
-   Solution: delete `.git/hooks/pre-commit.legacy` and then reinstall, also deleted `.git/hooks/pre-commit` just to be sure before installing again.
+   **Solution**: delete `.git/hooks/pre-commit.legacy` and then reinstall, also deleted `.git/hooks/pre-commit` just to be sure before installing again.
 
 2. Installing all stub type packages,
 
