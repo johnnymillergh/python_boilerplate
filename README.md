@@ -21,7 +21,7 @@ Here are the highlights of **python_boilerplate**:
 
 1. Inherited from modern and the latest Python technologies:
 
-   `Python` - [![Python](https://img.shields.io/badge/Python-v3.11.4-blue)](https://www.python.org/downloads/release/python-3113/)
+   `Python` - [![Python](https://img.shields.io/badge/Python-v3.12.0-blue)](https://www.python.org/downloads/release/python-3120/)
 
    `Pipenv` is to Python virtualenv management tool for the project.
 
@@ -268,4 +268,4 @@ Inspired by [How to set up a perfect Python project](https://sourcery.ai/blog/py
 
 [Apache License](https://github.com/johnnymillergh/python_boilerplate/blob/main/LICENSE) © Johnny Miller
 
-2021 - Present
+2021—Present
