@@ -4,91 +4,91 @@ url = "https://pypi.python.org/simple"
 verify_ssl = true
 
 [requires]
-# https://docs.python.org/3/whatsnew/3.11.html
-python_version = "3.11"
+# https://docs.python.org/3/whatsnew/3.12.html
+python_version = "3.12"
 
 [packages]
 # 🏗 Foundamental dependencies
 # Data validation using Python type hints. https://github.com/pydantic/pydantic
-pydantic = "==1.10.10"
+pydantic = "==2.4.2"
 # Loguru is a library which aims to bring enjoyable logging in Python. https://pypi.org/project/loguru/
-loguru = "==0.7.0"
+loguru = "*"
 # pyhocon is a HOCON parser for Python. Additionally we provide a tool (pyhocon) to convert any HOCON content into json,
 # yaml and properties format. https://pypi.org/project/pyhocon/
-pyhocon = "==0.3.60"
+pyhocon = "*"
 # Data manipulation dependencies
 # NumPy is a Python library used for working with arrays. https://pypi.org/project/numpy/
-numpy = "==1.25.0"
+numpy = "*"
 # pandas is a Python package that provides fast, flexible, and expressive data structures designed to make working
 # with "relational" or "labeled" data both easy and intuitive. https://pypi.org/project/pandas/
-pandas = "==2.0.3"
+pandas = "*"
 # Python enhancement dependencies
 # Arrow is a Python library that offers a sensible and human-friendly approach to creating, manipulating,
 # formatting and converting dates, times and timestamps. https://pypi.org/project/arrow/
-arrow = "==1.2.3"
+arrow = "*"
 # ORM dependencies
 # Peewee is a simple and small ORM. https://pypi.org/project/peewee/
-peewee = "==3.16.2"
+peewee = "*"
 # Template engine dependencies
 # Jinja is a fast, expressive, extensible templating engine. https://pypi.org/project/Jinja2/
-jinja2 = "==3.1.2"
+jinja2 = "*"
 # Tool dependencies
 # Faker is a Python package that generates fake data for you. https://pypi.org/project/Faker/
-faker = "==18.11.2"
+faker = "*"
 # A Python module to parse, validate and reformat standard numbers and codes in different formats.
 # It contains a large collection of number formats. https://pypi.org/project/python-stdnum/
-python-stdnum = "==1.18"
+python-stdnum = "*"
 # Retrying library for Python. https://pypi.org/project/tenacity/
-tenacity = "==8.2.2"
+tenacity = "*"
 # Python plotting package. https://pypi.org/project/matplotlib/
-matplotlib = "==3.7.1"
+matplotlib = "*"
 # Pretty Good Privacy for Python. https://github.com/SecurityInnovation/PGPy
-pgpy = "==0.6.0"
+pgpy = "*"
 # Cross-platform lib for process and system monitoring in Python. https://github.com/giampaolo/psutil
-psutil = "==5.9.5"
+psutil = "*"
 # 🪜 Customization dependencies
 
 [dev-packages]
 # 🏗 Foundamental dependencies
 # Black is the uncompromising Python code formatter. By using it, you agree to cede control over minutiae of
 # hand-formatting. https://pypi.org/project/black/
-black = "==23.3.0"
+black = "*"
 # Naming Convention checker for Python. https://github.com/PyCQA/pep8-naming
-pep8-naming = "==0.13.3"
+pep8-naming = "*"
 # Removes unused imports and unused variables as reported by pyflakes. https://github.com/PyCQA/autoflake
-autoflake = "==2.2.0"
+autoflake = "*"
 # Linting & toolkit for checking your code base against coding style (PEP8). https://github.com/pycqa/flake8
-flake8 = "==6.0.0"
+flake8 = "*"
 # https://github.com/DmytroLitvinov/awesome-flake8-extensions
-flake8-quotes = "==3.3.2"
-flake8-print = "==5.0.0"
-flake8-use-fstring = "==1.4"
-flake8-comprehensions = "==3.13.0"
+flake8-quotes = "*"
+flake8-print = "*"
+flake8-use-fstring = "*"
+flake8-comprehensions = "*"
 # isort your imports, so you don't have to. https://pypi.org/project/isort/
-isort = "==5.12.0"
+isort = "*"
 # Add type annotations to your Python programs, and use mypy to type check them. https://pypi.org/project/mypy/
-mypy = "==1.4.0"
+mypy = "*"
 # A framework for managing and maintaining multi-language pre-commit hooks. https://pypi.org/project/pre-commit/
-pre-commit = "==3.3.3"
+pre-commit = "*"
 # The pytest framework makes it easy to write small tests, yet scales to support complex functional testing
 # for applications and libraries. https://pypi.org/project/pytest/
-pytest = "==7.4.0"
+pytest = "*"
 # Thin-wrapper around the mock package for easier use with pytest. https://pypi.org/project/pytest-mock/
-pytest-mock = "==3.11.1"
+pytest-mock = "*"
 # This plugin produces coverage reports. https://pypi.org/project/pytest-cov/
-pytest-cov = "==4.1.0"
+pytest-cov = "*"
 # Plugin for generating HTML reports for pytest results. https://github.com/pytest-dev/pytest-html/
-pytest-html = "==3.2.0"
+pytest-html = "*"
 # pytest xdist plugin for distributed testing and loop-on-failing modes. https://github.com/pytest-dev/pytest-xdist/
-pytest-xdist = "==3.3.1"
+pytest-xdist = "*"
 # Pytest support for asyncio. https://github.com/pytest-dev/pytest-asyncio
-pytest-asyncio = "==0.21.0"
+pytest-asyncio = "*"
 # A `pytest` fixture for benchmarking code. https://github.com/ionelmc/pytest-benchmark
-pytest-benchmark = "==4.0.0"
+pytest-benchmark = "*"
 # Call stack profiler for Python. Shows you why your code is slow! https://github.com/joerick/pyinstrument
-pyinstrument = "==4.5.0"
+pyinstrument = "*"
 # Pytest plugin for analyzing resource usage during test sessions. https://github.com/CFMTech/pytest-monitor
-pytest-monitor = "==1.6.6"
+pytest-monitor = "*"
 # PyInstaller bundles a Python application and all its dependencies into a single package. https://github.com/pyinstaller/pyinstaller
-pyinstaller = "==5.13.0"
+pyinstaller = "*"
 # 🪜 Customization dependencies
