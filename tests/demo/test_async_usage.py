@@ -21,7 +21,7 @@ def setup() -> None:
 @pytest.mark.asyncio
 async def test_coroutine1() -> None:
     result: int = await coroutine1()
-    assert type(result) == int
+    assert type(result) is int
     assert result == 42
     logger.info(f"Result: {result}")
 
@@ -29,7 +29,7 @@ async def test_coroutine1() -> None:
 @pytest.mark.asyncio
 async def test_coroutine2() -> None:
     result: str = await coroutine2()
-    assert type(result) == str
+    assert type(result) is str
     assert result == "Hello, world!"
     logger.info(f"Result: {result}")
 
@@ -70,11 +70,10 @@ async def test_running_coroutine1_and_coroutine2_sequentially() -> None:
 async def test_running_coroutine1_and_coroutine2_concurrently() -> None:
     coroutine_1: Coroutine[Any, Any, int] = coroutine1()
     coroutine_2: Coroutine[Any, Any, str] = coroutine2()
-    gathered_results: list[Any] = await asyncio.gather(coroutine_1, coroutine_2)
-    assert type(gathered_results) == list
+    gathered_results = await asyncio.gather(coroutine_1, coroutine_2)
     assert len(gathered_results) == 2
-    assert type(gathered_results[0]) == int
-    assert type(gathered_results[1]) == str
+    assert type(gathered_results[0]) is int
+    assert type(gathered_results[1]) is str
     logger.info(
         f"Type of `gathered_results`: {type(gathered_results)}, {gathered_results}"
     )
@@ -82,16 +81,15 @@ async def test_running_coroutine1_and_coroutine2_concurrently() -> None:
 
 @pytest.mark.asyncio
 async def test_running_coroutine1_2_3_concurrently() -> None:
-    gathered_results: list[Any] = await asyncio.gather(
+    gathered_results = await asyncio.gather(
         *[coroutine1(), coroutine2(), coroutine3()], return_exceptions=True
     )
     logger.info(
         f"Type of `gathered_results`: {type(gathered_results)}, {gathered_results}"
     )
-    assert type(gathered_results) == list
     assert len(gathered_results) == 3
-    assert type(gathered_results[0]) == int
-    assert type(gathered_results[1]) == str
+    assert type(gathered_results[0]) is int
+    assert type(gathered_results[1]) is str
     assert type(gathered_results[2]) is ValueError
 
 

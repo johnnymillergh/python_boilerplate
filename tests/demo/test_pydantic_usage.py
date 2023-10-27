@@ -53,7 +53,7 @@ def test_deserialize_user_from_json_when_signup_ts_is_provided() -> None:
     assert user.id == 123
     assert user.name == "James"
     assert user.signup_ts is not None
-    logger.info(f"User: {user}, user in JSON: {user.json()}")
+    logger.info(f"User: {user}, user in JSON: {user.model_dump_json()}")
 
 
 def test_initialize_user_with_dataclass() -> None:
@@ -70,7 +70,7 @@ def create_instance() -> User:
 
 
 def serialize_instance() -> str:
-    return User.model_validate({"id": 123, "name": "James"}).json()
+    return User.model_validate({"id": 123, "name": "James"}).model_dump_json()
 
 
 def test_create_instance_benchmark(benchmark: BenchmarkFixture) -> None:
