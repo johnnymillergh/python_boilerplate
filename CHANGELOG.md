@@ -1,3 +1,12 @@
+# [7.0](https://github.com/johnnymillergh/python_boilerplate/compare/6.0.3...7.0) (2023-10-28)
+
+
+### Performance Improvements
+
+* **$Python:** upgrade to Python 3.12 ([4cb471f](https://github.com/johnnymillergh/python_boilerplate/commit/4cb471f5f58826116088f1ea9415196c8fa7f078))
+
+
+
 # [6.0.3](https://github.com/johnnymillergh/python_boilerplate/compare/6.0.2...6.0.3) (2023-07-01)
 
 
