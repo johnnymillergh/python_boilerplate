@@ -10,6 +10,21 @@ on:
       - '**.md'
       - '_config.yml'
       - '**.tweet'
+  # Scheduled workflows run on the latest commit on the default or base branch.
+  # https://docs.github.com/en/actions/using-workflows/events-that-trigger-workflows#schedule
+  # Cron syntax has five fields separated by a space, and each field represents a unit of time.
+  # ┌───────────── minute (0 - 59)
+  # │ ┌───────────── hour (0 - 23)
+  # │ │ ┌───────────── day of the month (1 - 31)
+  # │ │ │ ┌───────────── month (1 - 12 or JAN-DEC)
+  # │ │ │ │ ┌───────────── day of the week (0 - 6 or SUN-SAT)
+  # │ │ │ │ │
+  # │ │ │ │ │
+  # │ │ │ │ │
+  # * * * * *
+  schedule:
+    # Schedule at 00:00 on Tuesday, Thursday, and Saturday, https://crontab.guru/#0_0_*_*_2,4,6
+    - cron: '0 0 * * 2,4,6'
 
 jobs:
   static-code-analysis:
