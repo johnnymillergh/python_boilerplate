@@ -1,3 +1,12 @@
+# [7.1](https://github.com/johnnymillergh/python_boilerplate/compare/7.0...7.1) (2023-10-31)
+
+
+### Building Improvements
+
+* **GitHub:** schedule GitHub Actions at specific UTC times ([9941811](https://github.com/johnnymillergh/python_boilerplate/commit/9941811daabdac5feac9edb787d073ae2ceb79c4))
+
+
+
 # [7.0](https://github.com/johnnymillergh/python_boilerplate/compare/6.0.3...7.0) (2023-10-28)
 
 
