@@ -26,6 +26,8 @@ pandas = "==2.1.2"
 # Arrow is a Python library that offers a sensible and human-friendly approach to creating, manipulating,
 # formatting and converting dates, times and timestamps. https://pypi.org/project/arrow/
 arrow = "==1.3.0"
+# A Python module that tries to figure out what your local timezone is. https://github.com/regebro/tzlocal
+tzlocal = "==5.2"
 # ORM dependencies
 # Peewee is a simple and small ORM. https://pypi.org/project/peewee/
 peewee = "==3.17.0"
@@ -46,6 +48,8 @@ matplotlib = "==3.8.0"
 pgpy = "==0.6.0"
 # Cross-platform lib for process and system monitoring in Python. https://github.com/giampaolo/psutil
 psutil = "==5.9.6"
+# Task scheduling library for Python, https://github.com/agronholm/apscheduler
+apscheduler = "==3.10.4"
 # 🪜 Customization dependencies
 
 [dev-packages]
