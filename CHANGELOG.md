@@ -1,3 +1,17 @@
+# [7.3](https://github.com/johnnymillergh/python_boilerplate/compare/7.2...7.3) (2023-11-05)
+
+
+### Bug Fixes
+
+* **$log:** retain log files by local date; override the default stderr (console) if console is available ([a8009b1](https://github.com/johnnymillergh/python_boilerplate/commit/a8009b100fc07f94556d91b9db3a9c7295d8e005))
+
+
+### Features
+
+* integrate APScheduler ([1b3fea3](https://github.com/johnnymillergh/python_boilerplate/commit/1b3fea38f7afeae4223d1128dbdfd3f38ddab485))
+
+
+
 # [7.2](https://github.com/johnnymillergh/python_boilerplate/compare/7.1...7.2) (2023-11-04)
 
 
