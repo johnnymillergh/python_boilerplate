@@ -31,7 +31,7 @@ else:
     _smtp.login(_sender, _password)
 
 
-def __init__() -> None:
+def init_smtp() -> None:
     """
     Initializes the email module.
     """
