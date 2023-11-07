@@ -7,6 +7,7 @@ from faker import Faker
 from loguru import logger
 from pandas import DataFrame, DatetimeIndex, Series
 
+from python_boilerplate.__main__ import startup
 from python_boilerplate.common.asynchronization import async_function
 from python_boilerplate.common.common_function import get_data_dir, get_resources_dir
 from python_boilerplate.common.profiling import cpu_profile, elapsed_time, mem_profile
@@ -124,4 +125,5 @@ def data_generation() -> None:
 
 
 if __name__ == "__main__":
+    startup()
     look_for_sony_published_games()

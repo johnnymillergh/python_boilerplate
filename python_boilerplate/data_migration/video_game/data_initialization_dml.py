@@ -1,6 +1,7 @@
+import pandas as pd
 from loguru import logger
 
-from python_boilerplate.demo.pandas_usage import video_games
+from python_boilerplate.common.common_function import get_resources_dir
 from python_boilerplate.repository.model.video_game import VideoGame
 
 
@@ -10,6 +11,10 @@ def execute() -> None:
         logger.info(f"Count of video_game: {count}")
         return
     video_game_list = []
+    # The CSV dataset is from
+    # https://github.com/corgis-edu/corgis/blob/master/website/datasets/csv/video_games/video_games.md
+    video_games_path = get_resources_dir() / "video_games.csv"
+    video_games = pd.read_csv(video_games_path)
     for index, row in video_games.iterrows():
         video_game_list.append(
             {
