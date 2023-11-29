@@ -1,3 +1,12 @@
+# [7.4](https://github.com/johnnymillergh/python_boilerplate/compare/7.3...7.4) (2023-11-29)
+
+
+### Features
+
+* **$database:** support database init when startup ([5d4032e](https://github.com/johnnymillergh/python_boilerplate/commit/5d4032e018edc7c06297cc8035c2391e90bfebb6))
+
+
+
 # [7.3](https://github.com/johnnymillergh/python_boilerplate/compare/7.2...7.3) (2023-11-05)
 
 
