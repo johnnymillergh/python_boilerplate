@@ -29,7 +29,7 @@ def update_latest() -> None:
 
 
 def retain_startup_log() -> int:
-    a_week_ago = arrow.now().shift(days=-7).format("YYYY-MM-DD")
+    a_week_ago = arrow.now("local").shift(days=-7).format("YYYY-MM-DD")
     affected_rows: int = (
         StartupLog.delete().where(StartupLog.startup_time < a_week_ago).execute()
     )
