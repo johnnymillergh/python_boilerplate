@@ -10,7 +10,7 @@ python_version = "3.12"
 [packages]
 # 🏗 Foundamental dependencies
 # Data validation using Python type hints. https://github.com/pydantic/pydantic
-pydantic = "==2.4.2"
+pydantic = "==2.5.2"
 # Loguru is a library which aims to bring enjoyable logging in Python. https://pypi.org/project/loguru/
 loguru = "==0.7.2"
 # pyhocon is a HOCON parser for Python. Additionally we provide a tool (pyhocon) to convert any HOCON content into json,
@@ -18,10 +18,10 @@ loguru = "==0.7.2"
 pyhocon = "==0.3.60"
 # Data manipulation dependencies
 # NumPy is a Python library used for working with arrays. https://pypi.org/project/numpy/
-numpy = "==1.26.1"
+numpy = "==1.26.2"
 # pandas is a Python package that provides fast, flexible, and expressive data structures designed to make working
 # with "relational" or "labeled" data both easy and intuitive. https://pypi.org/project/pandas/
-pandas = "==2.1.2"
+pandas = "==2.1.3"
 # Python enhancement dependencies
 # Arrow is a Python library that offers a sensible and human-friendly approach to creating, manipulating,
 # formatting and converting dates, times and timestamps. https://pypi.org/project/arrow/
@@ -36,14 +36,14 @@ peewee = "==3.17.0"
 jinja2 = "==3.1.2"
 # Tool dependencies
 # Faker is a Python package that generates fake data for you. https://pypi.org/project/Faker/
-faker = "==19.12.0"
+faker = "==20.1.0"
 # A Python module to parse, validate and reformat standard numbers and codes in different formats.
 # It contains a large collection of number formats. https://pypi.org/project/python-stdnum/
 python-stdnum = "==1.19"
 # Retrying library for Python. https://pypi.org/project/tenacity/
 tenacity = "==8.2.3"
 # Python plotting package. https://pypi.org/project/matplotlib/
-matplotlib = "==3.8.0"
+matplotlib = "==3.8.2"
 # Pretty Good Privacy for Python. https://github.com/SecurityInnovation/PGPy
 pgpy = "==0.6.0"
 # Cross-platform lib for process and system monitoring in Python. https://github.com/giampaolo/psutil
@@ -56,7 +56,7 @@ apscheduler = "==3.10.4"
 # 🏗 Foundamental dependencies
 # Black is the uncompromising Python code formatter. By using it, you agree to cede control over minutiae of
 # hand-formatting. https://pypi.org/project/black/
-black = "==23.10.1"
+black = "==23.11.0"
 # Naming Convention checker for Python. https://github.com/PyCQA/pep8-naming
 pep8-naming = "==0.13.3"
 # Removes unused imports and unused variables as reported by pyflakes. https://github.com/PyCQA/autoflake
@@ -71,7 +71,7 @@ flake8-comprehensions = "==3.14.0"
 # isort your imports, so you don't have to. https://pypi.org/project/isort/
 isort = "==5.12.0"
 # Add type annotations to your Python programs, and use mypy to type check them. https://pypi.org/project/mypy/
-mypy = "==1.6.1"
+mypy = "==1.7.1"
 # A framework for managing and maintaining multi-language pre-commit hooks. https://pypi.org/project/pre-commit/
 pre-commit = "==3.5.0"
 # The pytest framework makes it easy to write small tests, yet scales to support complex functional testing
@@ -82,17 +82,17 @@ pytest-mock = "==3.12.0"
 # This plugin produces coverage reports. https://pypi.org/project/pytest-cov/
 pytest-cov = "==4.1.0"
 # Plugin for generating HTML reports for pytest results. https://github.com/pytest-dev/pytest-html/
-pytest-html = "==4.0.2"
+pytest-html = "==4.1.1"
 # pytest xdist plugin for distributed testing and loop-on-failing modes. https://github.com/pytest-dev/pytest-xdist/
-pytest-xdist = "==3.3.1"
+pytest-xdist = "==3.5.0"
 # Pytest support for asyncio. https://github.com/pytest-dev/pytest-asyncio
 pytest-asyncio = "==0.21.1"
 # A `pytest` fixture for benchmarking code. https://github.com/ionelmc/pytest-benchmark
 pytest-benchmark = "==4.0.0"
 # Call stack profiler for Python. Shows you why your code is slow! https://github.com/joerick/pyinstrument
-pyinstrument = "==4.6.0"
+pyinstrument = "==4.6.1"
 # Pytest plugin for analyzing resource usage during test sessions. https://github.com/CFMTech/pytest-monitor
 pytest-monitor = "==1.6.6"
 # PyInstaller bundles a Python application and all its dependencies into a single package. https://github.com/pyinstaller/pyinstaller
-pyinstaller = "==6.1.0"
+pyinstaller = "==6.2.0"
 # 🪜 Customization dependencies

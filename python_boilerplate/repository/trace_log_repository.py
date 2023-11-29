@@ -11,7 +11,7 @@ def save(trace_log: TraceLog) -> TraceLog:
 
 
 def retain_trace_log() -> int:
-    a_week_ago = arrow.now().shift(days=-7).format("YYYY-MM-DD")
+    a_week_ago = arrow.now("local").shift(days=-7).format("YYYY-MM-DD")
     affected_rows: int = (
         TraceLog.delete().where(TraceLog.start_time < a_week_ago).execute()
     )

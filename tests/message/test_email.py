@@ -1,11 +1,11 @@
-from python_boilerplate.message.email import __init__, cleanup
+from python_boilerplate.message.email import cleanup, init_smtp
 
 
 def test_init() -> None:
     try:
-        __init__()
+        init_smtp()
     except Exception as ex:
-        assert False, f"{__init__} raised an exception {ex}"
+        assert False, f"{init_smtp} raised an exception {ex}"
 
 
 def test_cleanup() -> None:
