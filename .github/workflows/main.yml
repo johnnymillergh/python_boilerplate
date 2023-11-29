@@ -75,3 +75,12 @@ jobs:
       - name: Smoke Test Docker Image
         run: |
           docker run --rm python_boilerplate:smoke-test-tag param_3_from_command_line
+  check-versions:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - uses: ./.github/actions/project-environment-setup
+      - name: Check Versions of Python Packages
+        run: |
+          pipenv run pip list --outdated
+          cat Pipfile

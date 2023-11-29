@@ -221,6 +221,41 @@ $ pipenv run pytest --capture=no --log-cli-level=ERROR -n 0 --benchmark-only
    $ conventional-changelog -p angular -i CHANGELOG.md -s -r 0
    ```
 
+### Check Versions of Python Packages
+
+```shell
+$ pipenv run pip list --outdated
+```
+
+Output be like,
+
+```
+Package          Version   Latest     Type
+---------------- --------- ---------- -----
+black            23.10.1   23.11.0    wheel
+certifi          2023.7.22 2023.11.17 wheel
+Faker            19.12.0   20.1.0     wheel
+identify         2.5.31    2.5.32     wheel
+idna             3.4       3.6        wheel
+matplotlib       3.8.0     3.8.2      wheel
+mypy             1.6.1     1.7.1      wheel
+numpy            1.26.1    1.26.2     wheel
+pandas           2.1.2     2.1.3      wheel
+pip              23.1.2    23.3.1     wheel
+platformdirs     3.11.0    4.0.0      wheel
+pydantic         2.4.2     2.5.2      wheel
+pydantic_core    2.10.1    2.14.5     wheel
+pyinstaller      6.1.0     6.2.0      wheel
+pyinstrument     4.6.0     4.6.1      wheel
+pytest-html      4.0.2     4.1.1      wheel
+pytest-xdist     3.3.1     3.5.0      wheel
+setuptools       68.2.2    69.0.2     wheel
+types-setuptools 68.2.0.0  69.0.0.0   wheel
+urllib3          2.0.7     2.1.0      wheel
+virtualenv       20.24.6   20.24.7    wheel
+wheel            0.41.3    0.42.0     wheel
+```
+
 ## CI (Continuous Integration)
 
 - GitHub Actions are for building projects and running tests.
