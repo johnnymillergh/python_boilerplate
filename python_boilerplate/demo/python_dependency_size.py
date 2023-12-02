@@ -2,6 +2,7 @@ from importlib import metadata as importlib_metadata
 from importlib.metadata import Distribution, PackagePath
 from pathlib import Path
 
+import humanize
 from loguru import logger
 
 
@@ -25,14 +26,11 @@ def list_python_dependencies() -> None:
     logger.info(f"Size of dists: {len(distributions)}")
     total_size = 0
     for dist in distributions:
-        size = calculate_distribution(dist)
-        total_size += size
-        if size / 1000 > 1.0:
-            logger.info(f"{dist.metadata['name']}: {size / 1000} KB")
-        else:
-            logger.info(f"{dist.metadata['name']}: {size} B")
+        size_in_bytes = calculate_distribution(dist)
+        total_size += size_in_bytes
+        logger.info(f"{dist.metadata['name']}: {humanize.naturalsize(size_in_bytes)}")
         logger.info("-" * 40)
-    logger.info(f"Total dependency size: {total_size / 1000} KB")
+    logger.info(f"Total dependency size: {humanize.naturalsize(total_size)}")
 
 
 if __name__ == "__main__":

@@ -44,13 +44,15 @@ python-stdnum = "==1.19"
 tenacity = "==8.2.3"
 # Python plotting package. https://pypi.org/project/matplotlib/
 matplotlib = "==3.8.2"
-# Pretty Good Privacy for Python. https://github.com/SecurityInnovation/PGPy
-pgpy = "==0.6.0"
 # Cross-platform lib for process and system monitoring in Python. https://github.com/giampaolo/psutil
 psutil = "==5.9.6"
 # Task scheduling library for Python, https://github.com/agronholm/apscheduler
 apscheduler = "==3.10.4"
+# Python humanize functions. https://github.com/python-humanize/humanize
+humanize = "==4.9.0"
 # 🪜 Customization dependencies
+# Pretty Good Privacy for Python. https://github.com/SecurityInnovation/PGPy
+pgpy = "==0.6.0"
 
 [dev-packages]
 # 🏗 Foundamental dependencies
