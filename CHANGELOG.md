@@ -1,3 +1,12 @@
+# [7.5.1](https://github.com/johnnymillergh/python_boilerplate/compare/7.5...7.5.1) (2024-03-30)
+
+
+### Bug Fixes
+
+* refactor: format test_profiling.py ([2067b97](https://github.com/johnnymillergh/python_boilerplate/commit/2067b97739ac7ea01e90d052cf38626fed1e9093))
+
+
+
 # [7.5](https://github.com/johnnymillergh/python_boilerplate/compare/7.4...7.5) (2024-03-30)
 
 
