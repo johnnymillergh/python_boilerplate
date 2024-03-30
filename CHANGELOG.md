@@ -1,3 +1,27 @@
+# [7.5](https://github.com/johnnymillergh/python_boilerplate/compare/7.4...7.5) (2024-03-30)
+
+
+### Bug Fixes
+
+* **$log:** retain log files by local date; override the default stderr (console) if console is available ([a8009b1](https://github.com/johnnymillergh/python_boilerplate/commit/a8009b100fc07f94556d91b9db3a9c7295d8e005))
+
+
+### Features
+
+* **$database:** support database init when startup ([5d4032e](https://github.com/johnnymillergh/python_boilerplate/commit/5d4032e018edc7c06297cc8035c2391e90bfebb6))
+* integrate APScheduler ([1b3fea3](https://github.com/johnnymillergh/python_boilerplate/commit/1b3fea38f7afeae4223d1128dbdfd3f38ddab485))
+* integrate humanize ([961a47a](https://github.com/johnnymillergh/python_boilerplate/commit/961a47a3d5fae2a81c33b7f65f607cb7e8569a15))
+* list Python dependency size ([10b9e38](https://github.com/johnnymillergh/python_boilerplate/commit/10b9e38f1138040eb919ab8c7c7462b788b8cccd))
+
+
+### Performance Improvements
+
+* **$pipenv:** upgrade dependencies ([0fdb836](https://github.com/johnnymillergh/python_boilerplate/commit/0fdb836ccc7b0ae255749122730124b6e93f4b03))
+* **$pipenv:** upgrade dependencies ([176840e](https://github.com/johnnymillergh/python_boilerplate/commit/176840e61e66c15037bd09187961c9c6a920a9f0))
+* **$Python:** upgrade to Python 3.12 ([4cb471f](https://github.com/johnnymillergh/python_boilerplate/commit/4cb471f5f58826116088f1ea9415196c8fa7f078))
+
+
+
 # [7.4](https://github.com/johnnymillergh/python_boilerplate/compare/7.3...7.4) (2023-11-29)
 
 
