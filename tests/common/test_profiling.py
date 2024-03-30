@@ -51,7 +51,9 @@ def test_time_consuming_function_raising_error() -> None:
 
 
 @pytest.mark.asyncio
-async def test_async_time_consuming_function_when_input_doesnt_contain_exception() -> None:
+async def test_async_time_consuming_function_when_input_doesnt_contain_exception() -> (
+    None
+):
     result: str = await async_time_consuming_function("Hello, World!")
     assert result is not None
     assert result == "Done with Hello, World!"
