@@ -1,3 +1,12 @@
+# [7.6](https://github.com/johnnymillergh/python_boilerplate/compare/7.5.1...7.6) (2024-04-27)
+
+
+### Performance Improvements
+
+* **$pipenv:** upgrade dependencies Apr 24 2024 ([8b9b6c4](https://github.com/johnnymillergh/python_boilerplate/commit/8b9b6c4a2e5f00f82f40f472a0d8e1c09c428c11))
+
+
+
 # [7.5.1](https://github.com/johnnymillergh/python_boilerplate/compare/7.5...7.5.1) (2024-03-30)
 
 
