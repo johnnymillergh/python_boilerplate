@@ -82,5 +82,13 @@ jobs:
       - uses: ./.github/actions/project-environment-setup
       - name: Check Versions of Python Packages
         run: |
-          pipenv run pip list --outdated
+          output=$(pipenv run pip list --outdated)
+          if [ -z "$output" ]
+          then
+              echo "🎉 Congrats! Everything is up-to-date"
+          else
+              echo "⚠️ Attention! Outdated dependencies detected"
+              echo "$output"
+          fi
+          echo "Pipfile"
           cat Pipfile
