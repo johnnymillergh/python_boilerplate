@@ -2,7 +2,6 @@
 **
 
 # ... except for dependencies and source
-!Pipfile
-!Pipfile.lock
-!python_boilerplate
-!setup.cfg
+!pyproject.toml
+!poetry.lock
+!src/

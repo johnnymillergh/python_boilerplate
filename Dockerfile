@@ -1,40 +1,104 @@
-FROM python:3.12-slim AS base
+# syntax=docker/dockerfile:1
+# Keep this syntax directive! It's used to enable Docker BuildKit
 
-# Setup env
-ENV LANG C.UTF-8
-ENV LC_ALL C.UTF-8
-ENV PYTHONDONTWRITEBYTECODE 1
-ENV PYTHONFAULTHANDLER 1
+# Based on https://github.com/python-poetry/poetry/discussions/1879?sort=top#discussioncomment-216865
+# Inpired by https://gist.github.com/usr-ein/c42d98abca3cb4632ab0c2c6aff8c88a
+# but I try to keep it updated (see history)
 
-FROM base AS python-deps
+################################
+# PYTHON-BASE
+# Sets up all our shared environment variables
+################################
+FROM python:3.12.2-slim AS python-base
 
-# Install pipenv and compilation dependencies
-RUN pip install pipenv
+# Setup env for Python
+ENV PYTHONUNBUFFERED=1 \
+    # prevents python creating .pyc files
+    PYTHONDONTWRITEBYTECODE=1 \
+    \
+    # pip
+    PIP_NO_CACHE_DIR=off \
+    PIP_DISABLE_PIP_VERSION_CHECK=on \
+    PIP_DEFAULT_TIMEOUT=100 \
+    \
+    # poetry
+    # https://python-poetry.org/docs/configuration/#using-environment-variables
+    POETRY_VERSION=1.8.5 \
+    # make poetry install to this location
+    POETRY_HOME="/opt/poetry" \
+    # make poetry create the virtual environment in the project's root
+    # it gets named `.venv`
+    POETRY_VIRTUALENVS_IN_PROJECT=true \
+    # do not ask any interactive question
+    POETRY_NO_INTERACTION=1 \
+    \
+    # paths
+    # this is where our requirements + virtual environment will live
+    PYSETUP_PATH="/opt/pysetup" \
+    VENV_PATH="/opt/pysetup/.venv"
+
+# prepend poetry and venv to path
+ENV PATH="$POETRY_HOME/bin:$VENV_PATH/bin:$PATH"
+
+################################
+# BUILDER-BASE
+# Used to build deps + create our virtual environment
+################################
+FROM python-base AS builder-base
 RUN apt-get update \
-    && apt-get install -y --no-install-recommends gcc \
-    && apt-get clean
+    && apt-get install --no-install-recommends -y \
+       # deps for installing poetry
+       curl \
+       # deps for building python deps
+       build-essential
 
-# Install python dependencies in /.venv
-COPY Pipfile .
-COPY Pipfile.lock .
-RUN PIPENV_VENV_IN_PROJECT=1 pipenv install --quiet --deploy
+# install poetry - respects $POETRY_VERSION & $POETRY_HOME
+# The --mount will mount the buildx cache directory to where
+# Poetry and Pip store their cache so that they can re-use it
+RUN --mount=type=cache,target=/root/.cache \
+    curl -sSL https://install.python-poetry.org | python3 -
 
-FROM base AS runtime
+RUN poetry --version
 
-# Copy virtual env from python-deps stage
-COPY --from=python-deps /.venv /.venv
-ENV PATH="/.venv/bin:$PATH"
+# copy project requirement files here to ensure they will be cached.
+WORKDIR $PYSETUP_PATH
+COPY poetry.lock pyproject.toml ./
 
-# Create and switch to a new user
-# RUN useradd --create-home appuser
+# install runtime deps - uses $POETRY_VIRTUALENVS_IN_PROJECT internally
+RUN --mount=type=cache,target=/root/.cache \
+    poetry install --no-interaction --no-root --without test
+
+################################
+# DEVELOPMENT
+# Image used during development / testing
+################################
+FROM python-base AS development
+WORKDIR $PYSETUP_PATH
+
+# copy in our built poetry + venv
+COPY --from=builder-base $POETRY_HOME $POETRY_HOME
+COPY --from=builder-base $PYSETUP_PATH $PYSETUP_PATH
+
+# quicker install as runtime deps are already installed
+RUN poetry install
+
+# will become mountpoint of our code
 WORKDIR /app
-# USER appuser
 
-# Install application into container
-COPY . .
+################################
+# PRODUCTION
+# Final image used for runtime
+################################
+FROM python-base AS production
+COPY --from=builder-base $PYSETUP_PATH $PYSETUP_PATH
+COPY . /app/
+WORKDIR /app/src
 
 RUN pwd
-RUN ls -l -h
+# Show the project module in the current directory. e.g.
+# total 4.0K
+# drwxr-xr-x 11 root root 4.0K Jan 1 12:59 python_boilerplate
+RUN ls -lh
 
 # Run the executable
 ENTRYPOINT ["python", "-m", "python_boilerplate"]
