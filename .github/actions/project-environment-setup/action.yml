@@ -3,9 +3,11 @@ description: Setup project environment
 runs:
   using: "composite"
   steps:
+    - name: Install poetry
+      run: pipx install poetry==1.8.5
     # The actions/cache step below uses this id to get the exact python version
     - id: setup-python
-      uses: actions/setup-python@v4
+      uses: actions/setup-python@v5
       with:
         python-version: "3.12.2"
         architecture: x64
@@ -20,6 +22,4 @@ runs:
     - name: Install Dependencies with Poetry
       if: steps.cache-pipenv.outputs.cache-hit != 'true'
       shell: bash
-      run: |
-        pipx install poetry==1.8.5
-        poetry install --with test
+      run: poetry install --with test
