@@ -7,18 +7,19 @@ runs:
     - id: setup-python
       uses: actions/setup-python@v4
       with:
-        python-version: "3.12"
+        python-version: "3.12.2"
         architecture: x64
         # https://github.com/actions/setup-python/blob/main/docs/advanced-usage.md#caching-packages
-        cache: "pipenv"
+        cache: "poetry"
     # https://github.com/actions/cache/blob/main/examples.md#python---pipenv
-    - uses: actions/cache@v3
+    - id: cache-pipenv
+      uses: actions/cache@v3
       with:
         path: ~/.local/share/virtualenvs
-        key: ${{ runner.os }}-python-${{ steps.setup-python.outputs.python-version }}-pipenv-${{ hashFiles('Pipfile.lock') }}
-    - name: Install Dependencies with pipenv
+        key: ${{ runner.os }}-python-${{ steps.setup-python.outputs.python-version }}-poetry-${{ hashFiles('poetry.lock') }}
+    - name: Install Dependencies with Poetry
       if: steps.cache-pipenv.outputs.cache-hit != 'true'
       shell: bash
       run: |
-        pip install pipenv
-        pipenv install --quiet --deploy --dev
+        pipx install poetry==1.8.5
+        poetry install --with test

@@ -1,7 +1,8 @@
 name: Python CI with pipenv
 
 on:
-  pull_request: {}
+  pull_request:
+    types: [opened, reopened]
   push:
     branches:
       - 'main'
@@ -32,27 +33,26 @@ jobs:
     steps:
       - uses: actions/checkout@v3
       - uses: ./.github/actions/project-environment-setup
-      - run: pipenv run isort --recursive --diff .
-      - run: pipenv run black --check .
-      - run: pipenv run flake8
+      - run: poetry run ruff check .
       - name: Install mypy types
         run: |
-          yes | pipenv run mypy --install-types \
+          yes | poetry run mypy --install-types \
           || test $? -eq 2 && echo "Installed mypy types successfully" \
           || echo "Failed to install mypy types"
-      - run: pipenv run mypy
+      - run: poetry run mypy
       - name: Python Tests with pytest
-        run: env LOG_LEVEL=INFO pipenv run pytest --quiet --cov --cov-report term -n auto --benchmark-disable
+        run: env LOG_LEVEL=INFO poetry run pytest --quiet --cov --cov-report term -n auto --benchmark-disable
       - name: Python Benchmark with pytest
-        run: env LOG_LEVEL=ERROR pipenv run pytest --capture=no --log-cli-level=ERROR -n 0 --benchmark-only
+        run: env LOG_LEVEL=ERROR poetry run pytest --capture=no --log-cli-level=ERROR -n 0 --benchmark-only
   pyinstaller-smoke-test:
+    needs: static-code-analysis
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
       - uses: ./.github/actions/project-environment-setup
       - name: Build Application Executable Package with PyInstaller
         run: |
-          pipenv run pyinstaller --windowed --noconsole \
+          poetry run pyinstaller --windowed --noconsole \
             --add-data "setup.cfg:." \
             --add-data "python_boilerplate/resources/*:python_boilerplate/resources" \
             --name multithread_and_thread_pool_usage \
@@ -63,6 +63,7 @@ jobs:
       - name: Smoke Test PyInstaller Application
         run: ./dist/multithread_and_thread_pool_usage/multithread_and_thread_pool_usage
   docker-smoke-test:
+    needs: static-code-analysis
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
@@ -82,7 +83,7 @@ jobs:
       - uses: ./.github/actions/project-environment-setup
       - name: Check Versions of Python Packages
         run: |
-          output=$(pipenv run pip list --outdated)
+          output=$(poetry run pip list --outdated)
           if [ -z "$output" ]
           then
               echo "🎉 Congrats! Everything is up-to-date"
