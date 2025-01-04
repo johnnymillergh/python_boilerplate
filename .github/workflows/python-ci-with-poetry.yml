@@ -91,5 +91,5 @@ jobs:
               echo "⚠️ Attention! Outdated dependencies detected"
               echo "$output"
           fi
-          echo "Pipfile"
-          cat Pipfile
+          echo "pyproject.toml"
+          cat pyproject.toml
