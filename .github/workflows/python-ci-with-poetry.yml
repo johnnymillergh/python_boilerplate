@@ -54,9 +54,9 @@ jobs:
         run: |
           poetry run pyinstaller --windowed --noconsole \
             --add-data "pyproject.toml:." \
-            --add-data "python_boilerplate/resources/*:python_boilerplate/resources" \
+            --add-data "src/python_boilerplate/resources/*:python_boilerplate/resources" \
             --name multithread_and_thread_pool_usage \
-            --clean --noconfirm python_boilerplate/demo/multithread_and_thread_pool_usage.py
+            --clean --noconfirm src/python_boilerplate/demo/multithread_and_thread_pool_usage.py
       - name: Display Built Artifacts
         run: |
           du -s -h *
