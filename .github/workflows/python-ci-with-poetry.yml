@@ -1,4 +1,4 @@
-name: Python CI with pipenv
+name: Python CI with Poetry
 
 on:
   pull_request:
