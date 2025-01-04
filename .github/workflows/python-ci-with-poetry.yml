@@ -53,7 +53,7 @@ jobs:
       - name: Build Application Executable Package with PyInstaller
         run: |
           poetry run pyinstaller --windowed --noconsole \
-            --add-data "setup.cfg:." \
+            --add-data "pyproject.toml:." \
             --add-data "python_boilerplate/resources/*:python_boilerplate/resources" \
             --name multithread_and_thread_pool_usage \
             --clean --noconfirm python_boilerplate/demo/multithread_and_thread_pool_usage.py
