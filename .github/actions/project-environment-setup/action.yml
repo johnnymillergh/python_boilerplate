@@ -3,7 +3,8 @@ description: Setup project environment
 runs:
   using: "composite"
   steps:
-    - name: Install poetry
+    - name: Install Poetry
+      shell: bash
       run: pipx install poetry==1.8.5
     # The actions/cache step below uses this id to get the exact python version
     - id: setup-python
