@@ -60,9 +60,9 @@ def build_message(
     )
     message: MIMEMultipart = MIMEMultipart("related")
     message["Subject"] = Header(subject, "utf-8").encode()
-    message["From"] = Header(_sender)
-    message["To"] = Header(receiver)
-    message["Cc"] = Header(_sender)
+    message["From"] = Header(_sender, "utf-8").encode()
+    message["To"] = Header(receiver, "utf-8").encode()
+    message["Cc"] = Header(_sender, "utf-8").encode()
     message.attach(content)
     with Path(picture_path).open("rb") as file:
         img_data = file.read()

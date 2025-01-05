@@ -21,7 +21,7 @@ Here are the highlights of **python_boilerplate**:
 
 1. Inherited from modern and the latest Python technologies:
 
-   `Python` - [![Python](https://img.shields.io/badge/Python-v3.12.0-blue)](https://www.python.org/downloads/release/python-3120/)
+   `Python` - [![Python](https://img.shields.io/badge/Python-v3.13.1-blue)](https://www.python.org/downloads/release/python-3131/)
 
    `Poetry` is to Python virtualenv management tool for the project.
 
