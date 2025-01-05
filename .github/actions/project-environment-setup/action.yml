@@ -10,7 +10,7 @@ runs:
     - id: setup-python
       uses: actions/setup-python@v5
       with:
-        python-version: "3.12.2"
+        python-version: "3.13.1"
         architecture: x64
         # https://github.com/actions/setup-python/blob/main/docs/advanced-usage.md#caching-packages
         cache: "poetry"
