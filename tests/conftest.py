@@ -1,12 +1,15 @@
+from collections.abc import Generator
 from pathlib import Path
-from typing import Any
+from typing import TYPE_CHECKING, Any
 
 import pytest
-from _pytest.nodes import Node
 from loguru import logger
 from pyinstrument.profiler import Profiler
 
 from python_boilerplate.common.common_function import get_module_name
+
+if TYPE_CHECKING:
+    from _pytest.nodes import Node
 
 PROJECT__ROOT = Path(__file__).parent.parent
 
@@ -21,13 +24,12 @@ def pytest_html_report_title(report: Any) -> None:
 
 
 @pytest.fixture(autouse=True)
-def auto_profile(request: Any) -> None:  # type: ignore
+def auto_profile(request: Any) -> Generator[Any, Any, None]:
     """
     Generate an HTML file for each test node in your test suite inside the .profiles directory.
 
     https://pyinstrument.readthedocs.io/en/latest/guide.html#profile-pytest-tests
     """
-
     profile_root = PROJECT__ROOT / "build/.profiles"
     logger.info("Starting to profile Pytest unit tests...")
     # Turn profiling on
@@ -44,6 +46,6 @@ def auto_profile(request: Any) -> None:  # type: ignore
         # If exist_ok=False (the default), FileExistsError is raised if the target directory already exists.
         profile_html_path.mkdir(parents=True, exist_ok=True)
     results_file = profile_html_path / f"{node.name}.html"
-    with open(results_file, "w", encoding="utf-8") as f_html:
+    with results_file.open("w", encoding="utf-8") as f_html:
         f_html.write(profiler.output_html())
         logger.info(f"Generated profile result: [{results_file}]")

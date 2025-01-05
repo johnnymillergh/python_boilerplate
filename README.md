@@ -23,7 +23,7 @@ Here are the highlights of **python_boilerplate**:
 
    `Python` - [![Python](https://img.shields.io/badge/Python-v3.12.0-blue)](https://www.python.org/downloads/release/python-3120/)
 
-   `Pipenv` is to Python virtualenv management tool for the project.
+   `Poetry` is to Python virtualenv management tool for the project.
 
 2. Data validation using Python type hints with [Pydantic](https://github.com/pydantic/pydantic).
 
@@ -83,31 +83,31 @@ Here are the highlights of **python_boilerplate**:
 1. Setup the development environment
 
    ```shell
-   # Install pipx if pipenv and cookiecutter are not installed
+   # Install pipx if not installed
    $ python3 -m pip install pipx
    $ python3 -m pipx ensurepath
 
-   # Install pipenv using pipx
-   $ pipx install pipenv
+   # Install poetry using pipx, https://python-poetry.org/docs/#installing-with-pipx
+   $ pipx install poetry
    ```
 
-2. Install dependencies
+2. Install dependencies, with optional dependency group `test`
 
    ```shell
-   $ pipenv install --quiet --dev
+   $ poetry install --with test
    ```
 
 3. Install mypy types
 
    ```shell
-   $ pipenv run mypy --install-types
+   $ poetry run mypy --install-types
    ```
 
 4. Setup pre-commit and pre-push hooks
 
    ```shell
-   $ pipenv run pre-commit install -t pre-commit
-   $ pipenv run pre-commit install -t pre-push
+   $ poetry run pre-commit install -t pre-commit
+   $ poetry run pre-commit install -t pre-push
    ```
 
 ## Useful Commands
@@ -128,11 +128,11 @@ For macOS or Linux,
 
 ```shell
 # Ensure `pwd` is the root directory of the project
-$ PYTHONPATH=`pwd` pipenv run python3 python_boilerplate/demo/pandas_usage.py
-$ PYTHONPATH=`pwd` pipenv run python3 python_boilerplate/demo/multithread_and_thread_pool_usage.py
+$ PYTHONPATH=`pwd` poetry run python3 python_boilerplate/demo/pandas_usage.py
+$ PYTHONPATH=`pwd` poetry run python3 python_boilerplate/demo/multithread_and_thread_pool_usage.py
 
 # Run the main module
-$ PYTHONPATH=`pwd` pipenv run python3 python_boilerplate/__main__.py
+$ PYTHONPATH=`pwd` poetry run python3 python_boilerplate/__main__.py
 
 # Run a pytest script
 $ pytest --log-cli-level=DEBUG --capture=no tests/common/test_debounce_throttle.py
@@ -141,17 +141,17 @@ $ pytest --log-cli-level=DEBUG --capture=no tests/common/test_debounce_throttle.
 $ pytest --log-cli-level=DEBUG --capture=no tests/common/test_debounce_throttle.py -k 'test_debounce'
 
 # For more details of pytest command
-$ pipenv run pytest --help
+$ poetry run pytest --help
 ```
 
 For Windows Terminal,
 ```powershell
 # Ensure `$PWD.Path` is the root directory of the project
-$ $env:PYTHONPATH=$PWD.Path; pipenv run python .\python_boilerplate\demo\pandas_usage.py
-$ $env:PYTHONPATH=$PWD.Path; pipenv run python .\python_boilerplate\demo\multithread_and_thread_pool_usage.py
+$ $env:PYTHONPATH=$PWD.Path; poetry run python .\python_boilerplate\demo\pandas_usage.py
+$ $env:PYTHONPATH=$PWD.Path; poetry run python .\python_boilerplate\demo\multithread_and_thread_pool_usage.py
 
 # Run the main module
-$ $env:PYTHONPATH=$PWD.Path; pipenv run python .\python_boilerplate\__main__.py
+$ $env:PYTHONPATH=$PWD.Path; poetry run python .\python_boilerplate\__main__.py
 ```
 
 ### Package with [PyInstaller](https://pyinstaller.org/en/latest/usage.html?highlight=pythonpath#using-pyinstaller)
@@ -171,20 +171,20 @@ $ $env:PYTHONPATH=$PWD.Path; pipenv run python .\python_boilerplate\__main__.py
 
 Build artifact with macOS or Linux,
 ```shell
-$ pipenv run pyinstaller --console \
---add-data "setup.cfg:." \
---add-data "python_boilerplate/resources/*:python_boilerplate/resources" \
+$ poetry run pyinstaller --console \
+--add-data "pyproject.toml:." \
+--add-data "src/python_boilerplate/resources/*:python_boilerplate/resources" \
 --name pandas_usage \
---clean --noconfirm python_boilerplate/demo/pandas_usage.py
+--clean --noconfirm src/python_boilerplate/demo/pandas_usage.py
 ```
 
 On Windows,
 ```powershell
-$ pipenv run pyinstaller --console `
---add-data "setup.cfg;." `
---add-data "python_boilerplate/resources/*;python_boilerplate/resources" `
+$ poetry run pyinstaller --console `
+--add-data "pyproject.toml;." `
+--add-data "src/python_boilerplate/resources/*;python_boilerplate/resources" `
 --name multithread_and_thread_pool_usage `
---clean --noconfirm python_boilerplate/demo/multithread_and_thread_pool_usage.py
+--clean --noconfirm src/python_boilerplate/demo/multithread_and_thread_pool_usage.py
 ```
 
 ### Run Unit Tests
@@ -192,13 +192,13 @@ $ pipenv run pyinstaller --console `
 Run with pytest, analyze code coverage, generate HTML code coverage reports, fail the test if coverage percentage is under 90%,
 
 ```shell
-$ pipenv run pytest --cov --cov-report html --cov-fail-under=85 --capture=no --log-cli-level=INFO
+$ poetry run pytest --cov --cov-report html --cov-fail-under=85 --capture=no --log-cli-level=INFO
 ```
 
 Benchmark with pytest,
 
 ```shell
-$ pipenv run pytest --capture=no --log-cli-level=ERROR -n 0 --benchmark-only
+$ poetry run pytest --capture=no --log-cli-level=ERROR -n 0 --benchmark-only
 ```
 
 ### Conventional Changelog CLI
@@ -224,7 +224,7 @@ $ pipenv run pytest --capture=no --log-cli-level=ERROR -n 0 --benchmark-only
 ### Check Versions of Python Packages
 
 ```shell
-$ pipenv run pip list --outdated
+$ poetry run pip list --outdated
 ```
 
 Output be like,
