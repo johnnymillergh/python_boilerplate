@@ -1,3 +1,12 @@
+# [8.0](https://github.com/johnnymillergh/python_boilerplate/compare/7.6...8.0) (2025-01-05)
+
+
+### Features
+
+* **Poetry:** build with Poetry ([46df3c0](https://github.com/johnnymillergh/python_boilerplate/commit/46df3c03405dfef52f7ab7629c1b7a1349ffd555))
+
+
+
 # [7.6](https://github.com/johnnymillergh/python_boilerplate/compare/7.5.1...7.6) (2024-04-27)
 
 
