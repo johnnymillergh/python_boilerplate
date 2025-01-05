@@ -1,0 +1,95 @@
+name: Python CI with Poetry
+
+on:
+  pull_request:
+    types: [opened, reopened]
+  push:
+    branches:
+      - 'main'
+      - 'feature/**'
+    paths-ignore:
+      - '**.md'
+      - '_config.yml'
+      - '**.tweet'
+  # Scheduled workflows run on the latest commit on the default or base branch.
+  # https://docs.github.com/en/actions/using-workflows/events-that-trigger-workflows#schedule
+  # Cron syntax has five fields separated by a space, and each field represents a unit of time.
+  # ┌───────────── minute (0 - 59)
+  # │ ┌───────────── hour (0 - 23)
+  # │ │ ┌───────────── day of the month (1 - 31)
+  # │ │ │ ┌───────────── month (1 - 12 or JAN-DEC)
+  # │ │ │ │ ┌───────────── day of the week (0 - 6 or SUN-SAT)
+  # │ │ │ │ │
+  # │ │ │ │ │
+  # │ │ │ │ │
+  # * * * * *
+  schedule:
+    # Schedule at 00:00 on Tuesday, Thursday, and Saturday, https://crontab.guru/#0_0_*_*_2,4,6
+    - cron: '0 0 * * 2,4,6'
+
+jobs:
+  static-code-analysis:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - uses: ./.github/actions/project-environment-setup
+      - run: poetry run ruff check .
+      - name: Install mypy types
+        run: |
+          yes | poetry run mypy --install-types \
+          || test $? -eq 2 && echo "Installed mypy types successfully" \
+          || echo "Failed to install mypy types"
+      - run: poetry run mypy
+      - name: Python Tests with pytest
+        run: env LOG_LEVEL=INFO poetry run pytest --quiet --cov --cov-report term -n auto --benchmark-disable
+      - name: Python Benchmark with pytest
+        run: env LOG_LEVEL=ERROR poetry run pytest --capture=no --log-cli-level=ERROR -n 0 --benchmark-only
+  pyinstaller-smoke-test:
+    needs: static-code-analysis
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - uses: ./.github/actions/project-environment-setup
+      - name: Build Application Executable Package with PyInstaller
+        run: |
+          poetry run pyinstaller --windowed --noconsole \
+            --add-data "pyproject.toml:." \
+            --add-data "src/python_boilerplate/resources/*:python_boilerplate/resources" \
+            --name multithread_and_thread_pool_usage \
+            --clean --noconfirm src/python_boilerplate/demo/multithread_and_thread_pool_usage.py
+      - name: Display Built Artifacts
+        run: |
+          du -s -h *
+      - name: Smoke Test PyInstaller Application
+        run: ./dist/multithread_and_thread_pool_usage/multithread_and_thread_pool_usage
+  docker-smoke-test:
+    needs: static-code-analysis
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - name: Build Docker Image
+        run: |
+          docker build . -t python_boilerplate:smoke-test-tag
+          docker inspect python_boilerplate:smoke-test-tag
+          echo "Image size: `docker inspect -f "{{ .Size }}" python_boilerplate:smoke-test-tag | numfmt --to=si`"
+          docker image ls python_boilerplate:smoke-test-tag
+      - name: Smoke Test Docker Image
+        run: |
+          docker run --rm python_boilerplate:smoke-test-tag param_3_from_command_line
+  check-versions:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - uses: ./.github/actions/project-environment-setup
+      - name: Check Versions of Python Packages
+        run: |
+          output=$(poetry run pip list --outdated)
+          if [ -z "$output" ]
+          then
+              echo "🎉 Congrats! Everything is up-to-date"
+          else
+              echo "⚠️ Attention! Outdated dependencies detected"
+              echo "$output"
+          fi
+          echo "pyproject.toml"
+          cat pyproject.toml
